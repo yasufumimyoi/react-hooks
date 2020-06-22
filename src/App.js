@@ -1,19 +1,19 @@
-import React from "react";
+import React, { Component } from "react";
 
-let count = 0;
-
-const addCount = () => {
-  console.log("Adding");
-};
-
-function App() {
-  return (
-    <div>
-      <h2>Count</h2>
-      <p>{count}</p>
-      <button onClick={addCount}>+</button>
-    </div>
-  );
+class Header extends Component {
+  render() {
+    return (
+      <div>
+        <h1>Indecision App</h1>
+      </div>
+    );
+  }
 }
+
+const App = (
+  <div>
+    <Header />
+  </div>
+);
 
 export default App;
