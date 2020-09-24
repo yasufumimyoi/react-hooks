@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
+import Counter from "./counter";
 
 class IndecisionApp extends Component {
   render() {
@@ -80,6 +81,7 @@ class AddOption extends Component {
           <input type="text" name="option" />
           <button>Add Option</button>
         </form>
+        <Counter />
       </div>
     );
   }
