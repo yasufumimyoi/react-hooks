@@ -1,14 +1,14 @@
 import React, { useReducer } from "react";
-import { reducerFunction, initialState } from "./reducer";
+import { countReducer, initialState } from "./reducer";
 
 const Counter = () => {
-  const [count, dispatch] = useReducer(reducerFunction, initialState);
+  const [state, dispatch] = useReducer(countReducer, initialState);
 
   return (
     <div>
-      <h2>Count : {count}</h2>
-      <button onClick={() => dispatch("increment")}>+</button>
-      <button onClick={() => dispatch("decrement")}>-</button>
+      <h2>Count : {state.count}</h2>
+      <button onClick={() => dispatch({ type: "increment" })}>+</button>
+      <button onClick={() => dispatch({ type: "decrement" })}>-</button>
     </div>
   );
 };

@@ -1,12 +1,12 @@
-export const initialState = 0;
+export const initialState = { count: 0 };
 
-export const reducerFunction = (countState, action) => {
-  switch (action) {
+export const countReducer = (state, action) => {
+  switch (action.type) {
     case "increment":
-      return countState + 1;
+      return { count: state.count + 1 };
     case "decrement":
-      return countState - 1;
+      return { count: state.count - 1 };
     default:
-      return countState;
+      return state;
   }
 };
