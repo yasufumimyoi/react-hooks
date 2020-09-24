@@ -1,5 +1,6 @@
 import React, { useReducer } from "react";
 import { countReducer, initialState } from "./reducer";
+const Context = React.createContext();
 
 const Counter = () => {
   const [state, dispatch] = useReducer(countReducer, initialState);
