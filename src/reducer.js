@@ -1,11 +1,15 @@
-export const initialState = { count: 0 };
+export const initialState = [
+  { id: 1, title: "Hey" },
+  { id: 2, title: "Good" },
+  { id: 3, title: "Cool" },
+];
 
-export const countReducer = (state, action) => {
+export const todoReducer = (state, action) => {
   switch (action.type) {
-    case "increment":
-      return { ...state, count: state.count + 1 };
-    case "decrement":
-      return { ...state, count: state.count - 1 };
+    case "add":
+      return [...state, { id: action.id, title: action.title }];
+    case "remove":
+      return state.filter((item) => item.id != action.id);
     default:
       return state;
   }
