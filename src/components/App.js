@@ -1,35 +1,48 @@
 import React, { useEffect, useState } from "react";
+import Header from "./Header";
+import VideoList from "./VidoeList";
+import Loading from "./Loading";
 import youtube from "../api/youtube";
 
+import { Grid } from "@material-ui/core";
+
 const App = () => {
-  const [video, setVideo] = useState([]);
+  const [videos, setVideos] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const fetchData = async () => {
     const response = await youtube.get("search", {
-      params: { q: "プログラミング" },
+      params: { q: "Japanese" },
     });
-    console.log(response);
-    setVideo(response.data.items);
-    console.log(video);
+    setVideos(response.data.items);
+    setLoading(true);
   };
 
   useEffect(() => {
     fetchData();
   }, []);
 
-  console.log(video);
-
   return (
-    <div>
-      {video.map((v, index) => {
-        return (
-          <div key={index}>
-            <iframe src={`https://www.youtube.com/embed/${v.id.videoId}`} />
-            <img src={v.snippet.thumbnails.medium.url} />
-          </div>
-        );
-      })}
-    </div>
+    <Grid container direction="column">
+      <Grid item>
+        <Header />
+      </Grid>
+      <Grid container>
+        <Grid item sm={1} />
+        <Grid item xs={12} sm={10}>
+          <Grid container>
+            {loading ? (
+              videos.map((video) => (
+                <VideoList key={video.id.videoId} video={video} />
+              ))
+            ) : (
+              <p>Loading...</p>
+            )}
+          </Grid>
+          <Grid item sm={1} />
+        </Grid>
+      </Grid>
+    </Grid>
   );
 };
 
