@@ -1,30 +1,60 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Courses from "./Courses";
+import { useHistory } from "react-router-dom";
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles(() => ({
   link: {
     marginRight: "8px",
     color: "white",
-    textDecoration: "none",
   },
 }));
 
 const HeaderRouter = () => {
   const classes = useStyles();
+  const history = useHistory();
+
+  const handelCourses = () => {
+    history.push("/courses");
+  };
+
+  const handelLogin = () => {
+    history.push("/login");
+  };
+
+  const handelJoin = () => {
+    history.push("/join");
+  };
   return (
-    <Router>
-      <Link className={classes.link} to="courses">
+    <div>
+      <Button
+        variant="contained"
+        color="primary"
+        className={classes.link}
+        type="button"
+        onClick={handelCourses}
+      >
         Courses
-      </Link>
-      <Link className={classes.link} to="login">
+      </Button>
+      <Button
+        variant="contained"
+        color="primary"
+        className={classes.link}
+        type="button"
+        onClick={handelLogin}
+      >
         Login
-      </Link>
-      <Link className={classes.link} to="join">
+      </Button>
+      <Button
+        variant="contained"
+        color="primary"
+        className={classes.link}
+        type="button"
+        onClick={handelJoin}
+      >
         Join Now
-      </Link>
-    </Router>
+      </Button>
+    </div>
   );
 };
 
