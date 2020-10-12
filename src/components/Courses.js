@@ -13,6 +13,7 @@ import FirebaseImage from "../images/Firebase.svg";
 import ReduxImage from "../images/ReduxImage.svg";
 import NodeImage from "../images/NodeImage.svg";
 import CountUp from "react-countup";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {
@@ -39,6 +40,11 @@ const useStyles = makeStyles({
 
 const Courses = () => {
   const classes = useStyles();
+  const history = useHistory();
+
+  const handleRouter = () => {
+    history.push("/courses/material");
+  };
 
   return (
     <Grid container>
@@ -116,7 +122,9 @@ const Courses = () => {
               <img alt="React" src={MaterialImage} width="300" height="200" />
             </CardContent>
             <CardActions>
-              <Button size="small">Learn More</Button>
+              <Button onClick={handleRouter} size="small">
+                Learn More
+              </Button>
             </CardActions>
           </Card>
         </Grid>

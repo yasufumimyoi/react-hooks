@@ -5,6 +5,8 @@ import VideoList from "./VideoList";
 import Login from "./Login";
 import Join from "./Join";
 import NotFound from "./NotFound";
+import MaterialUIPage from "./MaterialUIPage";
+import MaterialUITest from "./MaterialUITest";
 
 const Contents = () => {
   return (
@@ -21,6 +23,12 @@ const Contents = () => {
         </Route>
         <Route exact path="/join">
           <Join />
+        </Route>
+        <Route exact path="/courses/material">
+          <MaterialUIPage />
+        </Route>
+        <Route exact path="/courses/material/test">
+          <MaterialUITest />
         </Route>
         <Route>
           <NotFound />

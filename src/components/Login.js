@@ -19,6 +19,9 @@ const useStyles = makeStyles((theme) => ({
   layout: {
     marginBottom: 30,
   },
+  image: {
+    cursor: "pointer",
+  },
 }));
 
 const Login = () => {
