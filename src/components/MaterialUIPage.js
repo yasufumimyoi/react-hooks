@@ -5,6 +5,7 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {
@@ -29,10 +30,11 @@ const useStyles = makeStyles({
   },
   test: {
     marginRight: "30px",
+    cursor: "pointer",
   },
 });
 
-const VideoList = () => {
+const MaterialUIPage = () => {
   const classes = useStyles();
   const [isFinished, setFinished] = useState(false);
   const [isChanged, setChanged] = useState(false);
@@ -41,10 +43,19 @@ const VideoList = () => {
     setFinished(!isFinished);
   };
 
+  const history = useHistory();
+
+  const handleRouter = () => {
+    history.push("/courses/material/test");
+  };
+
   return (
     <Grid container>
       <Grid item className={classes.test}>
-        <img src="http://img.youtube.com/vi/tKzSnjWPtEw/mqdefault.jpg" />
+        <img
+          src="http://img.youtube.com/vi/tKzSnjWPtEw/mqdefault.jpg"
+          onClick={handleRouter}
+        />
         <Box>
           <Checkbox
             checked={isFinished}
@@ -99,10 +110,4 @@ const VideoList = () => {
   );
 };
 
-export default VideoList;
-
-// <ReactPlayer
-// controls
-// onEnded={() => setFinished(true)}
-// url="https://www.youtube.com/watch?v=7sDY4m8KNLc"
-// />
+export default MaterialUIPage;
