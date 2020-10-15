@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import Checkbox from "@material-ui/core/Checkbox";
-import ReactPlayer from "react-player";
 import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
+import MaterialUITest2 from "./MaterialUITest2";
+import MaterialUITest from "./MaterialUITest";
 
 const useStyles = makeStyles({
   root: {
@@ -37,7 +37,6 @@ const useStyles = makeStyles({
 const MaterialUIPage = () => {
   const classes = useStyles();
   const [isFinished, setFinished] = useState(false);
-  const [isChanged, setChanged] = useState(false);
 
   const handleChange = () => {
     setFinished(!isFinished);
@@ -106,6 +105,7 @@ const MaterialUIPage = () => {
           </span>
         </Box>
       </Grid>
+      <MaterialUITest2 />
     </Grid>
   );
 };
