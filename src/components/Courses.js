@@ -38,12 +38,51 @@ const useStyles = makeStyles({
   },
 });
 
+const CoursesDescriptions = [
+  {
+    title: "React",
+    subTitle: "Be Productive with React.js, Today's Most Popular Framework",
+    image: ReactImage,
+    path: "/courses/react",
+  },
+  {
+    title: "React-Router",
+    subTitle: "Master Writing Professional and Modern JavaScript",
+    image: ReactRouterImage,
+    path: "/courses/react-router",
+  },
+  {
+    title: "Material UI",
+    subTitle: "Learn CSS, from Laying Out Websites to Performant Animations",
+    image: MaterialImage,
+    path: "/courses/material",
+  },
+  {
+    title: "Redux",
+    subTitle: "Be Productive with React.js, Today's Most Popular Framework",
+    image: ReduxImage,
+    path: "/courses/redux",
+  },
+  {
+    title: "Firebase",
+    subTitle: "Master Writing Professional and Modern JavaScript",
+    image: FirebaseImage,
+    path: "/courses/firebase",
+  },
+  {
+    title: "Node.js",
+    subTitle: "Learn CSS, from Laying Out Websites to Performant Animations",
+    image: NodeImage,
+    path: "/courses/node",
+  },
+];
+
 const Courses = () => {
   const classes = useStyles();
   const history = useHistory();
 
-  const handleRouter = () => {
-    history.push("/courses/material");
+  const handleRouter = (path) => {
+    history.push(path);
   };
 
   return (
@@ -61,133 +100,30 @@ const Courses = () => {
         </p>
       </Typography>
       <Grid container>
-        <Grid item>
-          <Card className={classes.root}>
-            <CardContent>
-              <Typography variant="h5" component="h2">
-                React
-              </Typography>
-              <Typography
-                variant="body2"
-                component="p"
-                className={classes.description}
-              >
-                Be Productive with React.js, Today's Most Popular Framework
-              </Typography>
-              <img alt="React" src={ReactImage} width="300" height="200" />
-            </CardContent>
-            <CardActions>
-              <Button size="small">Learn More</Button>
-            </CardActions>
-          </Card>
-        </Grid>
-        <Grid item>
-          <Card className={classes.root}>
-            <CardContent>
-              <Typography variant="h5" component="h2">
-                React-Router
-              </Typography>
-              <Typography
-                variant="body2"
-                component="p"
-                className={classes.description}
-              >
-                Master Writing Professional and Modern JavaScript
-              </Typography>
-              <img
-                alt="React"
-                src={ReactRouterImage}
-                width="300"
-                height="200"
-              />
-            </CardContent>
-            <CardActions>
-              <Button size="small">Learn More</Button>
-            </CardActions>
-          </Card>
-        </Grid>
-        <Grid item>
-          <Card className={classes.root}>
-            <CardContent>
-              <Typography variant="h5" component="h2">
-                Material UI
-              </Typography>
-              <Typography
-                variant="body2"
-                component="p"
-                className={classes.description}
-              >
-                Learn CSS, from Laying Out Websites to Performant Animations
-              </Typography>
-              <img alt="React" src={MaterialImage} width="300" height="200" />
-            </CardContent>
-            <CardActions>
-              <Button onClick={handleRouter} size="small">
-                Learn More
-              </Button>
-            </CardActions>
-          </Card>
-        </Grid>
-        <Grid item>
-          <Card className={classes.root}>
-            <CardContent>
-              <Typography variant="h5" component="h2">
-                Redux
-              </Typography>
-              <Typography
-                variant="body2"
-                component="p"
-                className={classes.description}
-              >
-                Be Productive with React.js, Today's Most Popular Framework
-              </Typography>
-              <img alt="React" src={ReduxImage} width="300" height="200" />
-            </CardContent>
-            <CardActions>
-              <Button size="small">Learn More</Button>
-            </CardActions>
-          </Card>
-        </Grid>
-        <Grid item>
-          <Card className={classes.root}>
-            <CardContent>
-              <Typography variant="h5" component="h2">
-                Firebase
-              </Typography>
-              <Typography
-                variant="body2"
-                component="p"
-                className={classes.description}
-              >
-                Master Writing Professional and Modern JavaScript
-              </Typography>
-              <img alt="React" src={FirebaseImage} width="300" height="200" />
-            </CardContent>
-            <CardActions>
-              <Button size="small">Learn More</Button>
-            </CardActions>
-          </Card>
-        </Grid>
-        <Grid item>
-          <Card className={classes.root}>
-            <CardContent>
-              <Typography variant="h5" component="h2">
-                Node.js
-              </Typography>
-              <Typography
-                variant="body2"
-                component="p"
-                className={classes.description}
-              >
-                Learn CSS, from Laying Out Websites to Performant Animations
-              </Typography>
-              <img alt="React" src={NodeImage} width="300" height="200" />
-            </CardContent>
-            <CardActions>
-              <Button size="small">Learn More</Button>
-            </CardActions>
-          </Card>
-        </Grid>
+        {CoursesDescriptions.map((course) => (
+          <Grid item>
+            <Card className={classes.root}>
+              <CardContent>
+                <Typography variant="h5" component="h2">
+                  {course.title}
+                </Typography>
+                <Typography
+                  variant="body2"
+                  component="p"
+                  className={classes.description}
+                >
+                  {course.subTitle}
+                </Typography>
+                <img alt="React" src={course.image} width="300" height="200" />
+              </CardContent>
+              <CardActions>
+                <Button onClick={() => handleRouter(course.path)} size="small">
+                  Learn More
+                </Button>
+              </CardActions>
+            </Card>
+          </Grid>
+        ))}
       </Grid>
     </Grid>
   );

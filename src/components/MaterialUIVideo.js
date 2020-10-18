@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import ReactPlayer from "react-player";
 import Checkbox from "@material-ui/core/Checkbox";
-import videos from "./VideoInfo";
+import videos from "../videos/MaterialUIVideo";
 
-const MaterialUIVideoTest = (props) => {
+const MaterialUIVideo = (props) => {
   const [isFinished, setFinished] = useState(false);
   const { id } = props.match.params;
   const matchedVideo = videos.filter((video) => video.id == id);
@@ -25,4 +25,4 @@ const MaterialUIVideoTest = (props) => {
   );
 };
 
-export default MaterialUIVideoTest;
+export default MaterialUIVideo;

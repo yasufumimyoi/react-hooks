@@ -1,12 +1,15 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
+
 import Courses from "./Courses";
 import Login from "./Login";
 import Join from "./Join";
 import NotFound from "./NotFound";
+
+import ReactPage from "./ReactPage";
+import ReactVideo from "./ReactVideo";
 import MaterialUIPage from "./MaterialUIPage";
-import MaterialUITest from "./MaterialUITest";
-import MaterialUIVideoTest from "./MaterialUIVideoTest";
+import MaterialUIVideo from "./MaterialUIVideo";
 
 const Contents = () => {
   return (
@@ -21,13 +24,14 @@ const Contents = () => {
         <Route exact path="/join">
           <Join />
         </Route>
+        <Route exact path="/courses/react">
+          <ReactPage />
+        </Route>
         <Route exact path="/courses/material">
           <MaterialUIPage />
         </Route>
-        <Route exact path="/courses/material/test">
-          <MaterialUITest />
-        </Route>
-        <Route path="/courses/material/:id" component={MaterialUIVideoTest} />
+        <Route path="/courses/react/:id" component={ReactVideo} />
+        <Route path="/courses/material/:id" component={MaterialUIVideo} />
         <Route>
           <NotFound />
         </Route>

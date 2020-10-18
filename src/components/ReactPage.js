@@ -1,10 +1,9 @@
-import React, { useState, useContext } from "react";
-import videos from "../videos/MaterialUIVideo";
+import React, { useState } from "react";
+import videos from "../videos/ReactVideo";
 import { useHistory, Link } from "react-router-dom";
 import { Grid } from "@material-ui/core";
 import Checkbox from "@material-ui/core/Checkbox";
 import { makeStyles } from "@material-ui/core/styles";
-import VideoContext from "../context/video-context";
 
 const useStyles = makeStyles({
   root: {
@@ -33,7 +32,7 @@ const useStyles = makeStyles({
   },
 });
 
-const MaterialUIPage = () => {
+const ReactPage = () => {
   const classes = useStyles();
   const [isFinished, setFinished] = useState(false);
   const history = useHistory();
@@ -63,4 +62,4 @@ const MaterialUIPage = () => {
   );
 };
 
-export default MaterialUIPage;
+export default ReactPage;
