@@ -1,9 +1,10 @@
-import React, { useState } from "react";
-import videos from "../videos/ReactVideo";
-import { useHistory, Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { useHistory } from "react-router-dom";
 import { Grid } from "@material-ui/core";
 import Checkbox from "@material-ui/core/Checkbox";
 import { makeStyles } from "@material-ui/core/styles";
+import VideoContext from "../context/video-context";
+import CountUp from "react-countup";
 
 const useStyles = makeStyles({
   root: {
@@ -34,31 +35,55 @@ const useStyles = makeStyles({
 
 const ReactPage = () => {
   const classes = useStyles();
-  const [isFinished, setFinished] = useState(false);
   const history = useHistory();
+  const { RVideo } = useContext(VideoContext);
 
-  const handleChange = () => {
-    setFinished(!isFinished);
-  };
+  let count = 0;
+  for (let i = 0; i < RVideo.length; i++) {
+    if (RVideo[i].completed == true) {
+      count = count + 1;
+    }
+  }
 
   const handleRouter = (path) => {
     history.push(path);
   };
 
+  let AchievementRate = Math.round((count / RVideo.length) * 100);
+
   return (
-    <Grid container>
-      {videos.map((video) => (
-        <Grid item className={classes.test}>
-          <Checkbox
-            checked={isFinished}
-            onChange={handleChange}
-            inputProps={{ "aria-label": "primary checkbox" }}
-          />
-          <img src={video.image} onClick={() => handleRouter(video.path)} />
-          <p>{video.title}</p>
+    <div>
+      <Grid container>
+        <Grid item>
+          <h3>
+            {" "}
+            You have completed{" "}
+            <CountUp
+              end={AchievementRate}
+              duration={5}
+              className={classes.number}
+            />{" "}
+            % of the course
+          </h3>
         </Grid>
-      ))}
-    </Grid>
+      </Grid>
+      <Grid container>
+        {RVideo.map((video) => (
+          <Grid item className={classes.test} key={video.id}>
+            <Checkbox
+              checked={video.completed}
+              inputProps={{ "aria-label": "primary checkbox" }}
+            />
+            <img
+              src={video.image}
+              alt={video.id}
+              onClick={() => handleRouter(video.path)}
+            />
+            <p>{video.title}</p>
+          </Grid>
+        ))}
+      </Grid>
+    </div>
   );
 };
 

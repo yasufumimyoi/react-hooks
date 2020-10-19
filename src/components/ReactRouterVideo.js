@@ -3,20 +3,21 @@ import ReactPlayer from "react-player";
 import Checkbox from "@material-ui/core/Checkbox";
 import VideoContext from "../context/video-context";
 
-const ReactVideo = (props) => {
-  const { RVideo, setRVideo } = useContext(VideoContext);
+const ReactRouterVideo = (props) => {
+  const { RRVideo, setRRVideo } = useContext(VideoContext);
   const { id } = props.match.params;
-  const matchedVideo = RVideo.filter((video) => video.id == id);
+  const matchedVideo = RRVideo.filter((video) => video.id == id);
 
   const handelToggle = (id) => {
-    const newItems = RVideo.map((item) => {
+    const newItems = RRVideo.map((item) => {
       if (item.id === id) {
         item.completed = !item.completed;
       }
       return item;
     });
-    setRVideo(newItems);
+    setRRVideo(newItems);
   };
+
   return (
     <div>
       <ReactPlayer
@@ -36,4 +37,4 @@ const ReactVideo = (props) => {
   );
 };
 
-export default ReactVideo;
+export default ReactRouterVideo;

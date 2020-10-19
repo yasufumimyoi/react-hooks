@@ -12,7 +12,6 @@ import MaterialImage from "../images/MaterialImage.svg";
 import FirebaseImage from "../images/Firebase.svg";
 import ReduxImage from "../images/ReduxImage.svg";
 import NodeImage from "../images/NodeImage.svg";
-import CountUp from "react-countup";
 import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles({
@@ -92,16 +91,11 @@ const Courses = () => {
       </Typography>
       <Typography className={classes.subTitle} variant="h6" component="h6">
         Guided paths to expand your abilities as a well-rounded engineer!
-        <p>
-          {" "}
-          Currently, more than{" "}
-          <CountUp end={100} duration={5} className={classes.number} /> videos
-          available!!
-        </p>
+        <p> Currently, more than 50 videos available!!</p>
       </Typography>
       <Grid container>
         {CoursesDescriptions.map((course) => (
-          <Grid item>
+          <Grid item key={course.title}>
             <Card className={classes.root}>
               <CardContent>
                 <Typography variant="h5" component="h2">

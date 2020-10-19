@@ -32,10 +32,10 @@ const useStyles = makeStyles({
   },
 });
 
-const MaterialUIPage = () => {
+const ReactRouterPage = () => {
   const classes = useStyles();
   const history = useHistory();
-  const { MVideo } = useContext(VideoContext);
+  const { RRVideo } = useContext(VideoContext);
 
   const handleRouter = (path) => {
     history.push(path);
@@ -43,7 +43,7 @@ const MaterialUIPage = () => {
 
   return (
     <Grid container>
-      {MVideo.map((video) => (
+      {RRVideo.map((video) => (
         <Grid item className={classes.test} key={video.id}>
           <Checkbox
             checked={video.completed}
@@ -61,4 +61,4 @@ const MaterialUIPage = () => {
   );
 };
 
-export default MaterialUIPage;
+export default ReactRouterPage;
