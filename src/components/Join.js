@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 const Join = () => {
   return (
@@ -17,3 +17,28 @@ const Join = () => {
 };
 
 export default Join;
+
+// const { MVideo, setMVideo } = useContext(VideoContext);
+
+// const handelToggle = (id) => {
+//   const newItems = MVideo.map((item) => {
+//     if (item.id === id) {
+//       item.completed = !item.completed;
+//     }
+//     return item;
+//   });
+//   setMVideo(newItems);
+// };
+
+// console.log(MVideo);
+
+// return (
+//   <div>
+//     {MVideo.map((item) => (
+//       <div key={item.id}>
+//         <p>{item.path}</p>
+//         <button onClick={() => handelToggle(item.id)}>Toggle</button>
+//       </div>
+//     ))}
+//   </div>
+// );

@@ -1,25 +1,37 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import ReactPlayer from "react-player";
 import Checkbox from "@material-ui/core/Checkbox";
-import videos from "../videos/MaterialUIVideo";
+import VideoContext from "../context/video-context";
 
 const MaterialUIVideo = (props) => {
-  const [isFinished, setFinished] = useState(false);
+  const { MVideo, setMVideo } = useContext(VideoContext);
   const { id } = props.match.params;
-  const matchedVideo = videos.filter((video) => video.id == id);
-  console.log(matchedVideo[0].url);
+  const matchedVideo = MVideo.filter((video) => video.id == id);
+
+  const handelToggle = (id) => {
+    const newItems = MVideo.map((item) => {
+      if (item.id === id) {
+        item.completed = !item.completed;
+      }
+      return item;
+    });
+    setMVideo(newItems);
+  };
+
   return (
     <div>
-      <span>Completed:</span>
-      <Checkbox
-        checked={isFinished}
-        inputProps={{ "aria-label": "primary checkbox" }}
-      />
-      <p>{id}</p>
       <ReactPlayer
         controls
-        onEnded={() => setFinished(true)}
+        onEnded={() => handelToggle(matchedVideo[0].id)}
         url={matchedVideo[0].url}
+        width="1200px"
+        height="700px"
+      />
+      <p>{matchedVideo[0].title}</p>
+      <span>Completed:</span>
+      <Checkbox
+        checked={matchedVideo[0].completed}
+        inputProps={{ "aria-label": "primary checkbox" }}
       />
     </div>
   );
