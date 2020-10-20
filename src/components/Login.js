@@ -6,6 +6,8 @@ import LockIcon from "@material-ui/icons/Lock";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import AccountCircle from "@material-ui/icons/AccountCircle";
+import { signInWithGoogle, signOut } from "../firebase/firebase.util";
+import firebase from "../firebase/firebase.util";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,6 +25,26 @@ const useStyles = makeStyles((theme) => ({
     cursor: "pointer",
   },
 }));
+
+const firestore = firebase.firestore();
+
+const data = firestore
+  .collection("videos")
+  .doc("m6TSCfc6FstkSbVbVGxy")
+  .get()
+  .then((d) => {
+    if (d) {
+      console.log(d.data());
+    }
+  });
+
+const data2 = firestore.collection("videos").doc("react").set({
+  name: "San Francisco",
+  state: "CA",
+  country: "USA",
+  capital: false,
+  population: 860000,
+});
 
 const Login = () => {
   const classes = useStyles();
@@ -61,7 +83,7 @@ const Login = () => {
         </Grid>
         <Grid container>
           <Grid item>
-            <Typography variant="p" component="p">
+            <Typography variant="h5" component="h5">
               Or Sign in with your account
             </Typography>
           </Grid>
@@ -72,41 +94,20 @@ const Login = () => {
               </Button>
             </Grid>
             <Grid item>
-              <Button variant="contained" color="secondary">
+              <Button
+                variant="contained"
+                color="secondary"
+                onClick={signInWithGoogle}
+              >
                 Sign In With Google
               </Button>
             </Grid>
           </Grid>
         </Grid>
+        <button onClick={signOut}>Logout</button>
       </Grid>
     </div>
   );
 };
 
 export default Login;
-
-// <div className={classes.root}>
-// <Typography variant="h4" component="h4">
-//   Log in
-// </Typography>
-// <form>
-//   <PersonIcon />
-//   <Typography>Email</Typography>
-//   <input type="email" placeholder="Email" />
-//   <LockIcon />
-//   <Typography>Password</Typography>
-//   <input type="password" placeholder="Password" />
-//   <Button variant="contained" color="primary">
-//     Log in
-//   </Button>
-// </form>
-// <Typography variant="h5" component="h5">
-//   Or Sign in with your account
-// </Typography>
-// <Button variant="contained" color="primary">
-//   Sign In With Facebook
-// </Button>
-// <Button variant="contained" color="secondary">
-// //   Sign In With Google
-// </Button>
-// // </div>
