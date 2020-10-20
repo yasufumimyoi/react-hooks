@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
+import VideoContext from "../context/video-context";
 
 const useStyles = makeStyles(() => ({
   link: {
