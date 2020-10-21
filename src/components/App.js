@@ -6,23 +6,51 @@ import { Grid } from "@material-ui/core";
 import Header from "./Header";
 import Contents from "./Contents";
 import VideoContext from "../context/video-context";
-import ReactVideo from "../videos/ReactVideo";
-import ReactRouterVideo from "../videos/ReactRouterVideo";
-import MaterialUIVideo from "../videos/MaterialUIVideo";
 import firebase from "../firebase/firebase.util";
 
 const App = () => {
-  const [MVideo, setMVideo] = useState(MaterialUIVideo);
-  const [RVideo, setRVideo] = useState(ReactVideo);
-  const [RRVideo, setRRVideo] = useState(ReactRouterVideo);
+  const [MVideo, setMVideo] = useState([]);
+  const [RVideo, setRVideo] = useState([]);
+  const [RRVideo, setRRVideo] = useState([]);
   const [user, setUser] = useState(null);
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        setUser(user);
+        setUser(user.uid);
       }
     });
+  });
+
+  useEffect(() => {
+    firebase
+      .firestore()
+      .collection("videos")
+      .get()
+      .then((video) => {
+        let temp = [];
+        video.forEach((info) => {
+          let data = info.data();
+          temp.push({ ...data });
+        });
+        setMVideo(temp[0].material);
+        setRVideo(temp[1].react);
+        setRRVideo(temp[2].router);
+      });
+  }, []);
+
+  console.log(user);
+
+  useEffect(() => {
+    firebase
+      .firestore()
+      .collection("users")
+      .doc("iTlKBpsYWoekOrTGbc2krmbASak2")
+      .set({
+        MVideo,
+        RVideo,
+        RRVideo,
+      });
   });
 
   return (
