@@ -2,11 +2,14 @@ import React, { useContext } from "react";
 import ReactPlayer from "react-player";
 import Checkbox from "@material-ui/core/Checkbox";
 import VideoContext from "../context/video-context";
+import firebase from "../firebase/firebase.util";
 
 const MaterialUIVideo = (props) => {
   const { MVideo, setMVideo } = useContext(VideoContext);
   const { id } = props.match.params;
   const matchedVideo = MVideo.filter((video) => video.id == id);
+
+  const firestore = firebase.firestore();
 
   const handelToggle = (id) => {
     const newItems = MVideo.map((item) => {
@@ -16,6 +19,10 @@ const MaterialUIVideo = (props) => {
       return item;
     });
     setMVideo(newItems);
+    firestore
+      .collection("videos")
+      .doc("materialUI")
+      .set({ material: [...newItems] });
   };
 
   return (
