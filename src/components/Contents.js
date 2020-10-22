@@ -17,30 +17,16 @@ const Contents = () => {
   return (
     <div>
       <Switch>
-        <Route exact path="/courses">
-          <Courses />
-        </Route>
-        <Route exact path="/login">
-          <Login />
-        </Route>
-        <Route exact path="/join">
-          <Join />
-        </Route>
-        <Route exact path="/courses/react">
-          <ReactPage />
-        </Route>
-        <Route exact path="/courses/react-router">
-          <ReactRouterPage />
-        </Route>
-        <Route exact path="/courses/material">
-          <MaterialUIPage />
-        </Route>
+        <Route exact path="/courses" component={Courses} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/join" component={Join} />
+        <Route exact path="/courses/react" component={ReactPage} />
+        <Route exact path="/courses/react-router" component={ReactRouterPage} />
+        <Route exact path="/courses/material" component={MaterialUIPage} />
         <Route path="/courses/react/:id" component={ReactVideo} />
         <Route path="/courses/react-router/:id" component={ReactRouterVideo} />
         <Route path="/courses/material/:id" component={MaterialUIVideo} />
-        <Route>
-          <NotFound />
-        </Route>
+        <Route component={NotFound} />
       </Switch>
     </div>
   );

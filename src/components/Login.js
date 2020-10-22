@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
@@ -6,8 +6,9 @@ import LockIcon from "@material-ui/icons/Lock";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import AccountCircle from "@material-ui/icons/AccountCircle";
-import { signInWithGoogle, signOut } from "../firebase/firebase.util";
+import { provider } from "../firebase/firebase.util";
 import firebase from "../firebase/firebase.util";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,66 +27,44 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const firestore = firebase.firestore();
-
-// const data = firestore
-//   .collection("videos")
-//   .doc("materialUI")
-//   .set({
-//     material: [
-//       {
-//         id: 1,
-//         url: "https://www.youtube.com/watch?v=tKzSnjWPtEw",
-//         image: "http://img.youtube.com/vi/tKzSnjWPtEw/mqdefault.jpg",
-//         title: "React + Material UI #2: Actually",
-//         path: "/courses/material/1",
-//         completed: false,
-//       },
-//       {
-//         id: 2,
-//         url: "https://www.youtube.com/watch?v=3HAARPCabUo",
-//         image: "http://img.youtube.com/vi/3HAARPCabUo/mqdefault.jpg",
-//         title: "React + Material UI #2: Actually",
-//         path: "/courses/material/2",
-//         completed: false,
-//       },
-//       {
-//         id: 3,
-//         url: "https://www.youtube.com/watch?v=zT62eVxShsY",
-//         image: "http://img.youtube.com/vi/zT62eVxShsY/mqdefault.jpg",
-//         title: "React + Material UI #2: Actually",
-//         path: "/courses/material/3",
-//         completed: false,
-//       },
-//       {
-//         id: 4,
-//         url: "https://www.youtube.com/watch?v=rK0Lz8x7npA",
-//         image: "http://img.youtube.com/vi/rK0Lz8x7npA/mqdefault.jpg",
-//         title: "React + Material UI #2: Actually",
-//         path: "/courses/material/4",
-//         completed: false,
-//       },
-//       {
-//         id: 5,
-//         url: "https://www.youtube.com/watch?v=Jkj_XP80h1k",
-//         image: "http://img.youtube.com/vi/Jkj_XP80h1k/mqdefault.jpg",
-//         title: "React + Material UI #2: Actually",
-//         path: "/courses/material/5",
-//         completed: false,
-//       },
-//       {
-//         id: 6,
-//         url: "https://www.youtube.com/watch?v=DJ1_CKs_LPI",
-//         image: "http://img.youtube.com/vi/DJ1_CKs_LPI/mqdefault.jpg",
-//         title: "React + Material UI #2: Actually",
-//         path: "/courses/material/6",
-//         completed: false,
-//       },
-//     ],
-//   });
-
 const Login = () => {
   const classes = useStyles();
+  const history = useHistory();
+
+  const handelLogin = () => {
+    firebase
+      .auth()
+      .signInWithPopup(provider)
+      .then((result) => {
+        const usersRef = firebase.firestore().collection("users");
+        usersRef.get().then((snapShot) => {
+          let temp = [];
+          snapShot.forEach((doc) => {
+            temp.push({ ...doc.id });
+            console.log(temp);
+          });
+          console.log("temp", temp);
+        });
+      })
+      .then(() => {
+        history.push("/courses");
+      });
+  };
+
+  const handleLogout = () => {
+    firebase.auth().signOut();
+    history.push("/courses");
+  };
+
+  useEffect(() => {
+    const usersRef = firebase.firestore().collection("users");
+    usersRef.get().then((snapShot) => {
+      snapShot.forEach((doc) => {
+        console.log(doc.id);
+      });
+    });
+  });
+
   return (
     <div>
       <Grid container>
@@ -135,14 +114,14 @@ const Login = () => {
               <Button
                 variant="contained"
                 color="secondary"
-                onClick={signInWithGoogle}
+                onClick={handelLogin}
               >
                 Sign In With Google
               </Button>
             </Grid>
           </Grid>
         </Grid>
-        <button onClick={signOut}>Logout</button>
+        <button onClick={handleLogout}>Logout</button>
       </Grid>
     </div>
   );
