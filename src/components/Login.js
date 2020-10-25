@@ -40,7 +40,7 @@ const Login = () => {
         usersRef.get().then((snapShot) => {
           let temp = [];
           snapShot.forEach((doc) => {
-            temp.push({ ...doc.id });
+            temp.push(doc.id);
             console.log(temp);
           });
           console.log("temp", temp);
@@ -56,14 +56,14 @@ const Login = () => {
     history.push("/courses");
   };
 
-  useEffect(() => {
-    const usersRef = firebase.firestore().collection("users");
-    usersRef.get().then((snapShot) => {
-      snapShot.forEach((doc) => {
-        console.log(doc.id);
-      });
-    });
-  });
+  // useEffect(() => {
+  //   const usersRef = firebase.firestore().collection("users");
+  //   usersRef.get().then((snapShot) => {
+  //     snapShot.forEach((doc) => {
+  //       console.log(doc.id);
+  //     });
+  //   });
+  // });
 
   return (
     <div>

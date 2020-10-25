@@ -45,11 +45,11 @@ const ReactPage = () => {
     }
   }
 
+  let AchievementRate = Math.round((count / RVideo.length) * 100);
+
   const handleRouter = (path) => {
     history.push(path);
   };
-
-  let AchievementRate = Math.round((count / RVideo.length) * 100);
 
   return (
     <div>

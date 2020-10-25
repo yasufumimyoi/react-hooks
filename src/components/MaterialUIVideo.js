@@ -5,25 +5,11 @@ import VideoContext from "../context/video-context";
 import firebase from "../firebase/firebase.util";
 
 const MaterialUIVideo = (props) => {
-  const { MVideo, setMVideo, user } = useContext(VideoContext);
+  const { MVideo, setMVideo, currentUser } = useContext(VideoContext);
   const { id } = props.match.params;
   const matchedVideo = MVideo.filter((video) => video.id == id);
 
   const firestore = firebase.firestore();
-
-  // const handelToggle = (id) => {
-  //   const newItems = MVideo.map((item) => {
-  //     if (item.id === id) {
-  //       item.completed = !item.completed;
-  //     }
-  //     return item;
-  //   });
-  //   setMVideo(newItems);
-  //   firestore
-  //     .collection("videos")
-  //     .doc("materialUI")
-  //     .set({ material: [...newItems] });
-  // };
 
   const handelLoginUserToggle = (id) => {
     const newItems = MVideo.map((item) => {
@@ -35,7 +21,7 @@ const MaterialUIVideo = (props) => {
     setMVideo(newItems);
     firestore
       .collection("users")
-      .doc(user)
+      .doc(currentUser)
       .update({ MVideo: [...newItems] });
   };
 
