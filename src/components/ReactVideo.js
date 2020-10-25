@@ -2,13 +2,16 @@ import React, { useContext } from "react";
 import ReactPlayer from "react-player";
 import Checkbox from "@material-ui/core/Checkbox";
 import VideoContext from "../context/video-context";
+import firebase from "../firebase/firebase.util";
 
 const ReactVideo = (props) => {
-  const { RVideo, setRVideo } = useContext(VideoContext);
+  const { RVideo, setRVideo, currentUser } = useContext(VideoContext);
   const { id } = props.match.params;
   const matchedVideo = RVideo.filter((video) => video.id == id);
 
-  const handelToggle = (id) => {
+  const firestore = firebase.firestore();
+
+  const handelLoginUserToggle = (id) => {
     const newItems = RVideo.map((item) => {
       if (item.id === id) {
         item.completed = !item.completed;
@@ -16,12 +19,17 @@ const ReactVideo = (props) => {
       return item;
     });
     setRVideo(newItems);
+    firestore
+      .collection("users")
+      .doc(currentUser)
+      .update({ RVideo: [...newItems] });
   };
+
   return (
     <div>
       <ReactPlayer
         controls
-        onEnded={() => handelToggle(matchedVideo[0].id)}
+        onEnded={() => handelLoginUserToggle(matchedVideo[0].id)}
         url={matchedVideo[0].url}
         width="1200px"
         height="700px"
