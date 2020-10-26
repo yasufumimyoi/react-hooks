@@ -35,7 +35,7 @@ const HeaderRouter = () => {
         type="button"
         onClick={handelCourses}
       >
-        Courses
+        コース
       </Button>
       <Button
         variant="contained"
@@ -44,7 +44,7 @@ const HeaderRouter = () => {
         type="button"
         onClick={handelLogin}
       >
-        Login
+        ログイン
       </Button>
       <Button
         variant="contained"
@@ -53,7 +53,7 @@ const HeaderRouter = () => {
         type="button"
         onClick={handelJoin}
       >
-        Join Now
+        新規登録
       </Button>
     </div>
   );

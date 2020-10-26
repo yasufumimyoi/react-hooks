@@ -41,7 +41,7 @@ const Header = () => {
             className={classes.title}
             onClick={handleRoute}
           >
-            React Study Videos
+            Learn React
           </Typography>
           <HeaderRouter />
         </Toolbar>

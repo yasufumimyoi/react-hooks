@@ -118,12 +118,12 @@ const App = () => {
             <Header />
           </Grid>
           <Grid container>
-            <Grid item sm={1} />
-            <Grid item xs={12} sm={10}>
+            <Grid item sm={2} />
+            <Grid item xs={12} sm={8}>
               <Grid container>
                 <Contents />
               </Grid>
-              <Grid item sm={1} />
+              <Grid item sm={2} />
             </Grid>
           </Grid>
         </Grid>
