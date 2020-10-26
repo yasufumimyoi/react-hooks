@@ -20,6 +20,7 @@ const useStyles = makeStyles({
     minWidth: 275,
     marginRight: "30px",
     marginBottom: 25,
+    textAlign: "center",
   },
   title: {
     marginBottom: 14,
@@ -36,42 +37,39 @@ const useStyles = makeStyles({
   number: {
     fontSize: 30,
   },
+  button: {
+    justifyContent: "center",
+  },
 });
 
 const CoursesDescriptions = [
   {
     title: "React",
-    subTitle: "Be Productive with React.js, Today's Most Popular Framework",
     image: ReactImage,
     path: "/courses/react",
   },
   {
     title: "React-Router",
-    subTitle: "Master Writing Professional and Modern JavaScript",
     image: ReactRouterImage,
     path: "/courses/react-router",
   },
   {
     title: "Material UI",
-    subTitle: "Learn CSS, from Laying Out Websites to Performant Animations",
     image: MaterialImage,
     path: "/courses/material",
   },
   {
     title: "Redux",
-    subTitle: "Be Productive with React.js, Today's Most Popular Framework",
     image: ReduxImage,
     path: "/courses/redux",
   },
   {
     title: "Firebase",
-    subTitle: "Master Writing Professional and Modern JavaScript",
     image: FirebaseImage,
     path: "/courses/firebase",
   },
   {
     title: "Node.js",
-    subTitle: "Learn CSS, from Laying Out Websites to Performant Animations",
     image: NodeImage,
     path: "/courses/node",
   },
@@ -91,8 +89,8 @@ const Courses = () => {
         Courses
       </Typography>
       <Typography className={classes.subTitle} variant="h6" component="h6">
-        Guided paths to expand your abilities as a well-rounded engineer!
-        <p> Currently, more than 50 videos available!!</p>
+        教材をこなして進捗率を上げながら楽しく学んでいきましょう。
+        <p> 現在50本以上の動画を用意しております。</p>
       </Typography>
       <Grid container>
         {CoursesDescriptions.map((course) => (
@@ -111,7 +109,7 @@ const Courses = () => {
                 </Typography>
                 <img alt="React" src={course.image} width="300" height="200" />
               </CardContent>
-              <CardActions>
+              <CardActions className={classes.button}>
                 <Button onClick={() => handleRouter(course.path)} size="small">
                   Learn More
                 </Button>

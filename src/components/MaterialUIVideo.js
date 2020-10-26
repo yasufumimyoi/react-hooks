@@ -3,6 +3,7 @@ import ReactPlayer from "react-player";
 import Checkbox from "@material-ui/core/Checkbox";
 import VideoContext from "../context/video-context";
 import firebase from "../firebase/firebase.util";
+import Typography from "@material-ui/core/Typography";
 
 const MaterialUIVideo = (props) => {
   const { MVideo, setMVideo, currentUser } = useContext(VideoContext);
@@ -10,6 +11,10 @@ const MaterialUIVideo = (props) => {
   const matchedVideo = MVideo.filter((video) => video.id == id);
 
   const firestore = firebase.firestore();
+
+  const playerStyle = {
+    marginBottom: "25px",
+  };
 
   const handelLoginUserToggle = (id) => {
     const newItems = MVideo.map((item) => {
@@ -33,9 +38,14 @@ const MaterialUIVideo = (props) => {
         url={matchedVideo[0].url}
         width="1200px"
         height="700px"
+        style={playerStyle}
       />
-      <p>{matchedVideo[0].title}</p>
-      <span>Completed:</span>
+      <Typography variant="h6" component="h6">
+        {matchedVideo[0].title}
+      </Typography>
+      <Typography variant="body2" color="textSecondary" component="span">
+        Completed:
+      </Typography>
       <Checkbox
         checked={matchedVideo[0].completed}
         inputProps={{ "aria-label": "primary checkbox" }}
