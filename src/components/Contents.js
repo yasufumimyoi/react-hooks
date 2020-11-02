@@ -5,6 +5,7 @@ import Courses from "./Courses";
 import Login from "./Login";
 import Join from "./Join";
 import NotFound from "./NotFound";
+import LandingPage from "../components/LandingPage";
 
 import ReactPage from "./ReactPage";
 import ReactVideo from "./ReactVideo";
@@ -17,6 +18,7 @@ const Contents = () => {
   return (
     <div>
       <Switch>
+        <Route exact path="/auth" component={LandingPage} />
         <Route exact path="/courses" component={Courses} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/join" component={Join} />
