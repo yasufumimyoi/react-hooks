@@ -7,16 +7,13 @@ import Header from "./Header";
 import Contents from "./Contents";
 import VideoContext from "../context/video-context";
 import firebase from "../firebase/firebase.util";
+import LandingPage from "./LandingPage";
 
 const App = () => {
   const [MVideo, setMVideo] = useState([]);
   const [RVideo, setRVideo] = useState([]);
   const [RRVideo, setRRVideo] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
-
-  //ユーザーがログインしているかどうかチェック
-  //OK => ログインユーザーの学習進捗データを取得している
-  //NG => videosからデータを取得している
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
@@ -44,8 +41,8 @@ const App = () => {
                   console.log("Login");
                 }
               });
-          } else if (isChecked.length == 0) {
-            console.log("First time user");
+          } else if (user.isAnonymous) {
+            console.log("Guest User");
             firebase
               .firestore()
               .collection("videos")
@@ -54,50 +51,30 @@ const App = () => {
                 let temp = [];
                 video.forEach((info) => {
                   let data = info.data();
+                  console.log(data);
                   temp.push({ ...data });
                 });
                 setMVideo(temp[0].material);
                 setRVideo(temp[1].react);
                 setRRVideo(temp[2].router);
-                firebase.firestore().collection("users").doc(user.uid).set({
-                  MVideo: temp[0].material,
-                  RVideo: temp[1].react,
-                  RRVideo: temp[2].router,
-                });
+                console.log(temp[0].material);
+                firebase
+                  .firestore()
+                  .collection("AnonymousUsers")
+                  .doc(user.uid)
+                  .set({
+                    MVideo: temp[0].material,
+                    RVideo: temp[1].react,
+                    RRVideo: temp[2].router,
+                  });
               });
           }
         });
       } else {
-        console.log("normal");
-        firebase
-          .firestore()
-          .collection("videos")
-          .get()
-          .then((video) => {
-            let temp = [];
-            video.forEach((info) => {
-              let data = info.data();
-              temp.push({ ...data });
-            });
-            setMVideo(temp[0].material);
-            setRVideo(temp[1].react);
-            setRRVideo(temp[2].router);
-          });
+        console.log("Non Auth User");
       }
     });
   }, []);
-
-  // useEffect(() => {
-  //   firebase
-  //     .firestore()
-  //     .collection("users")
-  //     .doc("iTlKBpsYWoekOrTGbc2krmbASak2")
-  //     .set({
-  //       MVideo,
-  //       RVideo,
-  //       RRVideo,
-  //     });
-  // });
 
   return (
     <VideoContext.Provider
@@ -121,7 +98,7 @@ const App = () => {
             <Grid item sm={2} />
             <Grid item xs={12} sm={8}>
               <Grid container>
-                <Contents />
+                {!currentUser ? <LandingPage /> : <Contents />}
               </Grid>
               <Grid item sm={2} />
             </Grid>

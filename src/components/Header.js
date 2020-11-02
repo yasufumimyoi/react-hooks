@@ -7,7 +7,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import SchoolIcon from "@material-ui/icons/School";
 
-import HeaderRouter from "./HeaderRouter";
+import HeaderButtons from "./HeaderButtons";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,7 +43,7 @@ const Header = () => {
           >
             Learn React
           </Typography>
-          <HeaderRouter />
+          <HeaderButtons />
         </Toolbar>
       </AppBar>
     </div>
