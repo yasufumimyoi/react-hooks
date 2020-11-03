@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
@@ -10,6 +10,7 @@ import { Grid } from "@material-ui/core";
 
 import { CoursesDescriptions } from "./Descriptions";
 import { useHistory } from "react-router-dom";
+import VideoContext from "../context/video-context";
 
 const useStyles = makeStyles({
   root: {
@@ -38,6 +39,7 @@ const useStyles = makeStyles({
 const Courses = () => {
   const classes = useStyles();
   const history = useHistory();
+  const { currentUser } = useContext(VideoContext);
 
   const handleRouter = (path) => {
     history.push(path);
@@ -45,8 +47,11 @@ const Courses = () => {
 
   return (
     <Grid container>
-      <Typography variant="h3" component="h3" className={classes.title}>
-        Courses
+      <Typography variant="h4" component="h4" className={classes.title}>
+        {currentUser.displayName
+          ? "お帰りなさい " + currentUser.displayName
+          : "初めまして ゲスト"}{" "}
+        さん
       </Typography>
       <Typography className={classes.subTitle} variant="h6" component="h6">
         教材をこなして進捗率を上げながら楽しく学んでいきましょう。

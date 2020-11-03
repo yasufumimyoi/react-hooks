@@ -26,8 +26,8 @@ const MaterialUIVideo = (props) => {
     setMVideo(newItems);
     firestore
       .collection("users")
-      .doc(currentUser)
-      .update({ MVideo: [...newItems] });
+      .doc(currentUser.uid)
+      .update({ material: [...newItems] });
   };
 
   return (

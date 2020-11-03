@@ -6,7 +6,9 @@ import firebase from "../firebase/firebase.util";
 import Typography from "@material-ui/core/Typography";
 
 const ReactVideo = (props) => {
-  const { RVideo, setRVideo, currentUser } = useContext(VideoContext);
+  const { RVideo, setRVideo, currentUser, guestUser } = useContext(
+    VideoContext
+  );
   const { id } = props.match.params;
   const matchedVideo = RVideo.filter((video) => video.id == id);
 
@@ -24,10 +26,14 @@ const ReactVideo = (props) => {
       return item;
     });
     setRVideo(newItems);
-    firestore
-      .collection("users")
-      .doc(currentUser)
-      .update({ RVideo: [...newItems] });
+    if (!guestUser) {
+      firestore
+        .collection("users")
+        .doc(currentUser.uid)
+        .update({ react: [...newItems] });
+    } else {
+      console.log("Guest user data updated");
+    }
   };
 
   return (

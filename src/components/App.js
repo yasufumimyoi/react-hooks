@@ -14,11 +14,13 @@ const App = () => {
   const [RVideo, setRVideo] = useState([]);
   const [RRVideo, setRRVideo] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
+  const [guestUser, setGuestUser] = useState(null);
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        setCurrentUser(user.uid);
+        setCurrentUser(user);
+        console.log(user.displayName);
         const userRef = firebase.firestore().collection("users");
         userRef.get().then((snapShot) => {
           let temp = [];
@@ -35,14 +37,31 @@ const App = () => {
               .get()
               .then((video) => {
                 if (video.exists) {
-                  setMVideo(video.data().MVideo);
-                  setRVideo(video.data().RVideo);
-                  setRRVideo(video.data().RRVideo);
+                  setMVideo(video.data().material);
+                  setRVideo(video.data().react);
+                  setRRVideo(video.data().router);
                   console.log("Login");
                 }
               });
           } else if (user.isAnonymous) {
             console.log("Guest User");
+            setGuestUser(user);
+            firebase
+              .firestore()
+              .collection("videos")
+              .get()
+              .then((video) => {
+                let temp = [];
+                video.forEach((info) => {
+                  let data = info.data();
+                  temp.push({ ...data });
+                });
+                setMVideo(temp[0].material);
+                setRVideo(temp[1].react);
+                setRRVideo(temp[2].router);
+              });
+          } else if (isChecked == 0) {
+            console.log("First Time");
             firebase
               .firestore()
               .collection("videos")
@@ -54,19 +73,15 @@ const App = () => {
                   console.log(data);
                   temp.push({ ...data });
                 });
+                console.log(temp);
                 setMVideo(temp[0].material);
                 setRVideo(temp[1].react);
                 setRRVideo(temp[2].router);
-                console.log(temp[0].material);
-                firebase
-                  .firestore()
-                  .collection("AnonymousUsers")
-                  .doc(user.uid)
-                  .set({
-                    MVideo: temp[0].material,
-                    RVideo: temp[1].react,
-                    RRVideo: temp[2].router,
-                  });
+                firebase.firestore().collection("users").doc(user.uid).set({
+                  material: temp[0].material,
+                  react: temp[1].react,
+                  router: temp[2].router,
+                });
               });
           }
         });
@@ -87,6 +102,7 @@ const App = () => {
         setRRVideo,
         currentUser,
         setCurrentUser,
+        guestUser,
       }}
     >
       <Router>

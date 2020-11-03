@@ -6,6 +6,7 @@ import Button from "@material-ui/core/Button";
 import firebase from "../firebase/firebase.util";
 
 import VideoContext from "../context/video-context";
+import { Typography } from "@material-ui/core";
 
 const useStyles = makeStyles(() => ({
   link: {
@@ -33,7 +34,7 @@ const HeaderButtons = () => {
       .signOut()
       .then(() => {
         setCurrentUser(null);
-        history.push("/auth");
+        history.push("/");
       });
   };
 
