@@ -48,91 +48,93 @@ const Login = () => {
       .signOut()
       .then(() => {
         setCurrentUser(null);
-        history.push("/auth");
+        history.push("/");
       });
   };
 
-  // useEffect(() => {
-  //   const usersRef = firebase.firestore().collection("users");
-  //   usersRef.doc("iTlKBpsYWoekOrTGbc2krmbASak2").update({
-  //     RVideo: [
-  //       {
-  //         id: 1,
-  //         url: "https://www.youtube.com/watch?v=ufodJVcpmps&t=2068s",
-  //         image: "http://img.youtube.com/vi/ufodJVcpmps/mqdefault.jpg",
-  //         title: "Build a Movie APP With React | React Tutorial for Beginners",
-  //         path: "/courses/react/1",
-  //         completed: false,
-  //       },
-  //       {
-  //         id: 2,
-  //         url: "https://www.youtube.com/watch?v=GuA0_Z1llYU&t=1465s",
-  //         image: "http://img.youtube.com/vi/GuA0_Z1llYU/mqdefault.jpg",
-  //         title: "Build a Weather App in React JS | React JS beginner Tutorial",
-  //         path: "/courses/react/2",
-  //         completed: false,
-  //       },
-  //       {
-  //         id: 3,
-  //         url: "https://www.youtube.com/watch?v=U9T6YkEDkMo",
-  //         image: "http://img.youtube.com/vi/U9T6YkEDkMo/mqdefault.jpg",
-  //         title: "Build a Recipe App With React | React Tutorial For Beginners",
-  //         path: "/courses/react/3",
-  //         completed: false,
-  //       },
-  //       {
-  //         id: 4,
-  //         url: "https://www.youtube.com/watch?v=hQAHSlTtcmY",
-  //         image: "http://img.youtube.com/vi/hQAHSlTtcmY/mqdefault.jpg",
-  //         title: "Learn React In 30 Minutes",
-  //         path: "/courses/react/4",
-  //         completed: false,
-  //       },
-  //       {
-  //         id: 5,
-  //         url: "https://www.youtube.com/watch?v=DLX62G4lc44",
-  //         image: "http://img.youtube.com/vi/DLX62G4lc44/mqdefault.jpg",
-  //         title: "Learn React JS - Full Course for Beginners - Tutorial 2019",
-  //         path: "/courses/react/5",
-  //         completed: false,
-  //       },
-  //       {
-  //         id: 6,
-  //         url: "https://www.youtube.com/watch?v=khJlrj3Y6Ls&t=124s",
-  //         image: "http://img.youtube.com/vi/khJlrj3Y6Ls/mqdefault.jpg",
-  //         title:
-  //           "Build a COVID-19 Tracker Application - React JS Project (Hooks, Material UI, Charts js)",
-  //         path: "/courses/react/6",
-  //         completed: false,
-  //       },
-  //       {
-  //         id: 7,
-  //         url: "https://www.youtube.com/watch?v=VPVzx1ZOVuw&t=1711s",
-  //         image: "http://img.youtube.com/vi/VPVzx1ZOVuw/mqdefault.jpg",
-  //         title: "Build a YouTube Clone Application Using React",
-  //         path: "/courses/react/7",
-  //         completed: false,
-  //       },
-  //       {
-  //         id: 8,
-  //         url: "https://www.youtube.com/watch?v=o5CdCETh8cQ&t=1555s",
-  //         image: "http://img.youtube.com/vi/o5CdCETh8cQ/mqdefault.jpg",
-  //         title:
-  //           "React Fetch API Data | Build and Deploy a Real Advice App Project",
-  //         path: "/courses/react/8",
-  //         completed: false,
-  //       },
-  //       {
-  //         id: 9,
-  //         url: "https://www.youtube.com/watch?v=YaioUnMw0mo",
-  //         image: "http://img.youtube.com/vi/YaioUnMw0mo/mqdefault.jpg",
-  //         title: "React App - Breaking Bad API",
-  //         path: "/courses/react/9",
-  //         completed: false,
-  //       },
-  //     ],
-  //   });
-  // }, []);
+  useEffect(() => {
+    firebase
+      .firestore()
+      .collection("videos")
+      .doc("material")
+      .set({
+        material: [
+          {
+            id: 1,
+            url: "https://www.youtube.com/watch?v=tKzSnjWPtEw",
+            image: "http://img.youtube.com/vi/tKzSnjWPtEw/mqdefault.jpg",
+            title: "React + Material UI #2: Actually coding a UX design",
+            path: "/courses/material/1",
+            completed: false,
+          },
+          {
+            id: 2,
+            url: "https://www.youtube.com/watch?v=3HAARPCabUo",
+            image: "http://img.youtube.com/vi/3HAARPCabUo/mqdefault.jpg",
+            title:
+              "React & Material UI #26: Header (Appbar + Toolbar) & React Router",
+            path: "/courses/material/2",
+            completed: false,
+          },
+          {
+            id: 3,
+            url: "https://www.youtube.com/watch?v=zT62eVxShsY",
+            image: "http://img.youtube.com/vi/zT62eVxShsY/mqdefault.jpg",
+            title: "Multi Step Form With React & Material UI",
+            path: "/courses/material/3",
+            completed: false,
+          },
+          {
+            id: 4,
+            url: "https://www.youtube.com/watch?v=rK0Lz8x7npA",
+            image: "http://img.youtube.com/vi/rK0Lz8x7npA/mqdefault.jpg",
+            title: "Build landing page with React and Material UI.",
+            path: "/courses/material/4",
+            completed: false,
+          },
+          {
+            id: 5,
+            url: "https://www.youtube.com/watch?v=Jkj_XP80h1k",
+            image: "http://img.youtube.com/vi/Jkj_XP80h1k/mqdefault.jpg",
+            title: "Material-UI + React Router - #7 Navigation Menu",
+            path: "/courses/material/5",
+            completed: false,
+          },
+          {
+            id: 6,
+            url: "https://www.youtube.com/watch?v=DJ1_CKs_LPI",
+            image: "http://img.youtube.com/vi/DJ1_CKs_LPI/mqdefault.jpg",
+            title: "Material UI React - Build a Blog page",
+            path: "/courses/material/6",
+            completed: false,
+          },
+          {
+            id: 7,
+            url: "https://www.youtube.com/watch?v=vyJU9efvUtQ",
+            image: "http://img.youtube.com/vi/vyJU9efvUtQ/mqdefault.jpg",
+            title: "Material UI React Tutorial",
+            path: "/courses/material/7",
+            completed: false,
+          },
+          {
+            id: 8,
+            url: "https://www.youtube.com/watch?v=-XKaSCU0ZLM",
+            image: "http://img.youtube.com/vi/-XKaSCU0ZLM/mqdefault.jpg",
+            title: "How to Design a Perfect React Material UI Form",
+            path: "/courses/material/8",
+            completed: false,
+          },
+          {
+            id: 9,
+            url: "https://www.youtube.com/watch?v=jnQ1-XW7KNY",
+            image: "http://img.youtube.com/vi/jnQ1-XW7KNY/mqdefault.jpg",
+            title: "React Material UI Table with Paging Sorting and Filtering",
+            path: "/courses/material/9",
+            completed: false,
+          },
+        ],
+      });
+  }, []);
 
   return (
     <div>

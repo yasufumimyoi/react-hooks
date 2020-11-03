@@ -26,8 +26,8 @@ const ReactRouterVideo = (props) => {
     setRRVideo(newItems);
     firestore
       .collection("users")
-      .doc(currentUser)
-      .update({ RRVideo: [...newItems] });
+      .doc(currentUser.uid)
+      .update({ router: [...newItems] });
   };
   return (
     <div>

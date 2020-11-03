@@ -18,7 +18,7 @@ const Contents = () => {
   return (
     <div>
       <Switch>
-        <Route exact path="/auth" component={LandingPage} />
+        <Route exact path="/" component={LandingPage} />
         <Route exact path="/courses" component={Courses} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/join" component={Join} />
