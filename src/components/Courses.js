@@ -47,12 +47,6 @@ const Courses = () => {
 
   return (
     <Grid container>
-      <Typography variant="h4" component="h4" className={classes.title}>
-        {currentUser.displayName
-          ? "お帰りなさい " + currentUser.displayName
-          : "初めまして ゲスト"}{" "}
-        さん
-      </Typography>
       <Typography className={classes.subTitle} variant="h6" component="h6">
         教材をこなして進捗率を上げながら楽しく学んでいきましょう。
         <p> 現在50本以上の動画を用意しております。</p>
