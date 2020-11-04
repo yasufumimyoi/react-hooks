@@ -6,7 +6,7 @@ import Button from "@material-ui/core/Button";
 import firebase from "../firebase/firebase.util";
 
 import VideoContext from "../context/video-context";
-import { Typography } from "@material-ui/core";
+import { provider } from "../firebase/firebase.util";
 
 const useStyles = makeStyles(() => ({
   link: {
@@ -18,14 +18,41 @@ const useStyles = makeStyles(() => ({
 const HeaderButtons = () => {
   const classes = useStyles();
   const history = useHistory();
-  const { currentUser, setCurrentUser } = useContext(VideoContext);
+  const {
+    currentUser,
+    setCurrentUser,
+    guestUser,
+    setGuestUser,
+    MVideo,
+    RVideo,
+    RRVideo,
+  } = useContext(VideoContext);
 
   const handelCourses = () => {
     history.push("/courses");
   };
 
-  const handelJoin = () => {
-    history.push("/join");
+  const handelLogin = () => {
+    history.push("/login");
+  };
+
+  const handleCreateAccount = () => {
+    firebase
+      .auth()
+      .currentUser.linkWithPopup(provider)
+      .then((result) => {
+        const creUser = result.user;
+        console.log("success", creUser);
+        firebase
+          .firestore()
+          .collection("users")
+          .doc(creUser.uid)
+          .set({
+            material: [...MVideo],
+            react: [...RVideo],
+            router: [...RRVideo],
+          });
+      });
   };
 
   const handleLogout = () => {
@@ -34,43 +61,66 @@ const HeaderButtons = () => {
       .signOut()
       .then(() => {
         setCurrentUser(null);
+        setGuestUser(null);
         history.push("/");
       });
   };
 
   return (
     <div>
-      {currentUser && (
-        <div>
-          <Button
-            variant="contained"
-            color="primary"
-            className={classes.link}
-            type="button"
-            onClick={handelCourses}
-          >
-            Courses
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            className={classes.link}
-            type="button"
-            onClick={handleLogout}
-          >
-            Log out
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            className={classes.link}
-            type="button"
-            onClick={handelJoin}
-          >
-            Create Account
-          </Button>
-        </div>
-      )}
+      {currentUser &&
+        (guestUser != null ? (
+          <div>
+            <Button
+              variant="contained"
+              color="primary"
+              className={classes.link}
+              type="button"
+              onClick={handelCourses}
+            >
+              Courses
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              className={classes.link}
+              type="button"
+              onClick={handleLogout}
+            >
+              Log out
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              className={classes.link}
+              type="button"
+              onClick={handelLogin}
+            >
+              Create Account
+            </Button>
+          </div>
+        ) : (
+          <div>
+            <Button
+              variant="contained"
+              color="primary"
+              className={classes.link}
+              type="button"
+              onClick={handelCourses}
+            >
+              Courses
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              className={classes.link}
+              type="button"
+              onClick={handleLogout}
+            >
+              Log out
+            </Button>
+          </div>
+        ))}
     </div>
   );
 };

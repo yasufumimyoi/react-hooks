@@ -52,89 +52,89 @@ const Login = () => {
       });
   };
 
-  useEffect(() => {
-    firebase
-      .firestore()
-      .collection("videos")
-      .doc("material")
-      .set({
-        material: [
-          {
-            id: 1,
-            url: "https://www.youtube.com/watch?v=tKzSnjWPtEw",
-            image: "http://img.youtube.com/vi/tKzSnjWPtEw/mqdefault.jpg",
-            title: "React + Material UI #2: Actually coding a UX design",
-            path: "/courses/material/1",
-            completed: false,
-          },
-          {
-            id: 2,
-            url: "https://www.youtube.com/watch?v=3HAARPCabUo",
-            image: "http://img.youtube.com/vi/3HAARPCabUo/mqdefault.jpg",
-            title:
-              "React & Material UI #26: Header (Appbar + Toolbar) & React Router",
-            path: "/courses/material/2",
-            completed: false,
-          },
-          {
-            id: 3,
-            url: "https://www.youtube.com/watch?v=zT62eVxShsY",
-            image: "http://img.youtube.com/vi/zT62eVxShsY/mqdefault.jpg",
-            title: "Multi Step Form With React & Material UI",
-            path: "/courses/material/3",
-            completed: false,
-          },
-          {
-            id: 4,
-            url: "https://www.youtube.com/watch?v=rK0Lz8x7npA",
-            image: "http://img.youtube.com/vi/rK0Lz8x7npA/mqdefault.jpg",
-            title: "Build landing page with React and Material UI.",
-            path: "/courses/material/4",
-            completed: false,
-          },
-          {
-            id: 5,
-            url: "https://www.youtube.com/watch?v=Jkj_XP80h1k",
-            image: "http://img.youtube.com/vi/Jkj_XP80h1k/mqdefault.jpg",
-            title: "Material-UI + React Router - #7 Navigation Menu",
-            path: "/courses/material/5",
-            completed: false,
-          },
-          {
-            id: 6,
-            url: "https://www.youtube.com/watch?v=DJ1_CKs_LPI",
-            image: "http://img.youtube.com/vi/DJ1_CKs_LPI/mqdefault.jpg",
-            title: "Material UI React - Build a Blog page",
-            path: "/courses/material/6",
-            completed: false,
-          },
-          {
-            id: 7,
-            url: "https://www.youtube.com/watch?v=vyJU9efvUtQ",
-            image: "http://img.youtube.com/vi/vyJU9efvUtQ/mqdefault.jpg",
-            title: "Material UI React Tutorial",
-            path: "/courses/material/7",
-            completed: false,
-          },
-          {
-            id: 8,
-            url: "https://www.youtube.com/watch?v=-XKaSCU0ZLM",
-            image: "http://img.youtube.com/vi/-XKaSCU0ZLM/mqdefault.jpg",
-            title: "How to Design a Perfect React Material UI Form",
-            path: "/courses/material/8",
-            completed: false,
-          },
-          {
-            id: 9,
-            url: "https://www.youtube.com/watch?v=jnQ1-XW7KNY",
-            image: "http://img.youtube.com/vi/jnQ1-XW7KNY/mqdefault.jpg",
-            title: "React Material UI Table with Paging Sorting and Filtering",
-            path: "/courses/material/9",
-            completed: false,
-          },
-        ],
-      });
-  }, []);
+  // useEffect(() => {
+  //   firebase
+  //     .firestore()
+  //     .collection("videos")
+  //     .doc("material")
+  //     .set({
+  //       material: [
+  //         {
+  //           id: 1,
+  //           url: "https://www.youtube.com/watch?v=tKzSnjWPtEw",
+  //           image: "http://img.youtube.com/vi/tKzSnjWPtEw/mqdefault.jpg",
+  //           title: "React + Material UI #2: Actually coding a UX design",
+  //           path: "/courses/material/1",
+  //           completed: false,
+  //         },
+  //         {
+  //           id: 2,
+  //           url: "https://www.youtube.com/watch?v=3HAARPCabUo",
+  //           image: "http://img.youtube.com/vi/3HAARPCabUo/mqdefault.jpg",
+  //           title:
+  //             "React & Material UI #26: Header (Appbar + Toolbar) & React Router",
+  //           path: "/courses/material/2",
+  //           completed: false,
+  //         },
+  //         {
+  //           id: 3,
+  //           url: "https://www.youtube.com/watch?v=zT62eVxShsY",
+  //           image: "http://img.youtube.com/vi/zT62eVxShsY/mqdefault.jpg",
+  //           title: "Multi Step Form With React & Material UI",
+  //           path: "/courses/material/3",
+  //           completed: false,
+  //         },
+  //         {
+  //           id: 4,
+  //           url: "https://www.youtube.com/watch?v=rK0Lz8x7npA",
+  //           image: "http://img.youtube.com/vi/rK0Lz8x7npA/mqdefault.jpg",
+  //           title: "Build landing page with React and Material UI.",
+  //           path: "/courses/material/4",
+  //           completed: false,
+  //         },
+  //         {
+  //           id: 5,
+  //           url: "https://www.youtube.com/watch?v=Jkj_XP80h1k",
+  //           image: "http://img.youtube.com/vi/Jkj_XP80h1k/mqdefault.jpg",
+  //           title: "Material-UI + React Router - #7 Navigation Menu",
+  //           path: "/courses/material/5",
+  //           completed: false,
+  //         },
+  //         {
+  //           id: 6,
+  //           url: "https://www.youtube.com/watch?v=DJ1_CKs_LPI",
+  //           image: "http://img.youtube.com/vi/DJ1_CKs_LPI/mqdefault.jpg",
+  //           title: "Material UI React - Build a Blog page",
+  //           path: "/courses/material/6",
+  //           completed: false,
+  //         },
+  //         {
+  //           id: 7,
+  //           url: "https://www.youtube.com/watch?v=vyJU9efvUtQ",
+  //           image: "http://img.youtube.com/vi/vyJU9efvUtQ/mqdefault.jpg",
+  //           title: "Material UI React Tutorial",
+  //           path: "/courses/material/7",
+  //           completed: false,
+  //         },
+  //         {
+  //           id: 8,
+  //           url: "https://www.youtube.com/watch?v=-XKaSCU0ZLM",
+  //           image: "http://img.youtube.com/vi/-XKaSCU0ZLM/mqdefault.jpg",
+  //           title: "How to Design a Perfect React Material UI Form",
+  //           path: "/courses/material/8",
+  //           completed: false,
+  //         },
+  //         {
+  //           id: 9,
+  //           url: "https://www.youtube.com/watch?v=jnQ1-XW7KNY",
+  //           image: "http://img.youtube.com/vi/jnQ1-XW7KNY/mqdefault.jpg",
+  //           title: "React Material UI Table with Paging Sorting and Filtering",
+  //           path: "/courses/material/9",
+  //           completed: false,
+  //         },
+  //       ],
+  //     });
+  // }, []);
 
   return (
     <div>

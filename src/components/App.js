@@ -103,6 +103,7 @@ const App = () => {
         currentUser,
         setCurrentUser,
         guestUser,
+        setGuestUser,
       }}
     >
       <Router>

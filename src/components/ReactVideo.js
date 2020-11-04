@@ -26,7 +26,7 @@ const ReactVideo = (props) => {
       return item;
     });
     setRVideo(newItems);
-    if (!guestUser) {
+    if (guestUser.isAnonymous == false) {
       firestore
         .collection("users")
         .doc(currentUser.uid)

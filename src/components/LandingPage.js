@@ -20,7 +20,7 @@ const LandingPage = () => {
     firebase
       .auth()
       .signInWithPopup(provider)
-      .then(() => {
+      .then((result) => {
         history.push("/courses");
       });
   };
