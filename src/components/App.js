@@ -20,7 +20,6 @@ const App = () => {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         setCurrentUser(user);
-        console.log(user.displayName);
         const userRef = firebase.firestore().collection("users");
         userRef.get().then((snapShot) => {
           let temp = [];
@@ -56,9 +55,32 @@ const App = () => {
                   let data = info.data();
                   temp.push({ ...data });
                 });
-                setMVideo(temp[0].material);
-                setRVideo(temp[1].react);
-                setRRVideo(temp[2].router);
+                if (sessionStorage.length > 1) {
+                  console.log("sessionから取得");
+                  console.log(sessionStorage.length);
+                  if (sessionStorage.getItem("react")) {
+                    let dataR = sessionStorage.getItem("react");
+                    setRVideo(JSON.parse(dataR));
+                  } else {
+                    setRVideo(temp[1].react);
+                  }
+                  if (sessionStorage.getItem("router")) {
+                    let dataRR = sessionStorage.getItem("router");
+                    setRRVideo(JSON.parse(dataRR));
+                  } else {
+                    setRRVideo(temp[2].router);
+                  }
+                  if (sessionStorage.getItem("material")) {
+                    let dataM = sessionStorage.getItem("material");
+                    setMVideo(JSON.parse(dataM));
+                  } else {
+                    setMVideo(temp[0].material);
+                  }
+                } else {
+                  setMVideo(temp[0].material);
+                  setRVideo(temp[1].react);
+                  setRRVideo(temp[2].router);
+                }
               });
           } else if (isChecked == 0) {
             console.log("First Time");

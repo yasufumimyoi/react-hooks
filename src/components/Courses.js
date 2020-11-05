@@ -34,6 +34,10 @@ const useStyles = makeStyles({
   button: {
     justifyContent: "center",
   },
+  all: {
+    cursor: "pointer",
+    textDecorationLine: "underline",
+  },
 });
 
 const Courses = () => {
@@ -45,11 +49,18 @@ const Courses = () => {
     history.push(path);
   };
 
+  const handleAll = () => {
+    history.push("/all");
+  };
+
   return (
     <Grid container>
       <Typography className={classes.subTitle} variant="h6" component="h6">
         教材をこなして進捗率を上げながら楽しく学んでいきましょう。
         <p> 現在50本以上の動画を用意しております。</p>
+        <p className={classes.all} onClick={handleAll}>
+          全ての動画一覧
+        </p>
       </Typography>
       <Grid container>
         {CoursesDescriptions.map((course) => (
