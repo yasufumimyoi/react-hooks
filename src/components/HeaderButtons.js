@@ -6,7 +6,6 @@ import Button from "@material-ui/core/Button";
 import firebase from "../firebase/firebase.util";
 
 import VideoContext from "../context/video-context";
-import { provider } from "../firebase/firebase.util";
 
 const useStyles = makeStyles(() => ({
   link: {
@@ -18,15 +17,9 @@ const useStyles = makeStyles(() => ({
 const HeaderButtons = () => {
   const classes = useStyles();
   const history = useHistory();
-  const {
-    currentUser,
-    setCurrentUser,
-    guestUser,
-    setGuestUser,
-    MVideo,
-    RVideo,
-    RRVideo,
-  } = useContext(VideoContext);
+  const { currentUser, setCurrentUser, guestUser, setGuestUser } = useContext(
+    VideoContext
+  );
 
   const handelCourses = () => {
     history.push("/courses");
@@ -36,25 +29,6 @@ const HeaderButtons = () => {
     history.push("/login");
   };
 
-  const handleCreateAccount = () => {
-    firebase
-      .auth()
-      .currentUser.linkWithPopup(provider)
-      .then((result) => {
-        const creUser = result.user;
-        console.log("success", creUser);
-        firebase
-          .firestore()
-          .collection("users")
-          .doc(creUser.uid)
-          .set({
-            material: [...MVideo],
-            react: [...RVideo],
-            router: [...RRVideo],
-          });
-      });
-  };
-
   const handleLogout = () => {
     firebase
       .auth()
@@ -62,6 +36,7 @@ const HeaderButtons = () => {
       .then(() => {
         setCurrentUser(null);
         setGuestUser(null);
+        sessionStorage.clear();
         history.push("/");
       });
   };

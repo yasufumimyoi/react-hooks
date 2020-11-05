@@ -13,6 +13,7 @@ import ReactRouterPage from "./ReactRouterPage";
 import ReactRouterVideo from "./ReactRouterVideo";
 import MaterialUIPage from "./MaterialUIPage";
 import MaterialUIVideo from "./MaterialUIVideo";
+import AllVideos from "./AllVideos";
 
 const Contents = () => {
   return (
@@ -28,6 +29,7 @@ const Contents = () => {
         <Route path="/courses/react/:id" component={ReactVideo} />
         <Route path="/courses/react-router/:id" component={ReactRouterVideo} />
         <Route path="/courses/material/:id" component={MaterialUIVideo} />
+        <Route path="/all" component={AllVideos} />
         <Route component={NotFound} />
       </Switch>
     </div>

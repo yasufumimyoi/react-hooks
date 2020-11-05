@@ -10,9 +10,15 @@ const LandingPage = () => {
   const handleGuestLogin = () => {
     firebase
       .auth()
-      .signInAnonymously()
+      .setPersistence(firebase.auth.Auth.Persistence.SESSION)
       .then(() => {
         history.push("/courses");
+        return firebase.auth().signInAnonymously();
+      })
+      .catch(function (error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(errorCode, errorMessage);
       });
   };
 
@@ -42,7 +48,7 @@ const LandingPage = () => {
         type="button"
         onClick={handelLogin}
       >
-        アカウント登録して使ってみる
+        ログインする
       </Button>
     </div>
   );
