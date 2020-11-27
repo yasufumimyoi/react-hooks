@@ -1,33 +1,16 @@
 import React from "react";
-
 import { useHistory } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
+import { AppBar, Toolbar, Typography } from "@material-ui/core";
 import SchoolIcon from "@material-ui/icons/School";
-
-import HeaderButtons from "./HeaderButtons";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-    marginBottom: "40px",
-  },
-  logo: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-    cursor: "pointer",
-  },
-}));
+import { HeaderButtons } from "./HeaderButtons";
+import { headerStyles } from "../style/pages";
 
 const Header = () => {
-  const classes = useStyles();
+  const classes = headerStyles();
   const history = useHistory();
 
-  const handleRoute = () => {
+  //コース一覧ページに移動する
+  const handleCourseRoute = () => {
     history.push("/courses");
   };
 
@@ -39,7 +22,7 @@ const Header = () => {
           <Typography
             variant="h6"
             className={classes.title}
-            onClick={handleRoute}
+            onClick={handleCourseRoute}
           >
             Learn React
           </Typography>
@@ -49,4 +32,4 @@ const Header = () => {
     </div>
   );
 };
-export default Header;
+export { Header };

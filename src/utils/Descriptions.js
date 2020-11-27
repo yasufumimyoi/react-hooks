@@ -5,7 +5,7 @@ import FirebaseImage from "../images/Firebase.svg";
 import ReduxImage from "../images/ReduxImage.svg";
 import NodeImage from "../images/NodeImage.svg";
 
-export const CoursesDescriptions = [
+export const coursesDescriptions = [
   {
     title: "React",
     image: ReactImage,

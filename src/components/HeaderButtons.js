@@ -1,46 +1,47 @@
 import React, { useContext } from "react";
-
 import { useHistory } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
+import { Button } from "@material-ui/core";
+import { headerButtonUseStyles } from "../style/pages";
+import { VideoContext } from "../context/video-context";
 import firebase from "../firebase/firebase.util";
 
-import VideoContext from "../context/video-context";
-
-const useStyles = makeStyles(() => ({
-  link: {
-    marginRight: "8px",
-    color: "white",
-  },
-}));
-
 const HeaderButtons = () => {
-  const classes = useStyles();
+  const classes = headerButtonUseStyles();
   const history = useHistory();
   const { currentUser, setCurrentUser, guestUser, setGuestUser } = useContext(
     VideoContext
   );
 
-  const handelCourses = () => {
+  //コース一覧ページに移動する
+  const handelCoursesRoute = () => {
     history.push("/courses");
   };
 
-  const handelLogin = () => {
+  //ログインページに移動する
+  const handelLoginRoute = () => {
     history.push("/login");
   };
 
+  //ログアウト機能
+  //セッションも終わる
   const handleLogout = () => {
-    firebase
-      .auth()
-      .signOut()
-      .then(() => {
-        setCurrentUser(null);
-        setGuestUser(null);
-        sessionStorage.clear();
-        history.push("/");
-      });
+    try {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          setCurrentUser(null);
+          setGuestUser(null);
+          sessionStorage.clear();
+          history.push("/");
+        });
+    } catch (error) {
+      console.error(error.message);
+    }
   };
 
+  //Fix me later
+  //ここの条件分岐を綺麗にしたい
   return (
     <div>
       {currentUser &&
@@ -51,7 +52,7 @@ const HeaderButtons = () => {
               color="primary"
               className={classes.link}
               type="button"
-              onClick={handelCourses}
+              onClick={handelCoursesRoute}
             >
               Courses
             </Button>
@@ -69,7 +70,7 @@ const HeaderButtons = () => {
               color="primary"
               className={classes.link}
               type="button"
-              onClick={handelLogin}
+              onClick={handelLoginRoute}
             >
               Create Account
             </Button>
@@ -81,7 +82,7 @@ const HeaderButtons = () => {
               color="primary"
               className={classes.link}
               type="button"
-              onClick={handelCourses}
+              onClick={handelCoursesRoute}
             >
               Courses
             </Button>
@@ -100,4 +101,4 @@ const HeaderButtons = () => {
   );
 };
 
-export default HeaderButtons;
+export { HeaderButtons };

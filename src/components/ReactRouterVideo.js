@@ -1,20 +1,8 @@
 import React, { useContext } from "react";
 import ReactPlayer from "react-player";
-import Checkbox from "@material-ui/core/Checkbox";
-import VideoContext from "../context/video-context";
+import { Checkbox, CircularProgress, Typography } from "@material-ui/core";
+import { VideoContext } from "../context/video-context";
 import firebase from "../firebase/firebase.util";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
-import CircularProgress from "@material-ui/core/CircularProgress";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: "flex",
-    "& > * + *": {
-      marginLeft: theme.spacing(2),
-    },
-  },
-}));
 
 const ReactRouterVideo = (props) => {
   const { RRVideo, setRRVideo, currentUser, guestUser } = useContext(
@@ -37,7 +25,12 @@ const ReactRouterVideo = (props) => {
       return item;
     });
     setRRVideo(newItems);
-    if (guestUser.isAnonymous == false) {
+    if (currentUser.isAnonymous == false) {
+      firestore
+        .collection("users")
+        .doc(currentUser.uid)
+        .update({ router: [...newItems] });
+    } else if (guestUser.isAnonymous == false) {
       firestore
         .collection("users")
         .doc(currentUser.uid)
@@ -79,4 +72,4 @@ const ReactRouterVideo = (props) => {
   );
 };
 
-export default ReactRouterVideo;
+export { ReactRouterVideo };

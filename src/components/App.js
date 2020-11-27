@@ -3,11 +3,11 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Grid } from "@material-ui/core";
 
-import Header from "./Header";
-import Contents from "./Contents";
-import VideoContext from "../context/video-context";
+import { Header } from "./Header";
+import { Contents } from "./Contents";
+import { VideoContext } from "../context/video-context";
 import firebase from "../firebase/firebase.util";
-import LandingPage from "./LandingPage";
+import { LandingPage } from "./LandingPage";
 
 const App = () => {
   const [MVideo, setMVideo] = useState([]);
@@ -148,4 +148,4 @@ const App = () => {
   );
 };
 
-export default App;
+export { App };
