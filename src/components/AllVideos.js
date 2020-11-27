@@ -1,62 +1,29 @@
 import React, { useContext } from "react";
-import VideoContext from "../context/video-context";
-import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
-import { Grid } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
-import Checkbox from "@material-ui/core/Checkbox";
-import { makeStyles } from "@material-ui/core/styles";
+import { AllVideosStyles } from "../style/pages";
+import { VideoContext } from "../context/video-context";
+import { Box, Checkbox, Grid, Typography } from "@material-ui/core";
 
-const useStyles = makeStyles({
-  root: {
-    maxWidth: 320,
-    marginRight: "60px",
-    marginBottom: 40,
-  },
-  number: {
-    fontSize: 30,
-  },
-  outline: {
-    marginRight: "30px",
-    cursor: "pointer",
-    textOverflow: "ellipsis",
-    "&:hover": {
-      opacity: "0.7",
-      zIndex: "10",
-      transition: ".25s",
-    },
-  },
-  box: {
-    width: "320px",
-  },
-  videoTitle: {
-    overflow: "hidden",
-    whiteSpace: "nowrap",
-    width: "320px",
-    textOverflow: "ellipsis",
-  },
-  adjust: {
-    marginBottom: 35,
-  },
-});
 const AllVideos = () => {
-  const classes = useStyles();
+  const classes = AllVideosStyles();
   const history = useHistory();
   const { MVideo, RVideo, RRVideo } = useContext(VideoContext);
 
-  const handleRouter = (path) => {
+  //それぞれの動画ページに移動する
+  const handleEachVideoRouter = (path) => {
     history.push(path);
   };
 
   return (
     <Grid container>
+      {/* Material UI Videoのデータ(image, title, completed)をMapしている*/}
       {MVideo.map((video) => (
         <Grid item className={classes.outline} key={video.id}>
           <Box className={classes.box}>
             <img
               src={video.image}
               alt={video.id}
-              onClick={() => handleRouter(video.path)}
+              onClick={() => handleEachVideoRouter(video.path)}
             />
             <Typography
               variant="body1"
@@ -81,13 +48,14 @@ const AllVideos = () => {
           </Box>
         </Grid>
       ))}
+      {/* React Videoのデータ(image, title, completed)をMapしている*/}
       {RVideo.map((video) => (
         <Grid item className={classes.outline} key={video.id}>
           <Box className={classes.box}>
             <img
               src={video.image}
               alt={video.id}
-              onClick={() => handleRouter(video.path)}
+              onClick={() => handleEachVideoRouter(video.path)}
             />
             <Typography
               variant="body1"
@@ -112,13 +80,14 @@ const AllVideos = () => {
           </Box>
         </Grid>
       ))}
+      {/* React Router Videoのデータ(image, title, completed)をMapしている*/}
       {RRVideo.map((video) => (
         <Grid item className={classes.outline} key={video.id}>
           <Box className={classes.box}>
             <img
               src={video.image}
               alt={video.id}
-              onClick={() => handleRouter(video.path)}
+              onClick={() => handleEachVideoRouter(video.path)}
             />
             <Typography
               variant="body1"
@@ -147,4 +116,4 @@ const AllVideos = () => {
   );
 };
 
-export default AllVideos;
+export { AllVideos };

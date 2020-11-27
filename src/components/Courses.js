@@ -1,54 +1,26 @@
 import React, { useContext } from "react";
-
-import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
-import { Grid } from "@material-ui/core";
-
-import { CoursesDescriptions } from "./Descriptions";
 import { useHistory } from "react-router-dom";
-import VideoContext from "../context/video-context";
-
-const useStyles = makeStyles({
-  root: {
-    minWidth: 275,
-    marginRight: "30px",
-    marginBottom: 25,
-    textAlign: "center",
-  },
-  title: {
-    marginBottom: 14,
-    width: "100%",
-  },
-  subTitle: {
-    marginBottom: 30,
-    width: "100%",
-  },
-  description: {
-    marginBottom: 20,
-    textAlign: "center",
-  },
-  button: {
-    justifyContent: "center",
-  },
-  all: {
-    cursor: "pointer",
-    textDecorationLine: "underline",
-  },
-});
+import { coursesStyles } from "../style/pages";
+import { coursesDescriptions } from "../utils/Descriptions";
+import {
+  Card,
+  CardActions,
+  CardContent,
+  Button,
+  Grid,
+  Typography,
+} from "@material-ui/core";
 
 const Courses = () => {
-  const classes = useStyles();
+  const classes = coursesStyles();
   const history = useHistory();
-  const { currentUser } = useContext(VideoContext);
 
-  const handleRouter = (path) => {
+  //選択したコースページに移動する
+  const handleEachCoursesRouter = (path) => {
     history.push(path);
   };
 
+  //動画一覧ページに移動する
   const handleAll = () => {
     history.push("/all");
   };
@@ -63,7 +35,7 @@ const Courses = () => {
         </p>
       </Typography>
       <Grid container>
-        {CoursesDescriptions.map((course) => (
+        {coursesDescriptions.map((course) => (
           <Grid item key={course.title}>
             <Card className={classes.root}>
               <CardContent>
@@ -80,7 +52,10 @@ const Courses = () => {
                 <img alt="React" src={course.image} width="300" height="200" />
               </CardContent>
               <CardActions className={classes.button}>
-                <Button onClick={() => handleRouter(course.path)} size="small">
+                <Button
+                  onClick={() => handleEachCoursesRouter(course.path)}
+                  size="small"
+                >
                   Learn More
                 </Button>
               </CardActions>
@@ -92,4 +67,4 @@ const Courses = () => {
   );
 };
 
-export default Courses;
+export { Courses };

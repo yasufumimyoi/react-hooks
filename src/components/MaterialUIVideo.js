@@ -1,20 +1,8 @@
 import React, { useContext } from "react";
 import ReactPlayer from "react-player";
-import Checkbox from "@material-ui/core/Checkbox";
-import VideoContext from "../context/video-context";
+import { Checkbox, CircularProgress, Typography } from "@material-ui/core";
+import { VideoContext } from "../context/video-context";
 import firebase from "../firebase/firebase.util";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
-import CircularProgress from "@material-ui/core/CircularProgress";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: "flex",
-    "& > * + *": {
-      marginLeft: theme.spacing(2),
-    },
-  },
-}));
 
 const MaterialUIVideo = (props) => {
   const { MVideo, setMVideo, currentUser, guestUser } = useContext(
@@ -22,9 +10,7 @@ const MaterialUIVideo = (props) => {
   );
   const { id } = props.match.params;
   const matchedVideo = MVideo.filter((video) => video.id == id);
-
   const firestore = firebase.firestore();
-
   const playerStyle = {
     marginBottom: "25px",
   };
@@ -37,7 +23,13 @@ const MaterialUIVideo = (props) => {
       return item;
     });
     setMVideo(newItems);
-    if (guestUser.isAnonymous == false) {
+
+    if (currentUser.isAnonymous == false) {
+      firestore
+        .collection("users")
+        .doc(currentUser.uid)
+        .update({ material: [...newItems] });
+    } else if (guestUser.isAnonymous == false) {
       firestore
         .collection("users")
         .doc(currentUser.uid)
@@ -80,4 +72,4 @@ const MaterialUIVideo = (props) => {
   );
 };
 
-export default MaterialUIVideo;
+export { MaterialUIVideo };
