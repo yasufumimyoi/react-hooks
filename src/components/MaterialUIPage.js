@@ -10,14 +10,17 @@ const MaterialUIPage = () => {
   const history = useHistory();
   const { MVideo } = useContext(VideoContext);
 
-  let count = 0;
+  //動画視聴済かどうかcompletedの値を見ている
+  let numberOfCompleted = 0;
   for (let i = 0; i < MVideo.length; i++) {
-    if (MVideo[i].completed == true) {
-      count = count + 1;
+    if (MVideo[i].completed === true) {
+      numberOfCompleted = numberOfCompleted + 1;
     }
   }
 
-  let AchievementRate = Math.round((count / MVideo.length) * 100) || 0;
+  //動画視聴済の割合の計算を行っている
+  let AchievementRate =
+    Math.round((numberOfCompleted / MVideo.length) * 100) || 0;
 
   const handleRouter = (path) => {
     history.push(path);
