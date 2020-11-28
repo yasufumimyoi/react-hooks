@@ -26,12 +26,16 @@ const LandingPage = () => {
 
   //既存ユーザーのログイン
   const handelExistingUserLogin = () => {
-    firebase
-      .auth()
-      .signInWithPopup(provider)
-      .then(() => {
-        history.push("/courses");
-      });
+    try {
+      firebase
+        .auth()
+        .signInWithPopup(provider)
+        .then(() => {
+          history.push("/courses");
+        });
+    } catch (error) {
+      console.error(error.message);
+    }
   };
 
   return (

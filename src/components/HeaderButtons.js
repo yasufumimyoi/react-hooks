@@ -40,8 +40,7 @@ const HeaderButtons = () => {
     }
   };
 
-  //Fix me later
-  //ここの条件分岐を綺麗にしたい
+  //guestUserに値が入っていなければ、新規アカウント登録ボタンを表示させない
   return (
     <div>
       {currentUser &&

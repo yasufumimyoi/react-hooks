@@ -10,14 +10,17 @@ const ReactPage = () => {
   const history = useHistory();
   const { RVideo } = useContext(VideoContext);
 
-  let count = 0;
+  //動画視聴済かどうかcompletedの値を見ている
+  let numberOfCompleted = 0;
   for (let i = 0; i < RVideo.length; i++) {
-    if (RVideo[i].completed == true) {
-      count = count + 1;
+    if (RVideo[i].completed === true) {
+      numberOfCompleted = numberOfCompleted + 1;
     }
   }
 
-  let AchievementRate = Math.round((count / RVideo.length) * 100) || 0;
+  //動画視聴済の割合の計算を行っている
+  let AchievementRate =
+    Math.round((numberOfCompleted / RVideo.length) * 100) || 0;
 
   const handleRouter = (path) => {
     history.push(path);

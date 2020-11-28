@@ -8,14 +8,19 @@ const ReactVideo = (props) => {
   const { RVideo, setRVideo, currentUser, guestUser } = useContext(
     VideoContext
   );
-  const { id } = props.match.params;
-  const matchedVideo = RVideo.filter((video) => video.id == id);
+
   const firestore = firebase.firestore();
   const playerStyle = {
     marginBottom: "25px",
   };
 
-  const handelLoginUserToggle = (id) => {
+  //paramsと動画IDが合致した動画データを抽出する
+  const { id } = props.match.params;
+  const parsedId = parseInt(id);
+  const matchedVideo = RVideo.filter((video) => video.id === parsedId);
+
+  //動画視聴後にこのメソッドが呼ばれてcompletedにチェックが付く
+  const saveCompletedStatus = (id) => {
     const newItems = RVideo.map((item) => {
       if (item.id === id) {
         item.completed = !item.completed;
@@ -24,12 +29,7 @@ const ReactVideo = (props) => {
     });
     setRVideo(newItems);
 
-    if (currentUser.isAnonymous == false) {
-      firestore
-        .collection("users")
-        .doc(currentUser.uid)
-        .update({ react: [...newItems] });
-    } else if (guestUser.isAnonymous == false) {
+    if (currentUser.isAnonymous === false || guestUser.isAnonymous === false) {
       firestore
         .collection("users")
         .doc(currentUser.uid)
@@ -37,20 +37,18 @@ const ReactVideo = (props) => {
     } else {
       console.log("Guest user data updated");
       sessionStorage.setItem("react", JSON.stringify(newItems));
-      let data = sessionStorage.getItem("react");
-      console.log(JSON.parse(data));
     }
   };
 
   return (
     <div>
-      {matchedVideo.length == 0 ? (
+      {matchedVideo.length === 0 ? (
         <CircularProgress />
       ) : (
         <div>
           <ReactPlayer
             controls
-            onEnded={() => handelLoginUserToggle(matchedVideo[0].id)}
+            onEnded={() => saveCompletedStatus(matchedVideo[0].id)}
             url={matchedVideo[0].url}
             width="1200px"
             height="700px"
