@@ -3,15 +3,18 @@ import ReactPlayer from "react-player";
 import { Checkbox, CircularProgress, Typography } from "@material-ui/core";
 import { VideoContext } from "../context/video-context";
 import firebase from "../firebase/firebase.util";
+import { Grid, Box } from "@material-ui/core";
+
+import { detailUseStyles } from "../style/pages";
 
 const MaterialUIVideo = (props) => {
   const { MVideo, setMVideo, currentUser, guestUser } = useContext(
     VideoContext
   );
   const firestore = firebase.firestore();
-  const playerStyle = {
-    marginBottom: "25px",
-  };
+  // const playerStyle = {
+  //   marginBottom: "25px",
+  // };
 
   //paramsと動画IDが合致した動画データを抽出する
   const { id } = props.match.params;
@@ -39,20 +42,19 @@ const MaterialUIVideo = (props) => {
     }
   };
 
+  const classes = detailUseStyles();
   //Fix me 画面サイズを調整したい
   return (
     <div>
       {matchedVideo.length === 0 ? (
         <CircularProgress />
       ) : (
-        <div>
+        <div className={classes.wrap}>
           <ReactPlayer
+            className={classes.player}
             controls
             onEnded={() => saveCompletedStatus(matchedVideo[0].id)}
             url={matchedVideo[0].url}
-            width="1200px"
-            height="700px"
-            style={playerStyle}
           />
           <Typography variant="h6" component="h6">
             {matchedVideo[0].title}

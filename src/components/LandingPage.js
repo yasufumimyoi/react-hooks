@@ -1,10 +1,22 @@
 import React from "react";
 import firebase from "../firebase/firebase.util";
 import { useHistory } from "react-router-dom";
-import { provider } from "../firebase/firebase.util";
 import { Button } from "@material-ui/core";
+import Top from "../images/top.svg";
+import "../style/landing.css";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  button: {
+    margin: theme.spacing(1),
+    borderRadius: "0.5em",
+    width: "250px",
+    height: "50px",
+  },
+}));
 
 const LandingPage = () => {
+  const classes = useStyles();
   const history = useHistory();
 
   //匿名ユーザーログイン
@@ -24,39 +36,42 @@ const LandingPage = () => {
       });
   };
 
-  //既存ユーザーのログイン
-  const handelExistingUserLogin = () => {
-    try {
-      firebase
-        .auth()
-        .signInWithPopup(provider)
-        .then(() => {
-          history.push("/courses");
-        });
-    } catch (error) {
-      console.error(error.message);
-    }
+  //ログインページに移動する
+  const handleLoginPage = () => {
+    history.push("/login");
   };
 
   return (
-    <div>
-      <h2>Reactを学習してみよう</h2>
-      <Button
-        variant="contained"
-        color="primary"
-        type="button"
-        onClick={handleGuestLogin}
-      >
-        ゲストとして使ってみる
-      </Button>
-      <Button
-        variant="contained"
-        color="primary"
-        type="button"
-        onClick={handelExistingUserLogin}
-      >
-        ログインする
-      </Button>
+    <div className="landing_container">
+      <div className="landing_img">
+        <img src={Top} width="100%" />
+      </div>
+      <div className="landing_content">
+        <h2>YouTube動画を活用してReactを学習してみよう</h2>
+        <h3>
+          未視聴 or
+          視聴済みを変更していくことで、自分の進捗具合を視覚的に分かりやすく進めていくことができます。
+        </h3>
+        <h3>React以外にもTypeScript, Firebase, Nodejsなどもあります。</h3>
+        <Button
+          variant="contained"
+          color="primary"
+          type="button"
+          onClick={handleGuestLogin}
+          className={classes.button}
+        >
+          ゲストとして使ってみる
+        </Button>
+        <Button
+          variant="contained"
+          color="primary"
+          type="button"
+          onClick={handleLoginPage}
+          className={classes.button}
+        >
+          ログインまたは登録はこちら
+        </Button>
+      </div>
     </div>
   );
 };
