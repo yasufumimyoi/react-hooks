@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
-import { Button } from "@material-ui/core";
+import { Button, Box } from "@material-ui/core";
 import { headerButtonUseStyles } from "../style/pages";
 import { VideoContext } from "../context/video-context";
 import firebase from "../firebase/firebase.util";
@@ -40,64 +40,117 @@ const HeaderButtons = () => {
     }
   };
 
-  //guestUserに値が入っていなければ、新規アカウント登録ボタンを表示させない
   return (
     <div>
-      {currentUser &&
-        (guestUser != null ? (
-          <div>
-            <Button
-              variant="contained"
-              color="primary"
-              className={classes.link}
-              type="button"
-              onClick={handelCoursesRoute}
-            >
-              Courses
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              className={classes.link}
-              type="button"
-              onClick={handleLogout}
-            >
-              Log out
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              className={classes.link}
-              type="button"
-              onClick={handelLoginRoute}
-            >
-              Create Account
-            </Button>
-          </div>
-        ) : (
-          <div>
-            <Button
-              variant="contained"
-              color="primary"
-              className={classes.link}
-              type="button"
-              onClick={handelCoursesRoute}
-            >
-              Courses
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              className={classes.link}
-              type="button"
-              onClick={handleLogout}
-            >
-              Log out
-            </Button>
-          </div>
-        ))}
+      {guestUser ? (
+        <Box>
+          <Button
+            variant="contained"
+            color="primary"
+            className={classes.link}
+            type="button"
+            onClick={handelCoursesRoute}
+          >
+            Courses
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            className={classes.link}
+            type="button"
+            onClick={handleLogout}
+          >
+            Log out
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            className={classes.link}
+            type="button"
+            onClick={handelLoginRoute}
+          >
+            Create Account
+          </Button>
+        </Box>
+      ) : (
+        <div>
+          <Button
+            variant="contained"
+            color="primary"
+            className={classes.link}
+            type="button"
+            onClick={handelCoursesRoute}
+          >
+            Courses
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            className={classes.link}
+            type="button"
+            onClick={handleLogout}
+          >
+            Log out
+          </Button>
+        </div>
+      )}
     </div>
   );
 };
 
 export { HeaderButtons };
+
+// {currentUser &&
+//   (guestUser != null ? (
+//     <div>
+//       <Button
+//         variant="contained"
+//         color="primary"
+//         className={classes.link}
+//         type="button"
+//         onClick={handelCoursesRoute}
+//       >
+//         Courses
+//       </Button>
+//       <Button
+//         variant="contained"
+//         color="primary"
+//         className={classes.link}
+//         type="button"
+//         onClick={handleLogout}
+//       >
+//         Log out
+//       </Button>
+//       <Button
+//         variant="contained"
+//         color="primary"
+//         className={classes.link}
+//         type="button"
+//         onClick={handelLoginRoute}
+//       >
+//         Create Account
+//       </Button>
+//     </div>
+//   ) : (
+//     <div>
+//       <Button
+//         variant="contained"
+//         color="primary"
+//         className={classes.link}
+//         type="button"
+//         onClick={handelCoursesRoute}
+//       >
+//         Courses
+//       </Button>
+//       <Button
+//         variant="contained"
+//         color="primary"
+//         className={classes.link}
+//         type="button"
+//         onClick={handleLogout}
+//       >
+//         Log out
+//       </Button>
+//     </div>
+//   ))}
+// </div>

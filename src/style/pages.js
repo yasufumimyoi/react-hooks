@@ -1,4 +1,5 @@
 import { makeStyles } from "@material-ui/core/styles";
+import ReactPlayer from "react-player";
 
 export const AllVideosStyles = makeStyles({
   root: {
@@ -36,17 +37,16 @@ export const AllVideosStyles = makeStyles({
 export const coursesStyles = makeStyles({
   root: {
     minWidth: 275,
-    marginRight: "30px",
-    marginBottom: 25,
+    //marginLeft: 20,
+    //marginRight: 20,
+    //marginTop: 20,
+    marginBottom: 20,
     textAlign: "center",
-  },
-  title: {
-    marginBottom: 14,
-    width: "100%",
   },
   subTitle: {
     marginBottom: 30,
     width: "100%",
+    textAlign: "center",
   },
   description: {
     marginBottom: 20,
@@ -71,7 +71,6 @@ export const headerStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
-    cursor: "pointer",
   },
 }));
 
@@ -100,16 +99,14 @@ export const loginStyles = makeStyles((theme) => ({
 }));
 
 export const videosUseStyles = makeStyles({
-  root: {
-    maxWidth: 320,
-    marginRight: "60px",
-    marginBottom: 40,
+  title: {
+    textAlign: "center",
   },
   number: {
     fontSize: 30,
   },
-  outline: {
-    marginRight: "30px",
+  box: {
+    width: "320px",
     cursor: "pointer",
     textOverflow: "ellipsis",
     "&:hover": {
@@ -117,9 +114,6 @@ export const videosUseStyles = makeStyles({
       zIndex: "10",
       transition: ".25s",
     },
-  },
-  box: {
-    width: "320px",
   },
   videoTitle: {
     overflow: "hidden",
@@ -129,5 +123,19 @@ export const videosUseStyles = makeStyles({
   },
   adjust: {
     marginBottom: 35,
+  },
+});
+
+export const detailUseStyles = makeStyles({
+  wrap: {
+    position: "relative",
+    paddingTop: "100%",
+  },
+  player: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: "1000px",
+    height: "1000px",
   },
 });

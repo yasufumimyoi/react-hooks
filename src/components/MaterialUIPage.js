@@ -1,13 +1,12 @@
 import React, { useContext } from "react";
-import { useHistory } from "react-router-dom";
-import { Box, Checkbox, Grid, Typography } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import CountUp from "react-countup";
 import { videosUseStyles } from "../style/pages";
 import { VideoContext } from "../context/video-context";
+import { MaterialUIUItems } from "./MaterialUIItems";
 
 const MaterialUIPage = () => {
   const classes = videosUseStyles();
-  const history = useHistory();
   const { MVideo } = useContext(VideoContext);
 
   //動画視聴済かどうかcompletedの値を見ている
@@ -22,58 +21,34 @@ const MaterialUIPage = () => {
   let AchievementRate =
     Math.round((numberOfCompleted / MVideo.length) * 100) || 0;
 
-  const handleRouter = (path) => {
-    history.push(path);
-  };
-
   return (
     <div>
+      <h3 className={classes.title}>
+        {" "}
+        現在の進捗率{" "}
+        <CountUp
+          end={AchievementRate}
+          duration={5}
+          className={classes.number}
+        />{" "}
+        %
+      </h3>
       <Grid container>
-        <Grid item>
-          <h3>
-            {" "}
-            現在の進捗率{" "}
-            <CountUp
-              end={AchievementRate}
-              duration={5}
-              className={classes.number}
-            />{" "}
-            %
-          </h3>
-        </Grid>
-      </Grid>
-      <Grid container>
-        {MVideo.map((video) => (
-          <Grid item className={classes.outline} key={video.id}>
-            <Box className={classes.box}>
-              <img
-                src={video.image}
-                alt={video.id}
-                onClick={() => handleRouter(video.path)}
+        <Grid item sm={2} />
+        <Grid item sm={8}>
+          <Grid container justify="space-evenly">
+            {MVideo.map((video) => (
+              <MaterialUIUItems
+                id={video.id}
+                title={video.title}
+                image={video.image}
+                path={video.path}
+                completed={video.completed}
               />
-              <Typography
-                variant="body1"
-                component="p"
-                className={classes.videoTitle}
-              >
-                {video.title}
-              </Typography>
-              <Box className={classes.adjust}>
-                <Typography
-                  variant="body2"
-                  color="textSecondary"
-                  component="span"
-                >
-                  Completed
-                </Typography>
-                <Checkbox
-                  checked={video.completed}
-                  inputProps={{ "aria-label": "primary checkbox" }}
-                />
-              </Box>
-            </Box>
+            ))}
           </Grid>
-        ))}
+        </Grid>
+        <Grid item sm={2} />
       </Grid>
     </div>
   );

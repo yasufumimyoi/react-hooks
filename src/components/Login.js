@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { Button, Typography, TextField, Grid } from "@material-ui/core";
 import AccountCircle from "@material-ui/icons/AccountCircle";
-import FacebookIcon from "@material-ui/icons/Facebook";
 import firebase from "../firebase/firebase.util";
 import { loginStyles } from "../style/pages";
 import TwitterIcon from "@material-ui/icons/Twitter";
@@ -14,7 +13,7 @@ const Login = () => {
   const history = useHistory();
   const { MVideo, RVideo, RRVideo } = useContext(VideoContext);
 
-  //Session中に視聴完了済の動画情報と共に新規ユーザーアカウントの作成
+  //Session
   const createAccount = async () => {
     try {
       const newUser = await firebase.auth().currentUser.linkWithPopup(provider);
@@ -33,6 +32,20 @@ const Login = () => {
     }
   };
 
+  //Google
+  const handelExistingUserLogin = () => {
+    try {
+      firebase
+        .auth()
+        .signInWithPopup(provider)
+        .then(() => {
+          history.push("/courses");
+        });
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
   return (
     <div>
       <Grid container>
@@ -43,7 +56,7 @@ const Login = () => {
           <form className={classes.root} noValidate autoComplete="off">
             <TextField
               id="standard-basic"
-              label="Username"
+              label="Email"
               fullWidth
               variant="outlined"
             />
@@ -61,7 +74,7 @@ const Login = () => {
               variant="contained"
               color="primary"
               startIcon={<AccountCircle />}
-              onClick={createAccount}
+              onClick={handelExistingUserLogin}
             >
               Google
             </Button>
@@ -71,13 +84,6 @@ const Login = () => {
               startIcon={<TwitterIcon />}
             >
               Twitter
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              startIcon={<FacebookIcon />}
-            >
-              FaceBook
             </Button>
           </form>
         </Grid>

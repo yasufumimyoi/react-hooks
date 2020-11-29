@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { AppBar, Toolbar, Typography } from "@material-ui/core";
 import SchoolIcon from "@material-ui/icons/School";
 import { HeaderButtons } from "./HeaderButtons";
 import { headerStyles } from "../style/pages";
+import { VideoContext } from "../context/video-context";
 
 const Header = () => {
   const classes = headerStyles();
   const history = useHistory();
+  const { currentUser, guestUser } = useContext(VideoContext);
 
   //コース一覧ページに移動する
   const handleCourseRoute = () => {
@@ -19,14 +21,10 @@ const Header = () => {
       <AppBar position="static">
         <Toolbar>
           <SchoolIcon className={classes.logo} />
-          <Typography
-            variant="h6"
-            className={classes.title}
-            onClick={handleCourseRoute}
-          >
+          <Typography variant="h6" className={classes.title}>
             Learn React
           </Typography>
-          <HeaderButtons />
+          {currentUser && <HeaderButtons />}
         </Toolbar>
       </AppBar>
     </div>

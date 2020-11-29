@@ -50,8 +50,7 @@ const ReactVideo = (props) => {
             controls
             onEnded={() => saveCompletedStatus(matchedVideo[0].id)}
             url={matchedVideo[0].url}
-            width="1200px"
-            height="700px"
+            width="100%"
             style={playerStyle}
           />
           <Typography variant="h6" component="h6">
