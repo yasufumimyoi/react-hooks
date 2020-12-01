@@ -1,5 +1,4 @@
 import React from "react";
-import "../style/landing.css";
 
 const Footer = () => {
   return (

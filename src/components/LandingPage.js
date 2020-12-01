@@ -1,9 +1,8 @@
 import React from "react";
 import firebase from "../firebase/firebase.util";
 import { useHistory } from "react-router-dom";
-import { Button } from "@material-ui/core";
+import { Button, Grid } from "@material-ui/core";
 import Top from "../images/top.svg";
-import "../style/landing.css";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -42,11 +41,13 @@ const LandingPage = () => {
   };
 
   return (
-    <div className="landing_container">
-      <div className="landing_img">
-        <img src={Top} width="100%" />
-      </div>
-      <div className="landing_content">
+    <Grid container spacing={3}>
+      <Grid item sm={5}>
+        <div>
+          <img src={Top} width="100%" />
+        </div>
+      </Grid>
+      <Grid item sm={7}>
         <h2>YouTube動画を活用してReactを学習してみよう</h2>
         <h3>
           未視聴 or
@@ -71,8 +72,8 @@ const LandingPage = () => {
         >
           ログインまたは登録はこちら
         </Button>
-      </div>
-    </div>
+      </Grid>
+    </Grid>
   );
 };
 

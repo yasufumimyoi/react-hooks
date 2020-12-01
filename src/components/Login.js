@@ -7,6 +7,7 @@ import { loginStyles } from "../style/pages";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import { provider } from "../firebase/firebase.util";
 import { VideoContext } from "../context/video-context";
+import ReactPlayer from "react-player";
 
 const Login = () => {
   const classes = loginStyles();
