@@ -11,10 +11,13 @@ import { ReactPage } from "./ReactPage";
 import { ReactVideo } from "./ReactVideo";
 import { ReactRouterPage } from "./ReactRouterPage";
 import { ReactRouterVideo } from "./ReactRouterVideo";
+import { Header } from "./Header";
+import { Footer } from "./Footer";
 
 const Contents = () => {
   return (
     <div>
+      <Header />
       <Switch>
         <Route exact path="/" component={LandingPage} />
         <Route exact path="/courses" component={Courses} />

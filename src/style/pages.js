@@ -1,5 +1,4 @@
 import { makeStyles } from "@material-ui/core/styles";
-import ReactPlayer from "react-player";
 
 export const AllVideosStyles = makeStyles({
   root: {
@@ -129,13 +128,16 @@ export const videosUseStyles = makeStyles({
 export const detailUseStyles = makeStyles({
   wrap: {
     position: "relative",
-    paddingTop: "100%",
+    paddingTop: "56.25%%",
   },
   player: {
     position: "absolute",
     top: 0,
     left: 0,
-    width: "1000px",
-    height: "1000px",
+  },
+  box: {
+    height: "500px",
+    width: "100%",
+    maxWidth: "800px",
   },
 });

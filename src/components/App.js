@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Contents } from "./Contents";
-import { Header } from "./Header";
 import { VideoContext } from "../context/video-context";
 import firebase from "../firebase/firebase.util";
-import { Footer } from "./Footer";
 
 const App = () => {
   const [MVideo, setMVideo] = useState([]);
@@ -97,9 +95,7 @@ const App = () => {
       }}
     >
       <Router>
-        <Header />
         <Contents />
-        <Footer />
       </Router>
     </VideoContext.Provider>
   );
