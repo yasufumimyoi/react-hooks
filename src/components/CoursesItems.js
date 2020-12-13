@@ -17,6 +17,7 @@ const CoursesItems = ({ title, subtitle, image, path }) => {
   const handleEachCoursesRouter = (path) => {
     history.push(path);
   };
+
   return (
     <Card className={classes.root}>
       <CardContent>

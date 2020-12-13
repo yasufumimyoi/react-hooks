@@ -36,9 +36,6 @@ export const AllVideosStyles = makeStyles({
 export const coursesStyles = makeStyles({
   root: {
     minWidth: 275,
-    //marginLeft: 20,
-    //marginRight: 20,
-    //marginTop: 20,
     marginBottom: 20,
     textAlign: "center",
   },
@@ -57,6 +54,9 @@ export const coursesStyles = makeStyles({
   all: {
     cursor: "pointer",
     textDecorationLine: "underline",
+  },
+  container: {
+    marginTop: "90px",
   },
 });
 
@@ -95,6 +95,11 @@ export const loginStyles = makeStyles((theme) => ({
   image: {
     cursor: "pointer",
   },
+  layout: {
+    justifyContent: "center",
+    marginTop: "90px",
+    textAlign: "center",
+  },
 }));
 
 export const videosUseStyles = makeStyles({
@@ -122,6 +127,9 @@ export const videosUseStyles = makeStyles({
   },
   adjust: {
     marginBottom: 35,
+  },
+  container: {
+    marginTop: "90px",
   },
 });
 

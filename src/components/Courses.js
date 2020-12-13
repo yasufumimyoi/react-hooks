@@ -15,7 +15,7 @@ const Courses = () => {
   };
 
   return (
-    <Grid container>
+    <Grid container className={classes.container}>
       <Typography className={classes.subTitle} variant="h6" component="h6">
         教材をこなして進捗率を上げながら楽しく学んでいきましょう。
         <p> 現在50本以上の動画を用意しております。</p>
@@ -23,11 +23,12 @@ const Courses = () => {
           全ての動画一覧
         </p>
       </Typography>
-      <Grid sm={2} />
+      <Grid item sm={2} />
       <Grid item sm={8}>
         <Grid container justify="space-evenly">
-          {coursesDescriptions.map((course) => (
+          {coursesDescriptions.map((course, index) => (
             <CoursesItems
+              key={index}
               title={course.title}
               subtitle={course.subtitle}
               image={course.image}
@@ -36,7 +37,7 @@ const Courses = () => {
           ))}
         </Grid>
       </Grid>
-      <Grid sm={2} />
+      <Grid item sm={2} />
     </Grid>
   );
 };

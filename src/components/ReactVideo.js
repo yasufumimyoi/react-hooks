@@ -49,7 +49,7 @@ const ReactVideo = (props) => {
         <CircularProgress />
       ) : (
         <Grid container>
-          <Grid itm sm={2} />
+          <Grid item sm={2} />
           <Grid item sm={8}>
             <div className="film_container" style={{ padding: "30px" }}>
               <div className="film_box">
@@ -80,7 +80,7 @@ const ReactVideo = (props) => {
               />
             </div>
           </Grid>
-          <Grid itm sm={2} />
+          <Grid item sm={2} />
         </Grid>
       )}
     </div>

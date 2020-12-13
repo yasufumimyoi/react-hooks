@@ -22,7 +22,7 @@ const ReactRouterPage = () => {
     Math.round((numberOfCompleted / RRVideo.length) * 100) || 0;
 
   return (
-    <div>
+    <div className={classes.container}>
       <h3 className={classes.title}>
         {" "}
         現在の進捗率{" "}
@@ -39,7 +39,7 @@ const ReactRouterPage = () => {
           <Grid container justify="space-evenly">
             {RRVideo.map((video) => (
               <ReactRouterItems
-                id={video.id}
+                key={video.id}
                 title={video.title}
                 image={video.image}
                 path={video.path}

@@ -22,7 +22,7 @@ const ReactPage = () => {
     Math.round((numberOfCompleted / RVideo.length) * 100) || 0;
 
   return (
-    <div>
+    <div className={classes.container}>
       <h3 className={classes.title}>
         {" "}
         現在の進捗率{" "}
@@ -39,7 +39,7 @@ const ReactPage = () => {
           <Grid container justify="space-evenly">
             {RVideo.map((video) => (
               <ReactItems
-                id={video.id}
+                key={video.id}
                 title={video.title}
                 image={video.image}
                 path={video.path}
