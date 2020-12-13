@@ -5,19 +5,20 @@ import { VideoContext } from "../context/video-context";
 import firebase from "../firebase/firebase.util";
 
 const App = () => {
+  //Todo まだ追加していない動画をuseStateさせる
   const [MVideo, setMVideo] = useState([]);
   const [RVideo, setRVideo] = useState([]);
   const [RRVideo, setRRVideo] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
   const [guestUser, setGuestUser] = useState(null);
+  const [isNewUser, setNewUser] = useState(false);
 
+  //Todo consoleを削除させる
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        //登録済ユーザー
         if (user.isAnonymous === false) {
           setCurrentUser(user);
-          console.log("既存ユーザーログイン");
           firebase
             .firestore()
             .collection("users")
@@ -28,14 +29,55 @@ const App = () => {
                 setMVideo(video.data().material);
                 setRVideo(video.data().react);
                 setRRVideo(video.data().router);
-                console.log("既存ユーザーデータセット");
+              } else {
+                firebase
+                  .firestore()
+                  .collection("users")
+                  .doc(user.uid)
+                  .set({
+                    material: [],
+                    react: [],
+                    router: [],
+                  })
+                  .then(() => {
+                    //Batch処理にしたい
+                    firebase
+                      .firestore()
+                      .collection("videos")
+                      .get()
+                      .then((video) => {
+                        let videoData = [];
+                        video.forEach((info) => {
+                          let data = info.data();
+                          videoData.push({ ...data });
+                        });
+                        setMVideo(videoData[0].material);
+                        setRVideo(videoData[1].react);
+                        setRRVideo(videoData[2].router);
+                        firebase
+                          .firestore()
+                          .collection("users")
+                          .doc(user.uid)
+                          .update({ material: [...videoData[0].material] });
+                        firebase
+                          .firestore()
+                          .collection("users")
+                          .doc(user.uid)
+                          .update({ react: [...videoData[1].react] });
+                        firebase
+                          .firestore()
+                          .collection("users")
+                          .doc(user.uid)
+                          .update({ router: [...videoData[2].router] });
+                        console.log("updated");
+                      });
+                  });
               }
             });
           //匿名ユーザー
         } else if (user.isAnonymous === true) {
           setCurrentUser(user);
           setGuestUser(user);
-          console.log("匿名ユーザーログイン");
           firebase
             .firestore()
             .collection("videos")
@@ -46,6 +88,7 @@ const App = () => {
                 let data = info.data();
                 videoData.push({ ...data });
               });
+              //Todo 追加した動画たちも追加する
               //匿名ユーザーかつ既に動画視聴済動画があるかどうかのチェック
               if (sessionStorage.length > 1) {
                 if (sessionStorage.getItem("react")) {
@@ -92,6 +135,7 @@ const App = () => {
         setCurrentUser,
         guestUser,
         setGuestUser,
+        setNewUser,
       }}
     >
       <Router>
