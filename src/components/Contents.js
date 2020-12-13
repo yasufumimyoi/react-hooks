@@ -12,7 +12,6 @@ import { ReactVideo } from "./ReactVideo";
 import { ReactRouterPage } from "./ReactRouterPage";
 import { ReactRouterVideo } from "./ReactRouterVideo";
 import { Header } from "./Header";
-import { Footer } from "./Footer";
 
 const Contents = () => {
   return (

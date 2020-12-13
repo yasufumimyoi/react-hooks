@@ -10,7 +10,7 @@ const ReactItems = ({ id, title, image, path, completed }) => {
     history.push(path);
   };
   return (
-    <Box>
+    <Box className={classes.box}>
       <img src={image} alt={id} onClick={() => handleRouter(path)} />
       <Typography variant="body1" component="p" className={classes.videoTitle}>
         {title}

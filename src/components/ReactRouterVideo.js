@@ -47,7 +47,7 @@ const ReactRouterVideo = (props) => {
         <CircularProgress />
       ) : (
         <Grid container>
-          <Grid itm sm={2} />
+          <Grid item sm={2} />
           <Grid item sm={8}>
             <div
               className="film_container"
@@ -81,7 +81,7 @@ const ReactRouterVideo = (props) => {
               />
             </div>
           </Grid>
-          <Grid itm sm={2} />
+          <Grid item sm={2} />
         </Grid>
       )}
     </div>

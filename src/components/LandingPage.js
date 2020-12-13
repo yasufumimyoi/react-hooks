@@ -2,8 +2,8 @@ import React from "react";
 import firebase from "../firebase/firebase.util";
 import { useHistory } from "react-router-dom";
 import { Button, Grid } from "@material-ui/core";
-import Top from "../images/top.svg";
 import { makeStyles } from "@material-ui/core/styles";
+import Top2 from "../images/top2.svg";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -11,6 +11,15 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "0.5em",
     width: "250px",
     height: "50px",
+  },
+  layout: {
+    marginTop: "150px",
+  },
+  layout2: {
+    marginTop: "100px",
+  },
+  buttonContainer: {
+    justifyContent: "center",
   },
 }));
 
@@ -42,37 +51,61 @@ const LandingPage = () => {
 
   return (
     <Grid container spacing={3}>
-      <Grid item sm={5}>
+      <Grid item sm={1} />
+      <Grid item sm={4} className={classes.layout}>
         <div>
-          <img src={Top} width="100%" />
+          <img src={Top2} width="100%" alt="top" />
         </div>
       </Grid>
-      <Grid item sm={7}>
+      <Grid item sm={6} className={classes.layout2}>
         <h2>YouTube動画を活用してReactを学習してみよう</h2>
+        <ul>
+          <li>完全無料でプログラミングが学べる</li>
+          <li>動画で学べるので、テキストよりもイメージしやすい</li>
+          <li>コンテンツの質が高い</li>
+        </ul>
         <h3>
           未視聴 or
           視聴済みを変更していくことで、自分の進捗具合を視覚的に分かりやすく進めていくことができます。
         </h3>
-        <h3>React以外にもTypeScript, Firebase, Nodejsなどもあります。</h3>
-        <Button
-          variant="contained"
-          color="primary"
-          type="button"
-          onClick={handleGuestLogin}
-          className={classes.button}
-        >
-          ゲストとして使ってみる
-        </Button>
-        <Button
-          variant="contained"
-          color="primary"
-          type="button"
-          onClick={handleLoginPage}
-          className={classes.button}
-        >
-          ログインまたは登録はこちら
-        </Button>
+        <ul>
+          <li>今どのくらい進めたのかが分かると目標も立てやすくなる</li>
+          <li>モチベーションの維持につながる</li>
+        </ul>
+        <h3>React以外のYoutube動画もあります。</h3>
+        <ul>
+          <li>Nodejs</li>
+          <li>TypeScript</li>
+          <li>Firebase</li>
+          <li>etc.</li>
+        </ul>
+        <p>※ 随時コンテンツを増やしていく予定です</p>
+        <Grid container className={classes.buttonContainer}>
+          <Grid>
+            <Button
+              variant="contained"
+              color="primary"
+              type="button"
+              onClick={handleGuestLogin}
+              className={classes.button}
+            >
+              ゲストとして使ってみる
+            </Button>
+          </Grid>
+          <Grid>
+            <Button
+              variant="contained"
+              color="primary"
+              type="button"
+              onClick={handleLoginPage}
+              className={classes.button}
+            >
+              ログインまたは登録はこちら
+            </Button>
+          </Grid>
+        </Grid>
       </Grid>
+      <Grid item sm={1} />
     </Grid>
   );
 };

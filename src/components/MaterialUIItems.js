@@ -11,7 +11,7 @@ const MaterialUIUItems = ({ id, title, image, path, completed }) => {
   };
 
   return (
-    <Box className={classes.box} key={id}>
+    <Box className={classes.box}>
       <img src={image} alt={id} onClick={() => handleRouter(path)} />
       <Typography variant="body1" component="p" className={classes.videoTitle}>
         {title}
