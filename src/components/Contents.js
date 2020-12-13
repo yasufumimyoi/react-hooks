@@ -12,6 +12,7 @@ import { ReactVideo } from "./ReactVideo";
 import { ReactRouterPage } from "./ReactRouterPage";
 import { ReactRouterVideo } from "./ReactRouterVideo";
 import { Header } from "./Header";
+import { SignUp } from "./SignUp";
 
 const Contents = () => {
   return (
@@ -21,6 +22,7 @@ const Contents = () => {
         <Route exact path="/" component={LandingPage} />
         <Route exact path="/courses" component={Courses} />
         <Route exact path="/login" component={Login} />
+        <Route exact path="/sign" component={SignUp} />
         <Route exact path="/courses/react" component={ReactPage} />
         <Route exact path="/courses/react-router" component={ReactRouterPage} />
         <Route exact path="/courses/material" component={MaterialUIPage} />
