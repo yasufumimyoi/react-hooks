@@ -3,33 +3,33 @@ import { Grid } from "@material-ui/core";
 import CountUp from "react-countup";
 import { videosUseStyles } from "../style/pages";
 import { VideoContext } from "../context/video-context";
-import { ReactItems } from "./ReactItems";
 import Swal from "sweetalert2";
 import Confetti from "react-confetti";
+import { AwsItems } from "./AwsItems";
 
-const ReactPage = () => {
+const AwsPage = () => {
   const classes = videosUseStyles();
-  const { RVideo } = useContext(VideoContext);
+  const { AWVideo } = useContext(VideoContext);
 
   //動画視聴済かどうかcompletedの値を見ている
   let numberOfCompleted = 0;
-  for (let i = 0; i < RVideo.length; i++) {
-    if (RVideo[i].completed === true) {
+  for (let i = 0; i < AWVideo.length; i++) {
+    if (AWVideo[i].completed === true) {
       numberOfCompleted = numberOfCompleted + 1;
     }
   }
 
   //動画視聴済の割合の計算を行っている
   let AchievementRate =
-    Math.round((numberOfCompleted / RVideo.length) * 100) || 0;
+    Math.round((numberOfCompleted / AWVideo.length) * 100) || 0;
 
-  if (AchievementRate === 100 && sessionStorage.getItem("r") == null) {
+  if (AchievementRate === 100 && sessionStorage.getItem("a") == null) {
     Swal.fire(
       "おめでとうございます!!!",
       "進捗率100%となりました!!その他のコースも学習してみましょう!!",
       "success"
     );
-    sessionStorage.setItem("r", "completed");
+    sessionStorage.setItem("a", "completed");
   }
 
   return (
@@ -49,8 +49,8 @@ const ReactPage = () => {
         <Grid item sm={8}>
           {AchievementRate === 100 && <Confetti />}
           <Grid container justify="space-evenly">
-            {RVideo.map((video) => (
-              <ReactItems
+            {AWVideo.map((video) => (
+              <AwsItems
                 key={video.id}
                 title={video.title}
                 image={video.image}
@@ -66,4 +66,4 @@ const ReactPage = () => {
   );
 };
 
-export { ReactPage };
+export { AwsPage };

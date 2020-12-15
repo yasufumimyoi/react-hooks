@@ -18,7 +18,7 @@ const AllVideoItems = ({ id, title, image, path, completed }) => {
       </Typography>
       <Box className={classes.adjust}>
         <Typography variant="body2" color="textSecondary" component="span">
-          Completed
+          視聴済み
         </Typography>
         <Checkbox
           checked={completed}

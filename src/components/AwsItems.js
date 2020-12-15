@@ -5,36 +5,37 @@ import { useHistory } from "react-router-dom";
 import { VideoContext } from "../context/video-context";
 import firebase from "../firebase/firebase.util";
 
-const ReactItems = ({ id, title, image, path, completed }) => {
+const AwsItems = ({ id, title, image, path, completed }) => {
   const classes = videosUseStyles();
   const history = useHistory();
   const handleRouter = (path) => {
     history.push(path);
   };
 
-  const { RVideo, setMVideo, currentUser, guestUser } = useContext(
+  const { AWVideo, setAWVideo, currentUser, guestUser } = useContext(
     VideoContext
   );
   const firestore = firebase.firestore();
 
   const saveCompletedStatus = (title) => {
-    const newItems = RVideo.map((item) => {
+    const newItems = AWVideo.map((item) => {
       if (item.title === title) {
         item.completed = !item.completed;
       }
       return item;
     });
-    setMVideo(newItems);
+    setAWVideo(newItems);
     if (currentUser.isAnonymous === false || guestUser.isAnonymous === false) {
       firestore
         .collection("users")
         .doc(currentUser.uid)
-        .update({ react: [...newItems] });
+        .update({ aws: [...newItems] });
     } else {
       console.log("Guest user data updated");
-      sessionStorage.setItem("react", JSON.stringify(newItems));
+      sessionStorage.setItem("aws", JSON.stringify(newItems));
     }
   };
+
   return (
     <Box className={classes.box}>
       <img src={image} alt={id} onClick={() => handleRouter(path)} />
@@ -47,6 +48,7 @@ const ReactItems = ({ id, title, image, path, completed }) => {
         </Typography>
         <Checkbox
           checked={completed}
+          id={id}
           inputProps={{ "aria-label": "primary checkbox" }}
           onChange={() => {
             saveCompletedStatus(title);
@@ -57,4 +59,4 @@ const ReactItems = ({ id, title, image, path, completed }) => {
   );
 };
 
-export { ReactItems };
+export { AwsItems };

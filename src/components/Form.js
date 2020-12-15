@@ -10,8 +10,14 @@ import { provider, app } from "../firebase/firebase.util";
 import { useHistory } from "react-router-dom";
 
 const schema = yup.object().shape({
-  email: yup.string().email().required("メールアドレスを入力して下さい"),
-  password: yup.string().required("パスワードを入力して下さい"),
+  email: yup
+    .string()
+    .email("メールアドレスの形式に誤りがあります")
+    .required("メールアドレスは必須です"),
+  password: yup
+    .string()
+    .min(8, "8文字以上のパスワードを入力して下さい")
+    .required("パスワードは必須です"),
 });
 
 export const Form = () => {
@@ -57,13 +63,9 @@ export const Form = () => {
     }
   };
 
-  const handleSignUp = () => {
-    history.push("/sign");
-  };
-
   return (
-    <Grid container container container className={classes.layout} spacing={4}>
-      <Grid item>
+    <Grid container className={classes.layout} spacing={4}>
+      <Grid item sm={4}>
         <Typography variant="h5">アカウントをお持ちの方</Typography>
         <Typography>メールアドレスでログイン</Typography>
         <form
@@ -78,16 +80,20 @@ export const Form = () => {
             inputRef={register}
             onChange={onChange}
           />
-          {errors.email && <div>{errors.email.message}</div>}
+          {errors.email && (
+            <div className={classes.validate}>{errors.email.message}</div>
+          )}
           <TextField
             label="password"
-            type="text"
+            type="password"
             name="password"
             fullWidth
             inputRef={register}
             onChange={onChange}
           />
-          {errors.password && <div>{errors.password.message}</div>}
+          {errors.password && (
+            <div className={classes.validate}>{errors.password.message}</div>
+          )}
           <Button variant="contained" color="primary" type="submit" fullWidth>
             送信
           </Button>
@@ -100,14 +106,6 @@ export const Form = () => {
             onClick={handelExistingUserLogin}
           >
             Google
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            fullWidth
-            onClick={handleSignUp}
-          >
-            アカウントをお持ちでない方はこちら
           </Button>
         </form>
       </Grid>
