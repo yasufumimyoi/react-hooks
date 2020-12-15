@@ -11,37 +11,36 @@ import firebase from "../firebase/firebase.util";
 import "../style/player.css";
 import { videosUseStyles } from "../style/pages";
 
-const ReactVideo = (props) => {
-  const { RVideo, setRVideo, currentUser, guestUser } = useContext(
+const AwsVideo = (props) => {
+  const { AWVideo, setAWVideo, currentUser, guestUser } = useContext(
     VideoContext
   );
-
   const firestore = firebase.firestore();
   const classes = videosUseStyles();
 
   //paramsと動画IDが合致した動画データを抽出する
   const { id } = props.match.params;
   const parsedId = parseInt(id);
-  const matchedVideo = RVideo.filter((video) => video.id === parsedId);
+  const matchedVideo = AWVideo.filter((video) => video.id === parsedId);
 
   //動画視聴後にこのメソッドが呼ばれてcompletedにチェックが付く
   const saveCompletedStatus = (id) => {
-    const newItems = RVideo.map((item) => {
+    const newItems = AWVideo.map((item) => {
       if (item.id === id) {
         item.completed = !item.completed;
       }
       return item;
     });
-    setRVideo(newItems);
+    setAWVideo(newItems);
 
     if (currentUser.isAnonymous === false || guestUser.isAnonymous === false) {
       firestore
         .collection("users")
         .doc(currentUser.uid)
-        .update({ react: [...newItems] });
+        .update({ aws: [...newItems] });
     } else {
       console.log("Guest user data updated");
-      sessionStorage.setItem("react", JSON.stringify(newItems));
+      sessionStorage.setItem("aws", JSON.stringify(newItems));
     }
   };
 
@@ -57,7 +56,10 @@ const ReactVideo = (props) => {
         <Grid container>
           <Grid item sm={2} />
           <Grid item sm={8}>
-            <div className="film_container" style={{ padding: "30px" }}>
+            <div
+              className="film_container"
+              style={{ padding: "30px", maxWidth: "1200px" }}
+            >
               <div className="film_box">
                 <div className="player-wrapper">
                   <ReactPlayer
@@ -83,8 +85,7 @@ const ReactVideo = (props) => {
               <Checkbox
                 checked={matchedVideo[0].completed}
                 inputProps={{ "aria-label": "primary checkbox" }}
-                onChange={(e) => {
-                  console.log(e.target.checked);
+                onChange={() => {
                   saveCompletedStatus(matchedVideo[0].id);
                 }}
               />
@@ -97,4 +98,4 @@ const ReactVideo = (props) => {
   );
 };
 
-export { ReactVideo };
+export { AwsVideo };

@@ -1,22 +1,26 @@
 import React from "react";
-import { Typography } from "@material-ui/core";
+import { Grid, Box } from "@material-ui/core";
 import NotFoundImage from "../images/NotFound.svg";
 import { Link } from "react-router-dom";
+import { NotFoundUseStyles } from "../style/pages";
 
 const NotFound = () => {
+  const classes = NotFoundUseStyles();
   return (
-    <div>
-      <Typography variant="body1" component="p">
-        申し訳ございません。
-      </Typography>
-      <Typography variant="body1" component="p">
-        指定したファイルまたはディレクトリは存在しておりません。
-      </Typography>
-      <div>
-        <Link to="/">ホーム画面に戻る</Link>
-      </div>
-      <img src={NotFoundImage} width="85%" />
-    </div>
+    <Grid container>
+      <Grid item sm={1} />
+      <Grid item sm={10} className={classes.container}>
+        <p>申し訳ございません。</p>
+        <p>
+          指定したファイルまたはディレクトリは存在しておりません。
+          <Link to="/">ホーム画面に戻る</Link>
+        </p>
+        <Box>
+          <img src={NotFoundImage} width="60%" alt="NotFound" />
+        </Box>
+      </Grid>
+      <Grid item sm={1} />
+    </Grid>
   );
 };
 

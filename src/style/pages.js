@@ -73,13 +73,6 @@ export const headerStyles = makeStyles((theme) => ({
   },
 }));
 
-export const headerButtonUseStyles = makeStyles(() => ({
-  link: {
-    marginRight: "8px",
-    color: "white",
-  },
-}));
-
 export const loginStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -89,9 +82,6 @@ export const loginStyles = makeStyles((theme) => ({
   button: {
     width: "28ch",
   },
-  layout: {
-    marginBottom: 30,
-  },
   image: {
     cursor: "pointer",
   },
@@ -99,6 +89,12 @@ export const loginStyles = makeStyles((theme) => ({
     justifyContent: "center",
     marginTop: "90px",
     textAlign: "center",
+  },
+  validate: {
+    color: "red",
+  },
+  form: {
+    width: "20%",
   },
 }));
 
@@ -131,6 +127,11 @@ export const videosUseStyles = makeStyles({
   container: {
     marginTop: "90px",
   },
+  loading: {
+    justifyContent: "center",
+    textAlign: "center",
+    marginTop: "15%",
+  },
 });
 
 export const detailUseStyles = makeStyles({
@@ -147,5 +148,15 @@ export const detailUseStyles = makeStyles({
     height: "500px",
     width: "100%",
     maxWidth: "800px",
+  },
+});
+
+export const NotFoundUseStyles = makeStyles({
+  container: {
+    textAlign: "center",
+    marginTop: "90px",
+  },
+  box: {
+    width: "540px",
   },
 });

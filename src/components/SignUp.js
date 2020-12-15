@@ -2,13 +2,7 @@ import React, { useState, useContext } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import {
-  Button,
-  TextField,
-  Grid,
-  Typography,
-  CircularProgress,
-} from "@material-ui/core";
+import { Button, TextField, Grid, Typography } from "@material-ui/core";
 import { loginStyles } from "../style/pages";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import firebase from "../firebase/firebase.util";
@@ -17,8 +11,14 @@ import { useHistory } from "react-router-dom";
 import { VideoContext } from "../context/video-context";
 
 const schema = yup.object().shape({
-  email: yup.string().email().required("メールアドレスを入力して下さい"),
-  password: yup.string().required("パスワードを入力して下さい"),
+  email: yup
+    .string()
+    .email("メールアドレスの形式に誤りがあります")
+    .required("メールアドレスは必須です"),
+  password: yup
+    .string()
+    .min(8, "8文字以上のパスワードを入力して下さい")
+    .required("パスワードは必須です"),
 });
 
 export const SignUp = () => {
@@ -36,6 +36,10 @@ export const SignUp = () => {
       ...formState,
       ...{ [event.target.name]: event.target.value },
     });
+  };
+
+  const handleLogin = () => {
+    history.push("/login");
   };
 
   const history = useHistory();
@@ -78,8 +82,8 @@ export const SignUp = () => {
   };
 
   return (
-    <Grid container container container className={classes.layout} spacing={4}>
-      <Grid item>
+    <Grid container className={classes.layout} spacing={4}>
+      <Grid item sm={4}>
         <Typography variant="h5">新規登録</Typography>
         <Typography>メールアドレスで登録</Typography>
         <form
@@ -94,23 +98,21 @@ export const SignUp = () => {
             inputRef={register}
             onChange={onChange}
           />
-          {errors.email && <div>{errors.email.message}</div>}
+          {errors.email && (
+            <div className={classes.validate}>{errors.email.message}</div>
+          )}
           <TextField
             label="password"
-            type="text"
+            type="password"
             name="password"
             fullWidth
             inputRef={register}
             onChange={onChange}
           />
-          {errors.password && <div>{errors.password.message}</div>}
-          <Button
-            variant="contained"
-            color="primary"
-            type="submit"
-            fullWidth
-            type="submit"
-          >
+          {errors.password && (
+            <div className={classes.validate}>{errors.password.message}</div>
+          )}
+          <Button variant="contained" color="primary" type="submit" fullWidth>
             送信
           </Button>
           <Typography>Googleアカウントで登録</Typography>
@@ -122,6 +124,14 @@ export const SignUp = () => {
             onClick={createAccountWithGoogle}
           >
             Google
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            fullWidth
+            onClick={handleLogin}
+          >
+            既にアカウントをお持ちの方はこちら
           </Button>
         </form>
       </Grid>

@@ -9,12 +9,14 @@ import {
 import { VideoContext } from "../context/video-context";
 import firebase from "../firebase/firebase.util";
 import "../style/player.css";
+import { videosUseStyles } from "../style/pages";
 
 const MaterialUIVideo = (props) => {
   const { MVideo, setMVideo, currentUser, guestUser } = useContext(
     VideoContext
   );
   const firestore = firebase.firestore();
+  const classes = videosUseStyles();
 
   //paramsと動画IDが合致した動画データを抽出する
   const { id } = props.match.params;
@@ -45,7 +47,11 @@ const MaterialUIVideo = (props) => {
   return (
     <div>
       {matchedVideo.length === 0 ? (
-        <CircularProgress />
+        <Grid container className={classes.loading}>
+          <Grid item sm={4}>
+            <CircularProgress />
+          </Grid>
+        </Grid>
       ) : (
         <Grid container>
           <Grid item sm={2} />
@@ -74,11 +80,14 @@ const MaterialUIVideo = (props) => {
                 color="textSecondary"
                 component="span"
               >
-                Completed:
+                視聴済み
               </Typography>
               <Checkbox
                 checked={matchedVideo[0].completed}
                 inputProps={{ "aria-label": "primary checkbox" }}
+                onChange={() => {
+                  saveCompletedStatus(matchedVideo[0].id);
+                }}
               />
             </div>
           </Grid>

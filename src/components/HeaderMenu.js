@@ -26,9 +26,15 @@ export const HeaderMenu = () => {
     setAnchorEl(null);
   };
 
+  //新規登録ページに移動する
+  const handelSignUpRoute = () => {
+    history.push("/sign");
+    setAnchorEl(null);
+  };
+
   //ログインページに移動する
-  const handelLoginRoute = () => {
-    history.push("/login");
+  const handelAllVideoRoute = () => {
+    history.push("/all");
     setAnchorEl(null);
   };
 
@@ -67,9 +73,10 @@ export const HeaderMenu = () => {
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            <MenuItem onClick={handelCoursesRoute}>Courses</MenuItem>
-            <MenuItem onClick={handleLogout}>Log out</MenuItem>
-            <MenuItem onClick={handelLoginRoute}>Create Account</MenuItem>
+            <MenuItem onClick={handelCoursesRoute}>トップ</MenuItem>
+            <MenuItem onClick={handelAllVideoRoute}>動画一覧</MenuItem>
+            <MenuItem onClick={handleLogout}>ログアウト</MenuItem>
+            <MenuItem onClick={handelSignUpRoute}>新規登録</MenuItem>
           </Menu>
         </Box>
       ) : (
@@ -86,8 +93,9 @@ export const HeaderMenu = () => {
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            <MenuItem onClick={handelCoursesRoute}>Courses</MenuItem>
-            <MenuItem onClick={handleLogout}>Log out</MenuItem>
+            <MenuItem onClick={handelCoursesRoute}>トップ</MenuItem>
+            <MenuItem onClick={handelAllVideoRoute}>動画一覧</MenuItem>
+            <MenuItem onClick={handleLogout}>ログアウト</MenuItem>
           </Menu>
         </Box>
       )}

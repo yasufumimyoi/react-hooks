@@ -4,6 +4,8 @@ import CountUp from "react-countup";
 import { videosUseStyles } from "../style/pages";
 import { VideoContext } from "../context/video-context";
 import { MaterialUIUItems } from "./MaterialUIItems";
+import Swal from "sweetalert2";
+import Confetti from "react-confetti";
 
 const MaterialUIPage = () => {
   const classes = videosUseStyles();
@@ -21,6 +23,15 @@ const MaterialUIPage = () => {
   let AchievementRate =
     Math.round((numberOfCompleted / MVideo.length) * 100) || 0;
 
+  if (AchievementRate === 100 && sessionStorage.getItem("m") == null) {
+    Swal.fire(
+      "おめでとうございます!!!",
+      "進捗率100%となりました!!その他のコースも学習してみましょう!!",
+      "success"
+    );
+    sessionStorage.setItem("m", "completed");
+  }
+
   return (
     <div className={classes.container}>
       <h3 className={classes.title}>
@@ -36,6 +47,7 @@ const MaterialUIPage = () => {
       <Grid container>
         <Grid item sm={2} />
         <Grid item sm={8}>
+          {AchievementRate === 100 && <Confetti />}
           <Grid container justify="space-evenly">
             {MVideo.map((video) => (
               <MaterialUIUItems
