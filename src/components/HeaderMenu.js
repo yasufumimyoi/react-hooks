@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
-import { useHistory } from "react-router-dom";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
-import MenuIcon from "@material-ui/icons/Menu";
-import firebase from "../firebase/firebase.util";
-import { VideoContext } from "../context/video-context";
-import { Box } from "@material-ui/core";
+import React, { useContext } from 'react';
+import { useHistory } from 'react-router-dom';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import MenuIcon from '@material-ui/icons/Menu';
+import firebase from '../firebase/firebase.util';
+import { VideoContext } from '../context/video-context';
+import { Box } from '@material-ui/core';
 
 export const HeaderMenu = () => {
   const history = useHistory();
@@ -22,19 +22,19 @@ export const HeaderMenu = () => {
 
   //コース一覧ページに移動する
   const handelCoursesRoute = () => {
-    history.push("/courses");
+    history.push('/courses');
     setAnchorEl(null);
   };
 
   //新規登録ページに移動する
   const handelSignUpRoute = () => {
-    history.push("/sign");
+    history.push('/sign');
     setAnchorEl(null);
   };
 
   //ログインページに移動する
   const handelAllVideoRoute = () => {
-    history.push("/all");
+    history.push('/all');
     setAnchorEl(null);
   };
 
@@ -49,7 +49,7 @@ export const HeaderMenu = () => {
           setCurrentUser(null);
           setGuestUser(null);
           sessionStorage.clear();
-          history.push("/");
+          history.push('/');
         });
       setAnchorEl(null);
     } catch (error) {

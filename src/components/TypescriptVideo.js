@@ -1,15 +1,15 @@
-import React, { useContext } from "react";
-import ReactPlayer from "react-player";
+import React, { useContext } from 'react';
+import ReactPlayer from 'react-player';
 import {
   Checkbox,
   CircularProgress,
   Typography,
   Grid,
-} from "@material-ui/core";
-import { VideoContext } from "../context/video-context";
-import firebase from "../firebase/firebase.util";
-import "../style/player.css";
-import { videosUseStyles } from "../style/pages";
+} from '@material-ui/core';
+import { VideoContext } from '../context/video-context';
+import firebase from '../firebase/firebase.util';
+import '../style/player.css';
+import { videosUseStyles } from '../style/pages';
 
 //
 const TypescriptVideo = (props) => {
@@ -18,6 +18,7 @@ const TypescriptVideo = (props) => {
     VideoContext
   );
   const firestore = firebase.firestore();
+
   const classes = videosUseStyles();
 
   //paramsと動画IDが合致した動画データを抽出する
@@ -39,13 +40,13 @@ const TypescriptVideo = (props) => {
 
     if (currentUser.isAnonymous === false || guestUser.isAnonymous === false) {
       firestore
-        .collection("users")
+        .collection('users')
         .doc(currentUser.uid)
         //
         .update({ typescript: [...newItems] });
     } else {
-      console.log("Guest user data updated");
-      sessionStorage.setItem("typescript", JSON.stringify(newItems));
+      console.log('Guest user data updated');
+      sessionStorage.setItem('typescript', JSON.stringify(newItems));
     }
   };
 
@@ -63,7 +64,7 @@ const TypescriptVideo = (props) => {
           <Grid item sm={8}>
             <div
               className="film_container"
-              style={{ padding: "30px", maxWidth: "1200px" }}
+              style={{ padding: '30px', maxWidth: '1200px' }}
             >
               <div className="film_box">
                 <div className="player-wrapper">
@@ -89,7 +90,7 @@ const TypescriptVideo = (props) => {
               </Typography>
               <Checkbox
                 checked={matchedVideo[0].completed}
-                inputProps={{ "aria-label": "primary checkbox" }}
+                inputProps={{ 'aria-label': 'primary checkbox' }}
                 onChange={() => {
                   saveCompletedStatus(matchedVideo[0].id);
                 }}

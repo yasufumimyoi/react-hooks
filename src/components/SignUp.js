@@ -1,24 +1,24 @@
-import React, { useState, useContext } from "react";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import { Button, TextField, Grid, Typography } from "@material-ui/core";
-import { loginStyles } from "../style/pages";
-import AccountCircle from "@material-ui/icons/AccountCircle";
-import firebase from "../firebase/firebase.util";
-import { provider } from "../firebase/firebase.util";
-import { useHistory } from "react-router-dom";
-import { VideoContext } from "../context/video-context";
+import React, { useState, useContext } from 'react';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+import { Button, TextField, Grid, Typography } from '@material-ui/core';
+import { loginStyles } from '../style/pages';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import firebase from '../firebase/firebase.util';
+import { provider } from '../firebase/firebase.util';
+import { useHistory } from 'react-router-dom';
+import { VideoContext } from '../context/video-context';
 
 const schema = yup.object().shape({
   email: yup
     .string()
-    .email("メールアドレスの形式に誤りがあります")
-    .required("メールアドレスは必須です"),
+    .email('メールアドレスの形式に誤りがあります')
+    .required('メールアドレスは必須です'),
   password: yup
     .string()
-    .min(8, "8文字以上のパスワードを入力して下さい")
-    .required("パスワードは必須です"),
+    .min(8, '8文字以上のパスワードを入力して下さい')
+    .required('パスワードは必須です'),
 });
 
 export const SignUp = () => {
@@ -39,7 +39,7 @@ export const SignUp = () => {
   };
 
   const handleLogin = () => {
-    history.push("/login");
+    history.push('/login');
   };
 
   const history = useHistory();
@@ -49,13 +49,13 @@ export const SignUp = () => {
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
-      .then((user) => {
-        history.push("/courses");
+      .then(() => {
+        history.push('/courses');
         reset();
       })
       .catch((error) => {
-        var errorCode = error.code;
-        var errorMessage = error.message;
+        let errorCode = error.code;
+        let errorMessage = error.message;
         console.log(errorCode);
         console.log(errorMessage);
       });
@@ -67,7 +67,7 @@ export const SignUp = () => {
       const newUser = await firebase.auth().currentUser.linkWithPopup(provider);
       await firebase
         .firestore()
-        .collection("users")
+        .collection('users')
         .doc(newUser.user.uid)
         .set({
           material: [...MVideo],
@@ -75,7 +75,7 @@ export const SignUp = () => {
           router: [...RRVideo],
         });
       await setGuestUser(null);
-      await history.push("/courses");
+      await history.push('/courses');
     } catch (error) {
       console.error(error.message);
     }

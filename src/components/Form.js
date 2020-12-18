@@ -1,23 +1,23 @@
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import { Button, TextField, Grid, Typography } from "@material-ui/core";
-import { loginStyles } from "../style/pages";
-import AccountCircle from "@material-ui/icons/AccountCircle";
-import firebase from "../firebase/firebase.util";
-import { provider, app } from "../firebase/firebase.util";
-import { useHistory } from "react-router-dom";
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+import { Button, TextField, Grid, Typography } from '@material-ui/core';
+import { loginStyles } from '../style/pages';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import firebase from '../firebase/firebase.util';
+import { provider, app } from '../firebase/firebase.util';
+import { useHistory } from 'react-router-dom';
 
 const schema = yup.object().shape({
   email: yup
     .string()
-    .email("メールアドレスの形式に誤りがあります")
-    .required("メールアドレスは必須です"),
+    .email('メールアドレスの形式に誤りがあります')
+    .required('メールアドレスは必須です'),
   password: yup
     .string()
-    .min(8, "8文字以上のパスワードを入力して下さい")
-    .required("パスワードは必須です"),
+    .min(8, '8文字以上のパスワードを入力して下さい')
+    .required('パスワードは必須です'),
 });
 
 export const Form = () => {
@@ -40,7 +40,7 @@ export const Form = () => {
   const handelExistingUserEmailLogin = async ({ email, password }) => {
     try {
       await app.auth().signInWithEmailAndPassword(email, password);
-      await history.push("/courses");
+      await history.push('/courses');
       reset();
     } catch (error) {
       console.error(error.message);
@@ -56,7 +56,7 @@ export const Form = () => {
         .auth()
         .signInWithPopup(provider)
         .then(() => {
-          history.push("/courses");
+          history.push('/courses');
         });
     } catch (error) {
       console.error(error.message);

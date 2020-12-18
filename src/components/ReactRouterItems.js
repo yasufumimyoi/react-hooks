@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
-import { Box, Checkbox, Typography } from "@material-ui/core";
-import { videosUseStyles } from "../style/pages";
-import { useHistory } from "react-router-dom";
-import { VideoContext } from "../context/video-context";
-import firebase from "../firebase/firebase.util";
+import React, { useContext } from 'react';
+import { Box, Checkbox, Typography } from '@material-ui/core';
+import { videosUseStyles } from '../style/pages';
+import { useHistory } from 'react-router-dom';
+import { VideoContext } from '../context/video-context';
+import firebase from '../firebase/firebase.util';
 
 const ReactRouterItems = ({ id, title, image, path, completed }) => {
   const classes = videosUseStyles();
@@ -27,12 +27,12 @@ const ReactRouterItems = ({ id, title, image, path, completed }) => {
     setMVideo(newItems);
     if (currentUser.isAnonymous === false || guestUser.isAnonymous === false) {
       firestore
-        .collection("users")
+        .collection('users')
         .doc(currentUser.uid)
         .update({ router: [...newItems] });
     } else {
-      console.log("Guest user data updated");
-      sessionStorage.setItem("router", JSON.stringify(newItems));
+      console.log('Guest user data updated');
+      sessionStorage.setItem('router', JSON.stringify(newItems));
     }
   };
   return (
@@ -47,7 +47,7 @@ const ReactRouterItems = ({ id, title, image, path, completed }) => {
         </Typography>
         <Checkbox
           checked={completed}
-          inputProps={{ "aria-label": "primary checkbox" }}
+          inputProps={{ 'aria-label': 'primary checkbox' }}
           onChange={() => {
             saveCompletedStatus(title);
           }}

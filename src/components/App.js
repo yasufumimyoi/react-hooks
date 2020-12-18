@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
-import { Contents } from "./Contents";
-import { VideoContext } from "../context/video-context";
-import firebase from "../firebase/firebase.util";
-import { ScrollToTop } from "./Scroll";
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { Contents } from './Contents';
+import { VideoContext } from '../context/video-context';
+import firebase from '../firebase/firebase.util';
+import { ScrollToTop } from './Scroll';
 
 const App = () => {
   const [AWVideo, setAWVideo] = useState([]);
@@ -25,7 +25,7 @@ const App = () => {
           setCurrentUser(user);
           firebase
             .firestore()
-            .collection("users")
+            .collection('users')
             .doc(user.uid)
             .get()
             .then((video) => {
@@ -42,7 +42,7 @@ const App = () => {
               } else {
                 firebase
                   .firestore()
-                  .collection("users")
+                  .collection('users')
                   .doc(user.uid)
                   .set({
                     aws: [],
@@ -59,7 +59,7 @@ const App = () => {
                     //Batch処理にしたい
                     firebase
                       .firestore()
-                      .collection("videos")
+                      .collection('videos')
                       .get()
                       .then((video) => {
                         let videoData = [];
@@ -78,50 +78,50 @@ const App = () => {
                         setTVideo(videoData[8].typescript);
                         firebase
                           .firestore()
-                          .collection("users")
+                          .collection('users')
                           .doc(user.uid)
                           .update({ aws: [...videoData[0].aws] });
                         firebase
                           .firestore()
-                          .collection("users")
+                          .collection('users')
                           .doc(user.uid)
                           .update({ docker: [...videoData[1].docker] });
                         firebase
                           .firestore()
-                          .collection("users")
+                          .collection('users')
                           .doc(user.uid)
                           .update({ firebase: [...videoData[2].firebase] });
                         firebase
                           .firestore()
-                          .collection("users")
+                          .collection('users')
                           .doc(user.uid)
                           .update({ javascript: [...videoData[3].javascript] });
                         firebase
                           .firestore()
-                          .collection("users")
+                          .collection('users')
                           .doc(user.uid)
                           .update({ material: [...videoData[4].material] });
                         firebase
                           .firestore()
-                          .collection("users")
+                          .collection('users')
                           .doc(user.uid)
                           .update({ node: [...videoData[5].node] });
                         firebase
                           .firestore()
-                          .collection("users")
+                          .collection('users')
                           .doc(user.uid)
                           .update({ react: [...videoData[6].react] });
                         firebase
                           .firestore()
-                          .collection("users")
+                          .collection('users')
                           .doc(user.uid)
                           .update({ router: [...videoData[7].router] });
                         firebase
                           .firestore()
-                          .collection("users")
+                          .collection('users')
                           .doc(user.uid)
                           .update({ typescript: [...videoData[8].typescript] });
-                        console.log("updated");
+                        console.log('updated');
                       });
                   });
               }
@@ -132,7 +132,7 @@ const App = () => {
           setGuestUser(user);
           firebase
             .firestore()
-            .collection("videos")
+            .collection('videos')
             .get()
             .then((video) => {
               let videoData = [];
@@ -142,56 +142,56 @@ const App = () => {
               });
               //匿名ユーザーかつ既に動画視聴済動画があるかどうかのチェック
               if (sessionStorage.length > 1) {
-                if (sessionStorage.getItem("aws")) {
-                  let data = sessionStorage.getItem("aws");
+                if (sessionStorage.getItem('aws')) {
+                  let data = sessionStorage.getItem('aws');
                   setAWVideo(JSON.parse(data));
                 } else {
                   setAWVideo(videoData[0].aws);
                 }
-                if (sessionStorage.getItem("docker")) {
-                  let data = sessionStorage.getItem("docker");
+                if (sessionStorage.getItem('docker')) {
+                  let data = sessionStorage.getItem('docker');
                   setDVideo(JSON.parse(data));
                 } else {
                   setDVideo(videoData[1].docker);
                 }
-                if (sessionStorage.getItem("firebase")) {
-                  let data = sessionStorage.getItem("firebase");
+                if (sessionStorage.getItem('firebase')) {
+                  let data = sessionStorage.getItem('firebase');
                   setFVideo(JSON.parse(data));
                 } else {
                   setFVideo(videoData[2].firebase);
                 }
-                if (sessionStorage.getItem("javascript")) {
-                  let data = sessionStorage.getItem("javascript");
+                if (sessionStorage.getItem('javascript')) {
+                  let data = sessionStorage.getItem('javascript');
                   setJVideo(JSON.parse(data));
                 } else {
                   setJVideo(videoData[3].javascript);
                 }
-                if (sessionStorage.getItem("material")) {
-                  let data = sessionStorage.getItem("material");
+                if (sessionStorage.getItem('material')) {
+                  let data = sessionStorage.getItem('material');
                   setMVideo(JSON.parse(data));
                 } else {
                   setMVideo(videoData[4].material);
                 }
-                if (sessionStorage.getItem("node")) {
-                  let data = sessionStorage.getItem("node");
+                if (sessionStorage.getItem('node')) {
+                  let data = sessionStorage.getItem('node');
                   setNVideo(JSON.parse(data));
                 } else {
                   setNVideo(videoData[5].node);
                 }
-                if (sessionStorage.getItem("react")) {
-                  let data = sessionStorage.getItem("react");
+                if (sessionStorage.getItem('react')) {
+                  let data = sessionStorage.getItem('react');
                   setRVideo(JSON.parse(data));
                 } else {
                   setRVideo(videoData[6].react);
                 }
-                if (sessionStorage.getItem("router")) {
-                  let data = sessionStorage.getItem("router");
+                if (sessionStorage.getItem('router')) {
+                  let data = sessionStorage.getItem('router');
                   setRRVideo(JSON.parse(data));
                 } else {
                   setRRVideo(videoData[7].router);
                 }
-                if (sessionStorage.getItem("typescript")) {
-                  let data = sessionStorage.getItem("typescript");
+                if (sessionStorage.getItem('typescript')) {
+                  let data = sessionStorage.getItem('typescript');
                   setTVideo(JSON.parse(data));
                 } else {
                   setTVideo(videoData[8].typescript);

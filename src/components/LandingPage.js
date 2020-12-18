@@ -1,39 +1,39 @@
-import React from "react";
-import firebase from "../firebase/firebase.util";
-import { useHistory } from "react-router-dom";
-import { Button, Grid } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import Top2 from "../images/top2.svg";
+import React from 'react';
+import firebase from '../firebase/firebase.util';
+import { useHistory } from 'react-router-dom';
+import { Button, Grid } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import Top2 from '../images/top2.svg';
 
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import Typography from "@material-ui/core/Typography";
-import DoneOutlineIcon from "@material-ui/icons/DoneOutline";
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import Typography from '@material-ui/core/Typography';
+import DoneOutlineIcon from '@material-ui/icons/DoneOutline';
 
 const useStyles = makeStyles((theme) => ({
   button: {
     margin: theme.spacing(1),
-    borderRadius: "0.5em",
-    width: "250px",
-    height: "50px",
+    borderRadius: '0.5em',
+    width: '250px',
+    height: '50px',
   },
   layout: {
-    marginTop: "150px",
+    marginTop: '150px',
   },
   layout2: {
-    marginTop: "100px",
-    textAlign: "center",
+    marginTop: '100px',
+    textAlign: 'center',
   },
   buttonContainer: {
-    justifyContent: "center",
+    justifyContent: 'center',
   },
   layout3: {
-    marginBottom: "50px",
+    marginBottom: '50px',
   },
   enf: {
-    color: "red",
+    color: 'red',
   },
 }));
 
@@ -48,19 +48,19 @@ const LandingPage = () => {
       .auth()
       .setPersistence(firebase.auth.Auth.Persistence.SESSION)
       .then(() => {
-        history.push("/courses");
+        history.push('/courses');
         return firebase.auth().signInAnonymously();
       })
       .catch(function (error) {
-        var errorCode = error.code;
-        var errorMessage = error.message;
+        let errorCode = error.code;
+        let errorMessage = error.message;
         console.log(errorCode, errorMessage);
       });
   };
 
   //ログインページに移動する
   const handleLoginPage = () => {
-    history.push("/login");
+    history.push('/login');
   };
 
   return (
@@ -103,7 +103,7 @@ const LandingPage = () => {
             </List>
           </div>
           <Typography variant="h6">
-            <span className={classes.enf}>※:</span>{" "}
+            <span className={classes.enf}>※:</span>{' '}
             React以外のYoutube動画もあります。随時追加する予定です。
           </Typography>
         </div>

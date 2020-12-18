@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
-import { Grid } from "@material-ui/core";
-import CountUp from "react-countup";
-import { videosUseStyles } from "../style/pages";
-import { VideoContext } from "../context/video-context";
-import { MaterialUIUItems } from "./MaterialUIItems";
-import Swal from "sweetalert2";
-import Confetti from "react-confetti";
+import React, { useContext } from 'react';
+import { Grid } from '@material-ui/core';
+import CountUp from 'react-countup';
+import { videosUseStyles } from '../style/pages';
+import { VideoContext } from '../context/video-context';
+import { MaterialUIUItems } from './MaterialUIItems';
+import Swal from 'sweetalert2';
+import Confetti from 'react-confetti';
 
 const MaterialUIPage = () => {
   const classes = videosUseStyles();
@@ -23,25 +23,25 @@ const MaterialUIPage = () => {
   let AchievementRate =
     Math.round((numberOfCompleted / MVideo.length) * 100) || 0;
 
-  if (AchievementRate === 100 && sessionStorage.getItem("m") == null) {
+  if (AchievementRate === 100 && sessionStorage.getItem('m') == null) {
     Swal.fire(
-      "おめでとうございます!!!",
-      "進捗率100%となりました!!その他のコースも学習してみましょう!!",
-      "success"
+      'おめでとうございます!!!',
+      '進捗率100%となりました!!その他のコースも学習してみましょう!!',
+      'success'
     );
-    sessionStorage.setItem("m", "completed");
+    sessionStorage.setItem('m', 'completed');
   }
 
   return (
     <div className={classes.container}>
       <h3 className={classes.title}>
-        {" "}
-        現在の進捗率{" "}
+        {' '}
+        現在の進捗率{' '}
         <CountUp
           end={AchievementRate}
           duration={5}
           className={classes.number}
-        />{" "}
+        />{' '}
         %
       </h3>
       <Grid container>

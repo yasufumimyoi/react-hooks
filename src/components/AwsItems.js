@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
-import { Box, Checkbox, Typography } from "@material-ui/core";
-import { videosUseStyles } from "../style/pages";
-import { useHistory } from "react-router-dom";
-import { VideoContext } from "../context/video-context";
-import firebase from "../firebase/firebase.util";
+import React, { useContext } from 'react';
+import { Box, Checkbox, Typography } from '@material-ui/core';
+import { videosUseStyles } from '../style/pages';
+import { useHistory } from 'react-router-dom';
+import { VideoContext } from '../context/video-context';
+import firebase from '../firebase/firebase.util';
 
 const AwsItems = ({ id, title, image, path, completed }) => {
   const classes = videosUseStyles();
@@ -27,12 +27,12 @@ const AwsItems = ({ id, title, image, path, completed }) => {
     setAWVideo(newItems);
     if (currentUser.isAnonymous === false || guestUser.isAnonymous === false) {
       firestore
-        .collection("users")
+        .collection('users')
         .doc(currentUser.uid)
         .update({ aws: [...newItems] });
     } else {
-      console.log("Guest user data updated");
-      sessionStorage.setItem("aws", JSON.stringify(newItems));
+      console.log('Guest user data updated');
+      sessionStorage.setItem('aws', JSON.stringify(newItems));
     }
   };
 
@@ -49,7 +49,7 @@ const AwsItems = ({ id, title, image, path, completed }) => {
         <Checkbox
           checked={completed}
           id={id}
-          inputProps={{ "aria-label": "primary checkbox" }}
+          inputProps={{ 'aria-label': 'primary checkbox' }}
           onChange={() => {
             saveCompletedStatus(title);
           }}

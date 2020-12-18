@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
-import { VideoContext } from "../context/video-context";
-import { Grid } from "@material-ui/core";
-import { AllVideoItems } from "./AllVideoItems";
-import { videosUseStyles } from "../style/pages";
+import React, { useContext } from 'react';
+import { VideoContext } from '../context/video-context';
+import { Grid } from '@material-ui/core';
+import { AllVideoItems } from './AllVideoItems';
+import { videosUseStyles } from '../style/pages';
 
 const AllVideos = () => {
   const {

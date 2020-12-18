@@ -1,6 +1,6 @@
-import React from "react";
-import { useHistory } from "react-router-dom";
-import { coursesStyles } from "../style/pages";
+import React from 'react';
+import { useHistory } from 'react-router-dom';
+import { coursesStyles } from '../style/pages';
 
 import {
   Card,
@@ -8,7 +8,7 @@ import {
   CardContent,
   Button,
   Typography,
-} from "@material-ui/core";
+} from '@material-ui/core';
 
 const CoursesItems = ({ title, subtitle, image, path }) => {
   const classes = coursesStyles();

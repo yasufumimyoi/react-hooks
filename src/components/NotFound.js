@@ -1,8 +1,8 @@
-import React from "react";
-import { Grid, Box } from "@material-ui/core";
-import NotFoundImage from "../images/NotFound.svg";
-import { Link } from "react-router-dom";
-import { NotFoundUseStyles } from "../style/pages";
+import React from 'react';
+import { Grid, Box } from '@material-ui/core';
+import NotFoundImage from '../images/NotFound.svg';
+import { Link } from 'react-router-dom';
+import { NotFoundUseStyles } from '../style/pages';
 
 const NotFound = () => {
   const classes = NotFoundUseStyles();

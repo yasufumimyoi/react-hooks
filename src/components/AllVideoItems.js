@@ -1,7 +1,7 @@
-import React from "react";
-import { Box, Checkbox, Typography } from "@material-ui/core";
-import { videosUseStyles } from "../style/pages";
-import { useHistory } from "react-router-dom";
+import React from 'react';
+import { Box, Checkbox, Typography } from '@material-ui/core';
+import { videosUseStyles } from '../style/pages';
+import { useHistory } from 'react-router-dom';
 
 const AllVideoItems = ({ id, title, image, path, completed }) => {
   const classes = videosUseStyles();
@@ -22,7 +22,7 @@ const AllVideoItems = ({ id, title, image, path, completed }) => {
         </Typography>
         <Checkbox
           checked={completed}
-          inputProps={{ "aria-label": "primary checkbox" }}
+          inputProps={{ 'aria-label': 'primary checkbox' }}
         />
       </Box>
     </Box>

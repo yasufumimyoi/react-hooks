@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
-import { useHistory } from "react-router-dom";
-import { coursesStyles } from "../style/pages";
-import { coursesDescriptions } from "../utils/Descriptions";
-import { Grid, Typography } from "@material-ui/core";
-import { CoursesItems } from "./CoursesItems";
-import firebase from "../firebase/firebase.util";
+import React, { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import { coursesStyles } from '../style/pages';
+import { coursesDescriptions } from '../utils/Descriptions';
+import { Grid, Typography } from '@material-ui/core';
+import { CoursesItems } from './CoursesItems';
+import firebase from '../firebase/firebase.util';
 
 const Courses = () => {
   const classes = coursesStyles();
@@ -12,7 +12,7 @@ const Courses = () => {
 
   //動画一覧ページに移動する
   const handleAll = () => {
-    history.push("/all");
+    history.push('/all');
   };
 
   // useEffect(() => {

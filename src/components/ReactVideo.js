@@ -1,15 +1,15 @@
-import React, { useContext } from "react";
-import ReactPlayer from "react-player";
+import React, { useContext } from 'react';
+import ReactPlayer from 'react-player';
 import {
   Checkbox,
   CircularProgress,
   Typography,
   Grid,
-} from "@material-ui/core";
-import { VideoContext } from "../context/video-context";
-import firebase from "../firebase/firebase.util";
-import "../style/player.css";
-import { videosUseStyles } from "../style/pages";
+} from '@material-ui/core';
+import { VideoContext } from '../context/video-context';
+import firebase from '../firebase/firebase.util';
+import '../style/player.css';
+import { videosUseStyles } from '../style/pages';
 
 const ReactVideo = (props) => {
   const { RVideo, setRVideo, currentUser, guestUser } = useContext(
@@ -36,12 +36,12 @@ const ReactVideo = (props) => {
 
     if (currentUser.isAnonymous === false || guestUser.isAnonymous === false) {
       firestore
-        .collection("users")
+        .collection('users')
         .doc(currentUser.uid)
         .update({ react: [...newItems] });
     } else {
-      console.log("Guest user data updated");
-      sessionStorage.setItem("react", JSON.stringify(newItems));
+      console.log('Guest user data updated');
+      sessionStorage.setItem('react', JSON.stringify(newItems));
     }
   };
 
@@ -57,7 +57,7 @@ const ReactVideo = (props) => {
         <Grid container>
           <Grid item sm={2} />
           <Grid item sm={8}>
-            <div className="film_container" style={{ padding: "30px" }}>
+            <div className="film_container" style={{ padding: '30px' }}>
               <div className="film_box">
                 <div className="player-wrapper">
                   <ReactPlayer
@@ -82,7 +82,7 @@ const ReactVideo = (props) => {
               </Typography>
               <Checkbox
                 checked={matchedVideo[0].completed}
-                inputProps={{ "aria-label": "primary checkbox" }}
+                inputProps={{ 'aria-label': 'primary checkbox' }}
                 onChange={(e) => {
                   console.log(e.target.checked);
                   saveCompletedStatus(matchedVideo[0].id);
