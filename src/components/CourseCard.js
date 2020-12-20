@@ -1,7 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { coursesStyles } from '../style/pages';
-
+import { coursesStyles } from '../style/style';
 import {
   Card,
   CardActions,
@@ -10,10 +9,9 @@ import {
   Typography,
 } from '@material-ui/core';
 
-const CoursesItems = ({ title, subtitle, image, path }) => {
+const CourseCard = ({ title, subtitle, image, path }) => {
   const classes = coursesStyles();
   const history = useHistory();
-
   const handleEachCoursesRouter = (path) => {
     history.push(path);
   };
@@ -42,4 +40,4 @@ const CoursesItems = ({ title, subtitle, image, path }) => {
   );
 };
 
-export { CoursesItems };
+export { CourseCard };

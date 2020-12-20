@@ -1,37 +1,39 @@
 import React, { useContext } from 'react';
 import { Grid } from '@material-ui/core';
 import CountUp from 'react-countup';
-import { videosUseStyles } from '../style/pages';
-import { VideoContext } from '../context/video-context';
+import { videosUseStyles } from '../style/style';
+import { VideoContext } from '../contexts/video-context';
 import Swal from 'sweetalert2';
 import Confetti from 'react-confetti';
-import { Videos } from './Videos';
+import { ListOfVideos } from '../components/ListOfVideos';
 
-const MaterialUIPage = () => {
+const NodePage = () => {
   const classes = videosUseStyles();
-  const { MVideo } = useContext(VideoContext);
+  //
+  const { NVideo } = useContext(VideoContext);
 
   //動画視聴済かどうかcompletedの値を見ている
   let numberOfCompleted = 0;
-  for (let i = 0; i < MVideo.length; i++) {
-    if (MVideo[i].completed === true) {
+  //
+  for (let i = 0; i < NVideo.length; i++) {
+    if (NVideo[i].completed === true) {
       numberOfCompleted = numberOfCompleted + 1;
     }
   }
 
+  //
   //動画視聴済の割合の計算を行っている
   let AchievementRate =
-    Math.round((numberOfCompleted / MVideo.length) * 100) || 0;
+    Math.round((numberOfCompleted / NVideo.length) * 100) || 0;
 
-  if (AchievementRate === 100 && sessionStorage.getItem('m') == null) {
+  if (AchievementRate === 100 && sessionStorage.getItem('n') == null) {
     Swal.fire(
       'おめでとうございます!!!',
       '進捗率100%となりました!!その他のコースも学習してみましょう!!',
       'success'
     );
-    sessionStorage.setItem('m', 'completed');
+    sessionStorage.setItem('n', 'completed');
   }
-
   return (
     <div className={classes.container}>
       <h3 className={classes.title}>
@@ -49,8 +51,8 @@ const MaterialUIPage = () => {
         <Grid item sm={8}>
           {AchievementRate === 100 && <Confetti />}
           <Grid container justify="space-evenly">
-            {MVideo.map((video) => (
-              <Videos
+            {NVideo.map((video) => (
+              <ListOfVideos
                 key={video.id}
                 title={video.title}
                 image={video.image}
@@ -66,4 +68,4 @@ const MaterialUIPage = () => {
   );
 };
 
-export { MaterialUIPage };
+export { NodePage };

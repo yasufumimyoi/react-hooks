@@ -3,12 +3,14 @@ import { useHistory } from 'react-router-dom';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuIcon from '@material-ui/icons/Menu';
-import firebase from '../firebase/firebase.util';
-import { VideoContext } from '../context/video-context';
+import { firebase } from '../firebase/firebase.util';
+import { VideoContext } from '../contexts/video-context';
 import { Box } from '@material-ui/core';
+import { headerStyles } from '../style/style';
 
 export const HeaderMenu = () => {
   const history = useHistory();
+  const classes = headerStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const { setCurrentUser, guestUser, setGuestUser } = useContext(VideoContext);
 
@@ -65,6 +67,7 @@ export const HeaderMenu = () => {
             aria-controls="simple-menu"
             aria-haspopup="true"
             onClick={handleClick}
+            className={classes.icon}
           ></MenuIcon>
           <Menu
             id="simple-menu"

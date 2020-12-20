@@ -3,9 +3,9 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { Button, TextField, Grid, Typography } from '@material-ui/core';
-import { loginStyles } from '../style/pages';
+import { loginStyles } from '../style/style';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import firebase from '../firebase/firebase.util';
+import { firebase } from '../firebase/firebase.util';
 import { provider, app } from '../firebase/firebase.util';
 import { useHistory } from 'react-router-dom';
 
@@ -20,7 +20,7 @@ const schema = yup.object().shape({
     .required('パスワードは必須です'),
 });
 
-export const Form = () => {
+export const LoginForm = () => {
   const classes = loginStyles();
   const [formState, setFormState] = useState({});
   const { register, handleSubmit, errors, reset } = useForm({
@@ -64,51 +64,47 @@ export const Form = () => {
   };
 
   return (
-    <Grid container className={classes.layout} spacing={4}>
-      <Grid item sm={4}>
-        <Typography variant="h5">アカウントをお持ちの方</Typography>
-        <Typography>メールアドレスでログイン</Typography>
-        <form
-          onSubmit={handleSubmit(handelExistingUserEmailLogin)}
-          className={classes.root}
+    <div>
+      <form
+        onSubmit={handleSubmit(handelExistingUserEmailLogin)}
+        className={classes.root}
+      >
+        <TextField
+          label="Email"
+          type="text"
+          name="email"
+          fullWidth
+          inputRef={register}
+          onChange={onChange}
+        />
+        {errors.email && (
+          <div className={classes.validate}>{errors.email.message}</div>
+        )}
+        <TextField
+          label="password"
+          type="password"
+          name="password"
+          fullWidth
+          inputRef={register}
+          onChange={onChange}
+        />
+        {errors.password && (
+          <div className={classes.validate}>{errors.password.message}</div>
+        )}
+        <Button variant="contained" color="primary" type="submit" fullWidth>
+          送信
+        </Button>
+        <Typography>Googleアカウントでログイン</Typography>
+        <Button
+          fullWidth
+          variant="contained"
+          color="primary"
+          startIcon={<AccountCircle />}
+          onClick={handelExistingUserLogin}
         >
-          <TextField
-            label="Email"
-            type="text"
-            name="email"
-            fullWidth
-            inputRef={register}
-            onChange={onChange}
-          />
-          {errors.email && (
-            <div className={classes.validate}>{errors.email.message}</div>
-          )}
-          <TextField
-            label="password"
-            type="password"
-            name="password"
-            fullWidth
-            inputRef={register}
-            onChange={onChange}
-          />
-          {errors.password && (
-            <div className={classes.validate}>{errors.password.message}</div>
-          )}
-          <Button variant="contained" color="primary" type="submit" fullWidth>
-            送信
-          </Button>
-          <Typography>Googleアカウントでログイン</Typography>
-          <Button
-            fullWidth
-            variant="contained"
-            color="primary"
-            startIcon={<AccountCircle />}
-            onClick={handelExistingUserLogin}
-          >
-            Google
-          </Button>
-        </form>
-      </Grid>
-    </Grid>
+          Google
+        </Button>
+      </form>
+    </div>
   );
 };

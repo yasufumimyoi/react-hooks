@@ -1,35 +1,38 @@
 import React, { useContext } from 'react';
 import { Grid } from '@material-ui/core';
 import CountUp from 'react-countup';
-import { videosUseStyles } from '../style/pages';
-import { VideoContext } from '../context/video-context';
+import { videosUseStyles } from '../style/style';
+import { VideoContext } from '../contexts/video-context';
 import Swal from 'sweetalert2';
 import Confetti from 'react-confetti';
-import { Videos } from './Videos';
+import { ListOfVideos } from '../components/ListOfVideos';
 
-const ReactRouterPage = () => {
+const JavascriptPage = () => {
   const classes = videosUseStyles();
-  const { RRVideo } = useContext(VideoContext);
+  //
+  const { JVideo } = useContext(VideoContext);
 
   //動画視聴済かどうかcompletedの値を見ている
   let numberOfCompleted = 0;
-  for (let i = 0; i < RRVideo.length; i++) {
-    if (RRVideo[i].completed === true) {
+  //
+  for (let i = 0; i < JVideo.length; i++) {
+    if (JVideo[i].completed === true) {
       numberOfCompleted = numberOfCompleted + 1;
     }
   }
 
+  //
   //動画視聴済の割合の計算を行っている
   let AchievementRate =
-    Math.round((numberOfCompleted / RRVideo.length) * 100) || 0;
+    Math.round((numberOfCompleted / JVideo.length) * 100) || 0;
 
-  if (AchievementRate === 100 && sessionStorage.getItem('rr') == null) {
+  if (AchievementRate === 100 && sessionStorage.getItem('j') == null) {
     Swal.fire(
       'おめでとうございます!!!',
       '進捗率100%となりました!!その他のコースも学習してみましょう!!',
       'success'
     );
-    sessionStorage.setItem('rr', 'completed');
+    sessionStorage.setItem('j', 'completed');
   }
 
   return (
@@ -49,8 +52,8 @@ const ReactRouterPage = () => {
         <Grid item sm={8}>
           {AchievementRate === 100 && <Confetti />}
           <Grid container justify="space-evenly">
-            {RRVideo.map((video) => (
-              <Videos
+            {JVideo.map((video) => (
+              <ListOfVideos
                 key={video.id}
                 title={video.title}
                 image={video.image}
@@ -66,4 +69,4 @@ const ReactRouterPage = () => {
   );
 };
 
-export { ReactRouterPage };
+export { JavascriptPage };

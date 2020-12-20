@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Checkbox } from '@material-ui/core';
-import { VideoContext } from '../context/video-context';
-import firebase from '../firebase/firebase.util';
+import { VideoContext } from '../contexts/video-context';
+import { firebase } from '../firebase/firebase.util';
 
 //チェックボックス
 export const CompleteBox = ({ id, title, path, completed }) => {
@@ -68,7 +68,6 @@ export const CompleteBox = ({ id, title, path, completed }) => {
         break;
     }
 
-    console.log('videodata', videoData);
     newItems = videoData.map((item) => {
       if (item.title === title) {
         item.completed = !item.completed;
@@ -116,7 +115,6 @@ export const CompleteBox = ({ id, title, path, completed }) => {
     } else {
       sessionStorage.setItem(`${editedPath}`, JSON.stringify(newItems));
     }
-    console.log('Test update completed');
   };
 
   return (

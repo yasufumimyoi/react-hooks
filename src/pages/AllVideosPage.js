@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
-import { VideoContext } from '../context/video-context';
+import { VideoContext } from '../contexts/video-context';
 import { Grid } from '@material-ui/core';
-import { videosUseStyles } from '../style/pages';
-import { Videos } from './Videos';
+import { videosUseStyles } from '../style/style';
+import { ListOfVideos } from '../components/ListOfVideos';
 
-const AllVideos = () => {
+const AllVideosPage = () => {
   const {
     AWVideo,
     DVideo,
@@ -37,7 +37,7 @@ const AllVideos = () => {
         <Grid item sm={8}>
           <Grid container justify="space-evenly" className={classes.container}>
             {allVideos.map((video) => (
-              <Videos
+              <ListOfVideos
                 key={video.title}
                 title={video.title}
                 image={video.image}
@@ -53,4 +53,4 @@ const AllVideos = () => {
   );
 };
 
-export { AllVideos };
+export { AllVideosPage };
