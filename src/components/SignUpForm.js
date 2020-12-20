@@ -3,12 +3,12 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { Button, TextField, Grid, Typography } from '@material-ui/core';
-import { loginStyles } from '../style/pages';
+import { loginStyles } from '../style/style';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import firebase from '../firebase/firebase.util';
+import { firebase } from '../firebase/firebase.util';
 import { provider } from '../firebase/firebase.util';
 import { useHistory } from 'react-router-dom';
-import { VideoContext } from '../context/video-context';
+import { VideoContext } from '../contexts/video-context';
 
 const schema = yup.object().shape({
   email: yup
@@ -21,11 +21,25 @@ const schema = yup.object().shape({
     .required('パスワードは必須です'),
 });
 
-export const SignUp = () => {
+export const SignUpForm = () => {
   const classes = loginStyles();
+  const history = useHistory();
   const [formState, setFormState] = useState({});
 
-  const { MVideo, RVideo, RRVideo, setGuestUser } = useContext(VideoContext);
+  const {
+    AWVideo,
+    DVideo,
+    FVideo,
+    JVideo,
+    MVideo,
+    NVideo,
+    RVideo,
+    RRVideo,
+    TVideo,
+    setGuestUser,
+    operationType,
+    setOperationType,
+  } = useContext(VideoContext);
 
   const { register, handleSubmit, errors, reset } = useForm({
     resolver: yupResolver(schema),
@@ -38,27 +52,33 @@ export const SignUp = () => {
     });
   };
 
-  const handleLogin = () => {
-    history.push('/login');
-  };
-
-  const history = useHistory();
-
-  //メールで新規登録
-  const createAccountWithEmail = ({ email, password }) => {
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then(() => {
-        history.push('/courses');
-        reset();
-      })
-      .catch((error) => {
-        let errorCode = error.code;
-        let errorMessage = error.message;
-        console.log(errorCode);
-        console.log(errorMessage);
-      });
+  //Sessionからメールアドレスで新規登録
+  const createAccountWithEmail = async ({ email, password }) => {
+    try {
+      const newUser = await firebase
+        .auth()
+        .createUserWithEmailAndPassword(email, password);
+      await firebase
+        .firestore()
+        .collection('users')
+        .doc(newUser.user.uid)
+        .set({
+          aws: [...AWVideo],
+          docker: [...DVideo],
+          firebase: [...FVideo],
+          javascript: [...JVideo],
+          material: [...MVideo],
+          node: [...NVideo],
+          react: [...RVideo],
+          router: [...RRVideo],
+          typescript: [...TVideo],
+        });
+      await setGuestUser(null);
+      history.push('/courses');
+      reset();
+    } catch (error) {
+      console.error(error.message);
+    }
   };
 
   //SessionからGoogleアカウントを通じて新規登録
@@ -70,9 +90,15 @@ export const SignUp = () => {
         .collection('users')
         .doc(newUser.user.uid)
         .set({
+          aws: [...AWVideo],
+          docker: [...DVideo],
+          firebase: [...FVideo],
+          javascript: [...JVideo],
           material: [...MVideo],
+          node: [...NVideo],
           react: [...RVideo],
           router: [...RRVideo],
+          typescript: [...TVideo],
         });
       await setGuestUser(null);
       await history.push('/courses');
@@ -82,7 +108,7 @@ export const SignUp = () => {
   };
 
   return (
-    <Grid container className={classes.layout} spacing={4}>
+    <Grid container className={classes.container} spacing={4}>
       <Grid item sm={4}>
         <Typography variant="h5">新規登録</Typography>
         <Typography>メールアドレスで登録</Typography>
@@ -124,14 +150,6 @@ export const SignUp = () => {
             onClick={createAccountWithGoogle}
           >
             Google
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            fullWidth
-            onClick={handleLogin}
-          >
-            既にアカウントをお持ちの方はこちら
           </Button>
         </form>
       </Grid>

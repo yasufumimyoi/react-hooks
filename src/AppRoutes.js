@@ -1,32 +1,32 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { Courses } from './Courses';
-import { Login } from './Login';
-import { LandingPage } from '../components/LandingPage';
-import { NotFound } from './NotFound';
-import { MaterialUIPage } from './MaterialUIPage';
-import { ReactPage } from './ReactPage';
-import { ReactRouterPage } from './ReactRouterPage';
-import { Header } from './Header';
-import { SignUp } from './SignUp';
-import { AwsPage } from './AwsPage';
-import { DockerPage } from './DockerPage';
-import { FirebasePage } from './FirebasePage';
-import { JavascriptPage } from './JavascriptPage';
-import { TypescriptPage } from './TypescriptPage';
-import { NodePage } from './NodePage';
-import { AllVideos } from './AllVideos';
-import { Video } from './Video';
+import { CoursePage } from '../src/pages/CoursePage';
+import { LoginPage } from '../src/pages/LoginPage';
+import { LandingPage } from '../src/pages/LandingPage';
+import { NotFoundPage } from '../src/pages/NotFoundPage';
+import { MaterialUIPage } from '../src/pages/MaterialUIPage';
+import { ReactPage } from '../src/pages/ReactPage';
+import { ReactRouterPage } from '../src/pages/ReactRouterPage';
+import { Header } from '../src/components/Header';
+import { SignUpForm } from '../src/components/SignUpForm';
+import { AwsPage } from '../src/pages/AwsPage';
+import { DockerPage } from '../src/pages/DockerPage';
+import { FirebasePage } from '../src/pages/FirebasePage';
+import { JavascriptPage } from '../src/pages/JavascriptPage';
+import { TypescriptPage } from '../src/pages/TypescriptPage';
+import { NodePage } from '../src/pages/NodePage';
+import { AllVideosPage } from '../src/pages/AllVideosPage';
+import { Video } from '../src/components/Video';
 
-const Contents = () => {
+const AppRoutes = () => {
   return (
     <div>
       <Header />
       <Switch>
         <Route exact path="/" component={LandingPage} />
-        <Route exact path="/courses" component={Courses} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/sign" component={SignUp} />
+        <Route exact path="/courses" component={CoursePage} />
+        <Route exact path="/login" component={LoginPage} />
+        <Route exact path="/sign" component={SignUpForm} />
         <Route exact path="/courses/aws" component={AwsPage} />
         <Route exact path="/courses/docker" component={DockerPage} />
         <Route exact path="/courses/firebase" component={FirebasePage} />
@@ -36,6 +36,7 @@ const Contents = () => {
         <Route exact path="/courses/material" component={MaterialUIPage} />
         <Route exact path="/courses/typescript" component={TypescriptPage} />
         <Route exact path="/courses/node" component={NodePage} />
+        <Route exact path="/all" component={AllVideosPage} />
         <Route path="/courses/aws/:id" component={Video} />
         <Route path="/courses/docker/:id" component={Video} />
         <Route path="/courses/firebase/:id" component={Video} />
@@ -45,11 +46,10 @@ const Contents = () => {
         <Route path="/courses/material/:id" component={Video} />
         <Route path="/courses/typescript/:id" component={Video} />
         <Route path="/courses/node/:id" component={Video} />
-        <Route path="/all" component={AllVideos} />
-        <Route component={NotFound} />
+        <Route component={NotFoundPage} />
       </Switch>
     </div>
   );
 };
 
-export { Contents };
+export { AppRoutes };

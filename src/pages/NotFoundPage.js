@@ -1,10 +1,10 @@
 import React from 'react';
 import { Grid, Box } from '@material-ui/core';
-import NotFoundImage from '../images/NotFound.svg';
+import NotFoundImage from '../assets/images/notFound.svg';
 import { Link } from 'react-router-dom';
-import { NotFoundUseStyles } from '../style/pages';
+import { NotFoundUseStyles } from '../style/style';
 
-const NotFound = () => {
+const NotFoundPage = () => {
   const classes = NotFoundUseStyles();
   return (
     <Grid container>
@@ -24,4 +24,4 @@ const NotFound = () => {
   );
 };
 
-export { NotFound };
+export { NotFoundPage };

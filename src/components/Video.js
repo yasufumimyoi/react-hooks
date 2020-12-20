@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import ReactPlayer from 'react-player';
 import { CircularProgress, Typography, Grid } from '@material-ui/core';
-import { VideoContext } from '../context/video-context';
-import firebase from '../firebase/firebase.util';
+import { VideoContext } from '../contexts/video-context';
+import { firebase } from '../firebase/firebase.util';
 import '../style/player.css';
-import { videosUseStyles } from '../style/pages';
+import { videosUseStyles } from '../style/style';
 import { CompleteBox } from './CompleteBox';
 
 const Video = (props) => {
@@ -95,9 +95,6 @@ const Video = (props) => {
     const findEscape = removeCourse.indexOf('/');
     const editedPath = removeCourse.slice(0, findEscape);
 
-    console.log('videoData', newItems);
-    console.log('path', editedPath);
-
     switch (editedPath) {
       case 'aws':
         setAWVideo(newItems);
@@ -135,9 +132,7 @@ const Video = (props) => {
         .collection('users')
         .doc(currentUser.uid)
         .update({ [`${editedPath}`]: [...newItems] });
-      console.log('firebase', editedPath);
     } else {
-      console.log('Guest user data updated');
       sessionStorage.setItem(`${editedPath}`, JSON.stringify(newItems));
     }
   };

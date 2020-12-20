@@ -1,10 +1,10 @@
 import React from 'react';
 import { Box, Typography } from '@material-ui/core';
-import { videosUseStyles } from '../style/pages';
+import { videosUseStyles } from '../style/style';
 import { useHistory } from 'react-router-dom';
 import { CompleteBox } from './CompleteBox';
 
-const Videos = ({ id, title, image, path, completed }) => {
+const ListOfVideos = ({ id, title, image, path, completed }) => {
   const classes = videosUseStyles();
   const history = useHistory();
   const handleRouter = (path) => {
@@ -27,4 +27,4 @@ const Videos = ({ id, title, image, path, completed }) => {
   );
 };
 
-export { Videos };
+export { ListOfVideos };

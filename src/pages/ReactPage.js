@@ -1,38 +1,35 @@
 import React, { useContext } from 'react';
 import { Grid } from '@material-ui/core';
 import CountUp from 'react-countup';
-import { videosUseStyles } from '../style/pages';
-import { VideoContext } from '../context/video-context';
+import { videosUseStyles } from '../style/style';
+import { VideoContext } from '../contexts/video-context';
 import Swal from 'sweetalert2';
 import Confetti from 'react-confetti';
-import { Videos } from './Videos';
+import { ListOfVideos } from '../components/ListOfVideos';
 
-const FirebasePage = () => {
+const ReactPage = () => {
   const classes = videosUseStyles();
-  //
-  const { FVideo } = useContext(VideoContext);
+  const { RVideo } = useContext(VideoContext);
 
   //動画視聴済かどうかcompletedの値を見ている
   let numberOfCompleted = 0;
-  //
-  for (let i = 0; i < FVideo.length; i++) {
-    if (FVideo[i].completed === true) {
+  for (let i = 0; i < RVideo.length; i++) {
+    if (RVideo[i].completed === true) {
       numberOfCompleted = numberOfCompleted + 1;
     }
   }
 
-  //
   //動画視聴済の割合の計算を行っている
   let AchievementRate =
-    Math.round((numberOfCompleted / FVideo.length) * 100) || 0;
+    Math.round((numberOfCompleted / RVideo.length) * 100) || 0;
 
-  if (AchievementRate === 100 && sessionStorage.getItem('f') == null) {
+  if (AchievementRate === 100 && sessionStorage.getItem('r') == null) {
     Swal.fire(
       'おめでとうございます!!!',
       '進捗率100%となりました!!その他のコースも学習してみましょう!!',
       'success'
     );
-    sessionStorage.setItem('f', 'completed');
+    sessionStorage.setItem('r', 'completed');
   }
 
   return (
@@ -52,8 +49,8 @@ const FirebasePage = () => {
         <Grid item sm={8}>
           {AchievementRate === 100 && <Confetti />}
           <Grid container justify="space-evenly">
-            {FVideo.map((video) => (
-              <Videos
+            {RVideo.map((video) => (
+              <ListOfVideos
                 key={video.id}
                 title={video.title}
                 image={video.image}
@@ -69,4 +66,4 @@ const FirebasePage = () => {
   );
 };
 
-export { FirebasePage };
+export { ReactPage };

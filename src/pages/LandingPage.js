@@ -1,9 +1,9 @@
 import React from 'react';
-import firebase from '../firebase/firebase.util';
+import { firebase } from '../firebase/firebase.util';
 import { useHistory } from 'react-router-dom';
 import { Button, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import Top2 from '../images/top2.svg';
+import Top from '../assets/images/top.svg';
 
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -68,7 +68,7 @@ const LandingPage = () => {
       <Grid item sm={1} />
       <Grid item sm={4} className={classes.layout}>
         <div>
-          <img src={Top2} width="100%" alt="top" />
+          <img src={Top} width="100%" alt="top" />
         </div>
       </Grid>
       <Grid item sm={6} className={classes.layout2}>
