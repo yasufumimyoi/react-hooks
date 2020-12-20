@@ -5,7 +5,7 @@ import { videosUseStyles } from '../style/pages';
 import { VideoContext } from '../context/video-context';
 import Swal from 'sweetalert2';
 import Confetti from 'react-confetti';
-import { FirebaseUItems } from './FirebaseItems';
+import { Videos } from './Videos';
 
 const FirebasePage = () => {
   const classes = videosUseStyles();
@@ -53,7 +53,7 @@ const FirebasePage = () => {
           {AchievementRate === 100 && <Confetti />}
           <Grid container justify="space-evenly">
             {FVideo.map((video) => (
-              <FirebaseUItems
+              <Videos
                 key={video.id}
                 title={video.title}
                 image={video.image}

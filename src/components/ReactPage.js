@@ -3,9 +3,9 @@ import { Grid } from '@material-ui/core';
 import CountUp from 'react-countup';
 import { videosUseStyles } from '../style/pages';
 import { VideoContext } from '../context/video-context';
-import { ReactItems } from './ReactItems';
 import Swal from 'sweetalert2';
 import Confetti from 'react-confetti';
+import { Videos } from './Videos';
 
 const ReactPage = () => {
   const classes = videosUseStyles();
@@ -50,7 +50,7 @@ const ReactPage = () => {
           {AchievementRate === 100 && <Confetti />}
           <Grid container justify="space-evenly">
             {RVideo.map((video) => (
-              <ReactItems
+              <Videos
                 key={video.id}
                 title={video.title}
                 image={video.image}

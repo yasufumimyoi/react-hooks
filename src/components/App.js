@@ -46,7 +46,7 @@ const App = () => {
                   .doc(user.uid)
                   .set({
                     aws: [],
-                    dcoker: [],
+                    docker: [],
                     firebase: [],
                     javascript: [],
                     material: [],

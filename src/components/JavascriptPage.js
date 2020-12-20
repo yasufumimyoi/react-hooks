@@ -1,11 +1,11 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { Grid } from '@material-ui/core';
 import CountUp from 'react-countup';
 import { videosUseStyles } from '../style/pages';
 import { VideoContext } from '../context/video-context';
 import Swal from 'sweetalert2';
 import Confetti from 'react-confetti';
-import { JavascriptItems } from './JavascriptItems';
+import { Videos } from './Videos';
 
 const JavascriptPage = () => {
   const classes = videosUseStyles();
@@ -53,7 +53,7 @@ const JavascriptPage = () => {
           {AchievementRate === 100 && <Confetti />}
           <Grid container justify="space-evenly">
             {JVideo.map((video) => (
-              <JavascriptItems
+              <Videos
                 key={video.id}
                 title={video.title}
                 image={video.image}

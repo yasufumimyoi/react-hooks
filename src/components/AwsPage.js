@@ -5,7 +5,7 @@ import { videosUseStyles } from '../style/pages';
 import { VideoContext } from '../context/video-context';
 import Swal from 'sweetalert2';
 import Confetti from 'react-confetti';
-import { AwsItems } from './AwsItems';
+import { Videos } from './Videos';
 
 const AwsPage = () => {
   const classes = videosUseStyles();
@@ -50,8 +50,9 @@ const AwsPage = () => {
           {AchievementRate === 100 && <Confetti />}
           <Grid container justify="space-evenly">
             {AWVideo.map((video) => (
-              <AwsItems
+              <Videos
                 key={video.id}
+                id={video.id}
                 title={video.title}
                 image={video.image}
                 path={video.path}
