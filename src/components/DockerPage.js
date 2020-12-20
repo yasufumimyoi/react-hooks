@@ -5,23 +5,20 @@ import { videosUseStyles } from '../style/pages';
 import { VideoContext } from '../context/video-context';
 import Swal from 'sweetalert2';
 import Confetti from 'react-confetti';
-import { DockerUItems } from './DockerItems';
+import { Videos } from './Videos';
 
 const DockerPage = () => {
   const classes = videosUseStyles();
-  //
   const { DVideo } = useContext(VideoContext);
 
   //動画視聴済かどうかcompletedの値を見ている
   let numberOfCompleted = 0;
-  //
   for (let i = 0; i < DVideo.length; i++) {
     if (DVideo[i].completed === true) {
       numberOfCompleted = numberOfCompleted + 1;
     }
   }
 
-  //
   //動画視聴済の割合の計算を行っている
   let AchievementRate =
     Math.round((numberOfCompleted / DVideo.length) * 100) || 0;
@@ -53,7 +50,7 @@ const DockerPage = () => {
           {AchievementRate === 100 && <Confetti />}
           <Grid container justify="space-evenly">
             {DVideo.map((video) => (
-              <DockerUItems
+              <Videos
                 key={video.id}
                 title={video.title}
                 image={video.image}

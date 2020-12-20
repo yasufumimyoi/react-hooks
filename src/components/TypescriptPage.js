@@ -5,7 +5,7 @@ import { videosUseStyles } from '../style/pages';
 import { VideoContext } from '../context/video-context';
 import Swal from 'sweetalert2';
 import Confetti from 'react-confetti';
-import { TypescriptItems } from './TypescriptItems';
+import { Videos } from './Videos';
 
 const TypescriptPage = () => {
   const classes = videosUseStyles();
@@ -52,7 +52,7 @@ const TypescriptPage = () => {
           {AchievementRate === 100 && <Confetti />}
           <Grid container justify="space-evenly">
             {TVideo.map((video) => (
-              <TypescriptItems
+              <Videos
                 key={video.id}
                 title={video.title}
                 image={video.image}

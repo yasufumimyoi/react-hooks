@@ -5,7 +5,7 @@ import { videosUseStyles } from '../style/pages';
 import { VideoContext } from '../context/video-context';
 import Swal from 'sweetalert2';
 import Confetti from 'react-confetti';
-import { NodeItems } from './NodeItems';
+import { Videos } from './Videos';
 
 const NodePage = () => {
   const classes = videosUseStyles();
@@ -52,7 +52,7 @@ const NodePage = () => {
           {AchievementRate === 100 && <Confetti />}
           <Grid container justify="space-evenly">
             {NVideo.map((video) => (
-              <NodeItems
+              <Videos
                 key={video.id}
                 title={video.title}
                 image={video.image}
