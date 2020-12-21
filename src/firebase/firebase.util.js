@@ -2,7 +2,7 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 
-var firebaseConfig = {
+let firebaseConfig = {
   apiKey: 'AIzaSyA6tGRFySYmoDm7CU6cBAoOXkRLRUkuGXQ',
   authDomain: 'video-app-aee1b.firebaseapp.com',
   databaseURL: 'https://video-app-aee1b.firebaseio.com',
