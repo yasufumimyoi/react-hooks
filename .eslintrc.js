@@ -8,6 +8,7 @@ module.exports = {
       version: '999.999.999',
     },
   },
+  parser: 'babel-eslint',
   plugins: ['react', 'react-hooks'],
   parserOptions: {
     ecmaVersion: 2020,
@@ -25,7 +26,7 @@ module.exports = {
   ],
   rules: {
     'react/prop-types': 'off',
-    'no-console': 'warn',
+    'no-console': 'error',
     'no-var': 'error',
   },
 };
