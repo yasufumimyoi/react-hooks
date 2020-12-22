@@ -11,7 +11,7 @@ const Header = () => {
   const history = useHistory();
   const { currentUser } = useContext(VideoContext);
 
-  const handleRouter = (path) => {
+  const handleRouter = () => {
     if (currentUser) {
       history.push('/courses');
     }

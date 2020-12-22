@@ -26,7 +26,7 @@ module.exports = {
   ],
   rules: {
     'react/prop-types': 'off',
-    'no-console': 'error',
+    'no-console': 'warn',
     'no-var': 'error',
   },
 };

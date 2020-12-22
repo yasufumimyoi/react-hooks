@@ -16,7 +16,7 @@ import { JavascriptPage } from '../src/pages/JavascriptPage';
 import { TypescriptPage } from '../src/pages/TypescriptPage';
 import { NodePage } from '../src/pages/NodePage';
 import { AllVideosPage } from '../src/pages/AllVideosPage';
-import { Video } from '../src/components/Video';
+import { VideoPage } from './pages/VideoPage';
 
 const AppRoutes = () => {
   return (
@@ -37,15 +37,15 @@ const AppRoutes = () => {
         <Route exact path="/courses/typescript" component={TypescriptPage} />
         <Route exact path="/courses/node" component={NodePage} />
         <Route exact path="/all" component={AllVideosPage} />
-        <Route path="/courses/aws/:id" component={Video} />
-        <Route path="/courses/docker/:id" component={Video} />
-        <Route path="/courses/firebase/:id" component={Video} />
-        <Route path="/courses/javascript/:id" component={Video} />
-        <Route path="/courses/react/:id" component={Video} />
-        <Route path="/courses/router/:id" component={Video} />
-        <Route path="/courses/material/:id" component={Video} />
-        <Route path="/courses/typescript/:id" component={Video} />
-        <Route path="/courses/node/:id" component={Video} />
+        <Route path="/courses/aws/:id" component={VideoPage} />
+        <Route path="/courses/docker/:id" component={VideoPage} />
+        <Route path="/courses/firebase/:id" component={VideoPage} />
+        <Route path="/courses/javascript/:id" component={VideoPage} />
+        <Route path="/courses/react/:id" component={VideoPage} />
+        <Route path="/courses/router/:id" component={VideoPage} />
+        <Route path="/courses/material/:id" component={VideoPage} />
+        <Route path="/courses/typescript/:id" component={VideoPage} />
+        <Route path="/courses/node/:id" component={VideoPage} />
         <Route component={NotFoundPage} />
       </Switch>
     </div>

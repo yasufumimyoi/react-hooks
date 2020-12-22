@@ -32,7 +32,11 @@ const CourseCard = ({ title, subtitle, image, path }) => {
         <img alt="React" src={image} width="300" height="200" />
       </CardContent>
       <CardActions className={classes.button}>
-        <Button onClick={() => handleEachCoursesRouter(path)} size="small">
+        <Button
+          color="black"
+          onClick={() => handleEachCoursesRouter(path)}
+          size="large"
+        >
           Learn More
         </Button>
       </CardActions>

@@ -4,7 +4,7 @@ import { VideoContext } from '../contexts/video-context';
 import { firebase } from '../firebase/firebase.util';
 
 //チェックボックス
-export const CompleteBox = ({ id, title, path, completed }) => {
+export const CompleteBox = ({ title, path, completed }) => {
   const firestore = firebase.firestore();
   const {
     AWVideo,
