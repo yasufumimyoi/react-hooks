@@ -49,7 +49,7 @@ export const loginStyles = makeStyles((theme) => ({
     },
   },
   button: {
-    width: '28ch',
+    width: '30ch',
   },
   image: {
     cursor: 'pointer',
@@ -57,13 +57,15 @@ export const loginStyles = makeStyles((theme) => ({
   container: {
     justifyContent: 'center',
     textAlign: 'center',
-    margin: '90px',
   },
   validate: {
     color: 'red',
   },
   form: {
-    width: '20%',
+    width: '100%',
+  },
+  btn: {
+    marginTop: '10px',
   },
 }));
 
@@ -94,7 +96,7 @@ export const videosUseStyles = makeStyles({
     marginBottom: 35,
   },
   container: {
-    marginTop: '90px',
+    marginTop: '110px',
   },
   loading: {
     justifyContent: 'center',

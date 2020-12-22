@@ -4,6 +4,8 @@ import { AppRoutes } from '../AppRoutes';
 import { VideoContext } from '../contexts/video-context';
 import { firebase } from '../firebase/firebase.util';
 import { ScrollToTop } from './Scroll';
+import { ThemeProvider } from '@material-ui/styles';
+import { theme } from '../style/theme';
 
 const App = () => {
   const [AWVideo, setAWVideo] = useState([]);
@@ -207,10 +209,12 @@ const App = () => {
         setOperationType,
       }}
     >
-      <Router>
-        <ScrollToTop />
-        <AppRoutes />
-      </Router>
+      <ThemeProvider theme={theme}>
+        <Router>
+          <ScrollToTop />
+          <AppRoutes />
+        </Router>
+      </ThemeProvider>
     </VideoContext.Provider>
   );
 };

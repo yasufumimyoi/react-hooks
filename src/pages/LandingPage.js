@@ -102,10 +102,6 @@ const LandingPage = () => {
               </ListItem>
             </List>
           </div>
-          <Typography variant="h6">
-            <span className={classes.enf}>※:</span>{' '}
-            React以外のYoutube動画もあります。随時追加する予定です。
-          </Typography>
         </div>
         <div>
           <Typography variant="h4">
