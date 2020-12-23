@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { Button, TextField, Grid, Typography } from '@material-ui/core';
+import { Button, TextField, Typography } from '@material-ui/core';
 import { loginStyles } from '../style/style';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import { firebase } from '../firebase/firebase.util';
@@ -91,7 +91,13 @@ export const LoginForm = () => {
         {errors.password && (
           <div className={classes.validate}>{errors.password.message}</div>
         )}
-        <Button variant="contained" color="primary" type="submit" fullWidth>
+        <Button
+          style={{ marginTop: '10px' }}
+          variant="contained"
+          color="primary"
+          type="submit"
+          fullWidth
+        >
           送信
         </Button>
         <Typography>Googleアカウントでログイン</Typography>

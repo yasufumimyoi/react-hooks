@@ -37,8 +37,6 @@ export const SignUpForm = () => {
     RRVideo,
     TVideo,
     setGuestUser,
-    operationType,
-    setOperationType,
   } = useContext(VideoContext);
 
   const { register, handleSubmit, errors, reset } = useForm({
@@ -109,7 +107,7 @@ export const SignUpForm = () => {
 
   return (
     <Grid container className={classes.container} spacing={4}>
-      <Grid item sm={4}>
+      <Grid item sm={4} style={{ marginTop: '90px' }}>
         <Typography variant="h5">新規登録</Typography>
         <Typography>メールアドレスで登録</Typography>
         <form
