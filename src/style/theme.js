@@ -11,6 +11,9 @@ export const theme = createMuiTheme({
     primary: {
       main: '#01579b',
     },
+    secondary: {
+      main: '#000000',
+    },
   },
   props: {
     MuiCheckbox: {

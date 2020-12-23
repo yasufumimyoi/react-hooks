@@ -5,6 +5,10 @@ export const coursesStyles = makeStyles({
     minWidth: 275,
     marginBottom: 20,
     textAlign: 'center',
+    '&:hover': {
+      boxShadow: '0 6px 14px rgba(0, 0, 0, 0.24)',
+      transform: 'translate(0, -1px)',
+    },
   },
   subTitle: {
     marginBottom: 30,
@@ -87,10 +91,8 @@ export const videosUseStyles = makeStyles({
     },
   },
   videoTitle: {
-    overflow: 'hidden',
-    whiteSpace: 'nowrap',
+    wordBreak: 'break-all',
     width: '320px',
-    textOverflow: 'ellipsis',
   },
   adjust: {
     marginBottom: 35,
@@ -102,6 +104,9 @@ export const videosUseStyles = makeStyles({
     justifyContent: 'center',
     textAlign: 'center',
     marginTop: '15%',
+  },
+  textbox: {
+    padding: '20px 0px 8px 0px',
   },
 });
 

@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { coursesStyles } from '../style/style';
 import { coursesDescriptions } from '../utils/descriptions';
 import { Grid, Typography } from '@material-ui/core';
 import { CourseCard } from '../components/CourseCard';
-import firebase from '../firebase/firebase.util';
+//import firebase from '../firebase/firebase.util';
 
 const CoursePage = () => {
   const classes = coursesStyles();
@@ -62,7 +62,7 @@ const CoursePage = () => {
 
   return (
     <Grid container className={classes.container}>
-      <Typography className={classes.subTitle} variant="h6" component="h6">
+      <Typography className={classes.subTitle} variant="h6">
         教材をこなして進捗率を上げながら楽しく学んでいきましょう。
         <p> 現在50本以上の動画を用意しております。</p>
         <p>
@@ -78,7 +78,6 @@ const CoursePage = () => {
             <CourseCard
               key={index}
               title={course.title}
-              subtitle={course.subtitle}
               image={course.image}
               path={course.path}
             />
