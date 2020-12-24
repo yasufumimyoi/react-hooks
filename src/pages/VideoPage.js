@@ -157,7 +157,7 @@ const VideoPage = (props) => {
               saveCompletedStatus={saveCompletedStatus}
               matchedVideo={matchedVideo}
             />
-            <Typography variant="h6" component="h6">
+            <Typography variant="h6" component="h6" className={classes.textbox}>
               {matchedVideo[0].title}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="span">
@@ -168,6 +168,7 @@ const VideoPage = (props) => {
               title={matchedVideo[0].title}
               completed={matchedVideo[0].completed}
             />
+            <hr />
           </Grid>
           <Grid item sm={2} />
         </Grid>

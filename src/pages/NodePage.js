@@ -9,7 +9,6 @@ import { ListOfVideos } from '../components/ListOfVideos';
 
 const NodePage = () => {
   const classes = videosUseStyles();
-  //
   const { NVideo } = useContext(VideoContext);
 
   //動画視聴済かどうかcompletedの値を見ている
