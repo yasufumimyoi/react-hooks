@@ -9,6 +9,7 @@ export const coursesStyles = makeStyles({
       boxShadow: '0 6px 14px rgba(0, 0, 0, 0.24)',
       transform: 'translate(0, -1px)',
     },
+    cursor: 'pointer',
   },
   subTitle: {
     marginBottom: 30,
