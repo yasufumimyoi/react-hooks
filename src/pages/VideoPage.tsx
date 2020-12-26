@@ -6,7 +6,7 @@ import { videosUseStyles } from '../style/style';
 import { CompleteBox } from '../components/CompleteBox';
 import { ResponsivePlayer } from '../components/Player';
 
-const VideoPage = (props) => {
+const VideoPage = (props: any) => {
   const {
     AWVideo,
     DVideo,
@@ -39,52 +39,52 @@ const VideoPage = (props) => {
   const findEscape = removeCourse.indexOf('/');
   const editedPath = removeCourse.slice(0, findEscape);
 
-  let videoData = [];
-  let matchedVideo = [];
+  let videoData: any = [];
+  let matchedVideo: any = [];
   switch (editedPath) {
     case 'aws':
       videoData = AWVideo;
-      matchedVideo = AWVideo.filter((video) => video.id === parsedId);
+      matchedVideo = AWVideo.filter((video: any) => video.id === parsedId);
       break;
     case 'docker':
       videoData = DVideo;
-      matchedVideo = DVideo.filter((video) => video.id === parsedId);
+      matchedVideo = DVideo.filter((video: any) => video.id === parsedId);
       break;
     case 'firebase':
       videoData = FVideo;
-      matchedVideo = FVideo.filter((video) => video.id === parsedId);
+      matchedVideo = FVideo.filter((video: any) => video.id === parsedId);
       break;
     case 'javascript':
       videoData = JVideo;
-      matchedVideo = JVideo.filter((video) => video.id === parsedId);
+      matchedVideo = JVideo.filter((video: any) => video.id === parsedId);
       break;
     case 'node':
       videoData = NVideo;
-      matchedVideo = NVideo.filter((video) => video.id === parsedId);
+      matchedVideo = NVideo.filter((video: any) => video.id === parsedId);
       break;
     case 'react':
       videoData = RVideo;
-      matchedVideo = RVideo.filter((video) => video.id === parsedId);
+      matchedVideo = RVideo.filter((video: any) => video.id === parsedId);
       break;
     case 'router':
       videoData = RRVideo;
-      matchedVideo = RRVideo.filter((video) => video.id === parsedId);
+      matchedVideo = RRVideo.filter((video: any) => video.id === parsedId);
       break;
     case 'typescript':
       videoData = TVideo;
-      matchedVideo = TVideo.filter((video) => video.id === parsedId);
+      matchedVideo = TVideo.filter((video: any) => video.id === parsedId);
       break;
     case 'material':
       videoData = MVideo;
-      matchedVideo = MVideo.filter((video) => video.id === parsedId);
+      matchedVideo = MVideo.filter((video: any) => video.id === parsedId);
       break;
     default:
       break;
   }
 
-  const saveCompletedStatus = (id, state) => {
+  const saveCompletedStatus = (id: string, state: any) => {
     if (state.played >= 0.95 && matchedVideo[0].completed === false) {
-      const newItems = videoData.map((item) => {
+      const newItems = videoData.map((item: any) => {
         if (item.id === id) {
           item.completed = true;
         }

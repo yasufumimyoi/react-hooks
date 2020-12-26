@@ -6,6 +6,7 @@ import { VideoContext } from '../contexts/video-context';
 import Swal from 'sweetalert2';
 import Confetti from 'react-confetti';
 import { ListOfVideos } from '../components/ListOfVideos';
+import { VideoProps } from '../types/types';
 
 const ReactPage = () => {
   const classes = videosUseStyles();
@@ -49,9 +50,10 @@ const ReactPage = () => {
         <Grid item sm={8}>
           {AchievementRate === 100 && <Confetti />}
           <Grid container justify="space-evenly">
-            {RVideo.map((video) => (
+            {RVideo.map((video: VideoProps) => (
               <ListOfVideos
                 key={video.id}
+                id={video.id}
                 title={video.title}
                 image={video.image}
                 path={video.path}
