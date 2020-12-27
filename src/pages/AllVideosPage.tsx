@@ -38,6 +38,7 @@ const AllVideosPage = () => {
           <Grid container justify="space-evenly" className={classes.container}>
             {allVideos.map((video) => (
               <ListOfVideos
+                id={video.id}
                 key={video.title}
                 title={video.title}
                 image={video.image}

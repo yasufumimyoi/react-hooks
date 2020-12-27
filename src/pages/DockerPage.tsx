@@ -6,33 +6,31 @@ import { VideoContext } from '../contexts/video-context';
 import Swal from 'sweetalert2';
 import Confetti from 'react-confetti';
 import { ListOfVideos } from '../components/ListOfVideos';
+import { VideoProps } from '../types/types';
 
-const JavascriptPage = () => {
+const DockerPage = () => {
   const classes = videosUseStyles();
-  //
-  const { JVideo } = useContext(VideoContext);
+  const { DVideo } = useContext(VideoContext);
 
   //動画視聴済かどうかcompletedの値を見ている
   let numberOfCompleted = 0;
-  //
-  for (let i = 0; i < JVideo.length; i++) {
-    if (JVideo[i].completed === true) {
+  for (let i = 0; i < DVideo.length; i++) {
+    if (DVideo[i].completed === true) {
       numberOfCompleted = numberOfCompleted + 1;
     }
   }
 
-  //
   //動画視聴済の割合の計算を行っている
   let AchievementRate =
-    Math.round((numberOfCompleted / JVideo.length) * 100) || 0;
+    Math.round((numberOfCompleted / DVideo.length) * 100) || 0;
 
-  if (AchievementRate === 100 && sessionStorage.getItem('j') == null) {
+  if (AchievementRate === 100 && sessionStorage.getItem('d') == null) {
     Swal.fire(
       'おめでとうございます!!!',
       '進捗率100%となりました!!その他のコースも学習してみましょう!!',
       'success'
     );
-    sessionStorage.setItem('j', 'completed');
+    sessionStorage.setItem('d', 'completed');
   }
 
   return (
@@ -52,9 +50,10 @@ const JavascriptPage = () => {
         <Grid item sm={8}>
           {AchievementRate === 100 && <Confetti />}
           <Grid container justify="space-evenly">
-            {JVideo.map((video) => (
+            {DVideo.map((video: VideoProps) => (
               <ListOfVideos
                 key={video.id}
+                id={video.id}
                 title={video.title}
                 image={video.image}
                 path={video.path}
@@ -69,4 +68,4 @@ const JavascriptPage = () => {
   );
 };
 
-export { JavascriptPage };
+export { DockerPage };
