@@ -5,4 +5,17 @@ export type VideoProps = {
   image: string;
   path: string;
   completed: boolean;
+  url?: string;
+};
+
+export type CourseProps = {
+  title: string;
+  image?: string;
+  path: string;
+  completed?: boolean;
+};
+
+export type AuthProps = {
+  email: string;
+  password: string;
 };
