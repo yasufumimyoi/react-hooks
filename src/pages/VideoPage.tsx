@@ -6,7 +6,9 @@ import { videosUseStyles } from '../style/style';
 import { CompleteBox } from '../components/CompleteBox';
 import { ResponsivePlayer } from '../components/Player';
 
+//Fix me later
 const VideoPage = (props: any) => {
+  //(props: { match: { params: any; url: any } })
   const {
     AWVideo,
     DVideo,
@@ -39,6 +41,9 @@ const VideoPage = (props: any) => {
   const findEscape = removeCourse.indexOf('/');
   const editedPath = removeCourse.slice(0, findEscape);
 
+  //Fix me later
+  //type defalutValue = []
+  //let videoData: Array<VideoProps | defalutValue >  = [];
   let videoData: any = [];
   let matchedVideo: any = [];
   switch (editedPath) {
@@ -82,8 +87,8 @@ const VideoPage = (props: any) => {
       break;
   }
 
-  const saveCompletedStatus = (id: string, state: any) => {
-    if (state.played >= 0.95 && matchedVideo[0].completed === false) {
+  const saveCompletedStatus = (id: string, played: number) => {
+    if (played >= 0.95 && matchedVideo[0].completed === false) {
       const newItems = videoData.map((item: any) => {
         if (item.id === id) {
           item.completed = true;

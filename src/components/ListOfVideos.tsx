@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Box, Typography } from '@material-ui/core';
 import { videosUseStyles } from '../style/style';
 import { useHistory } from 'react-router-dom';
 import { CompleteBox } from './CompleteBox';
+import { VideoProps } from '../types/types';
 
-const ListOfVideos = ({ id, title, image, path, completed }) => {
+const ListOfVideos: FC<VideoProps> = ({
+  id,
+  title,
+  image,
+  path,
+  completed,
+}) => {
   const classes = videosUseStyles();
   const history = useHistory();
-  const handleRouter = (path) => {
+  const handleRouter = (path: string) => {
     history.push(path);
   };
 
@@ -21,7 +28,7 @@ const ListOfVideos = ({ id, title, image, path, completed }) => {
         <Typography variant="body2" color="textSecondary" component="span">
           視聴済み
         </Typography>
-        <CompleteBox id={id} title={title} path={path} completed={completed} />
+        <CompleteBox title={title} path={path} completed={completed} />
       </Box>
     </Box>
   );

@@ -8,6 +8,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import { firebase } from '../firebase/firebase.util';
 import { provider, app } from '../firebase/firebase.util';
 import { useHistory } from 'react-router-dom';
+import { AuthProps } from '../types/types';
 
 const schema = yup.object().shape({
   email: yup
@@ -27,7 +28,7 @@ export const LoginForm = () => {
     resolver: yupResolver(schema),
   });
 
-  const onChange = (event) => {
+  const onChange = (event: any) => {
     setFormState({
       ...formState,
       ...{ [event.target.name]: event.target.value },
@@ -37,15 +38,16 @@ export const LoginForm = () => {
   const history = useHistory();
 
   //既存ユーザーのメールでのログイン
-  const handelExistingUserEmailLogin = async ({ email, password }) => {
+  const handelExistingUserEmailLogin = async ({
+    email,
+    password,
+  }: AuthProps) => {
     try {
       await app.auth().signInWithEmailAndPassword(email, password);
       await history.push('/courses');
       reset();
     } catch (error) {
       console.error(error.message);
-      console.log(email);
-      console.log(password);
     }
   };
 

@@ -11,6 +11,7 @@ const Header = () => {
   const history = useHistory();
   const { currentUser } = useContext(VideoContext);
 
+  //選択したコースに移動する
   const handleRouter = () => {
     if (currentUser) {
       history.push('/courses');

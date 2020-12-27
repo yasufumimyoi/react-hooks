@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { useHistory } from 'react-router-dom';
 import { coursesStyles } from '../style/style';
 import { Card, CardContent, Typography } from '@material-ui/core';
+import { CourseProps } from '../types/types';
 
-const CourseCard = ({ title, image, path }) => {
+const CourseCard: FC<CourseProps> = ({ title, image, path }) => {
   const classes = coursesStyles();
   const history = useHistory();
 
   //選択したコースページに移動する
-  const handleEachCoursesRouter = (path) => {
+  const handleEachCoursesRouter = (path: string) => {
     history.push(path);
   };
 

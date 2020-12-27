@@ -1,10 +1,12 @@
-import React, { useContext } from 'react';
+import React, { useContext, FC } from 'react';
 import { Checkbox } from '@material-ui/core';
 import { VideoContext } from '../contexts/video-context';
 import { firebase } from '../firebase/firebase.util';
+import { CourseProps } from '../types/types';
+import { VideoProps } from '../types/types';
 
-//チェックボックス
-export const CompleteBox = ({ title, path, completed }) => {
+//視聴済みかどうかのチェックボックス
+export const CompleteBox: FC<CourseProps> = ({ title, path, completed }) => {
   const firestore = firebase.firestore();
   const {
     AWVideo,
@@ -29,10 +31,12 @@ export const CompleteBox = ({ title, path, completed }) => {
     setTVideo,
   } = useContext(VideoContext);
 
+  //pathの文字列からコース名だけ抽出する Ex: "/courses/react/1" ==> react
   let removeCourse = path.replace('/courses/', '');
   let findEscape = removeCourse.indexOf('/');
   let editedPath = removeCourse.slice(0, findEscape);
 
+  //抽出されたコース名によってセットするデータを決定する
   let newItems = null;
   const saveCompleteStatus = () => {
     let videoData = [];
@@ -68,13 +72,15 @@ export const CompleteBox = ({ title, path, completed }) => {
         break;
     }
 
-    newItems = videoData.map((item) => {
+    //クリックした動画Titleと格納しておいた動画データのタイトル名が一致したらcompletedのBoolean値をToggleさせる
+    newItems = videoData.map((item: VideoProps) => {
       if (item.title === title) {
         item.completed = !item.completed;
       }
       return item;
     });
 
+    //completedのBoolean値を更新する
     switch (editedPath) {
       case 'aws':
         setAWVideo(newItems);
@@ -107,11 +113,13 @@ export const CompleteBox = ({ title, path, completed }) => {
         break;
     }
 
+    //匿名ユーザーでなければ、firestoreのデータを更新する
     if (currentUser.isAnonymous === false || guestUser.isAnonymous === false) {
       firestore
         .collection('users')
         .doc(currentUser.uid)
         .update({ [`${editedPath}`]: [...newItems] });
+      //匿名ユーザーであれば、sessionStorageにデータを一時保存させる
     } else {
       sessionStorage.setItem(`${editedPath}`, JSON.stringify(newItems));
     }

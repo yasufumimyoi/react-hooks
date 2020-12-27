@@ -14,10 +14,13 @@ export const HeaderMenu = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const { setCurrentUser, guestUser, setGuestUser } = useContext(VideoContext);
 
-  const handleClick = (event) => {
+  //Fix me
+  //Menuのオープン
+  const handleClick = (event: any) => {
     setAnchorEl(event.currentTarget);
   };
 
+  //Menuのクローズ
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -41,7 +44,7 @@ export const HeaderMenu = () => {
   };
 
   //ログアウト機能
-  //セッションも終わる
+  //セッションストレージもクリアする
   const handleLogout = () => {
     try {
       firebase
@@ -59,6 +62,7 @@ export const HeaderMenu = () => {
     }
   };
 
+  //匿名ユーザーのみ新規登録を表示する
   return (
     <div>
       {guestUser ? (

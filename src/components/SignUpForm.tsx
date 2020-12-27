@@ -9,6 +9,7 @@ import { firebase } from '../firebase/firebase.util';
 import { provider } from '../firebase/firebase.util';
 import { useHistory } from 'react-router-dom';
 import { VideoContext } from '../contexts/video-context';
+import { AuthProps } from '../types/types';
 
 const schema = yup.object().shape({
   email: yup
@@ -43,7 +44,8 @@ export const SignUpForm = () => {
     resolver: yupResolver(schema),
   });
 
-  const onChange = (event) => {
+  //Fix me
+  const onChange = (event: any) => {
     setFormState({
       ...formState,
       ...{ [event.target.name]: event.target.value },
@@ -51,7 +53,7 @@ export const SignUpForm = () => {
   };
 
   //Sessionからメールアドレスで新規登録
-  const createAccountWithEmail = async ({ email, password }) => {
+  const createAccountWithEmail = async ({ email, password }: AuthProps) => {
     try {
       const newUser = await firebase
         .auth()
@@ -59,7 +61,7 @@ export const SignUpForm = () => {
       await firebase
         .firestore()
         .collection('users')
-        .doc(newUser.user.uid)
+        .doc(newUser?.user?.uid)
         .set({
           aws: [...AWVideo],
           docker: [...DVideo],
@@ -82,11 +84,13 @@ export const SignUpForm = () => {
   //SessionからGoogleアカウントを通じて新規登録
   const createAccountWithGoogle = async () => {
     try {
-      const newUser = await firebase.auth().currentUser.linkWithPopup(provider);
+      const newUser = await firebase
+        .auth()
+        ?.currentUser?.linkWithPopup(provider);
       await firebase
         .firestore()
         .collection('users')
-        .doc(newUser.user.uid)
+        .doc(newUser?.user?.uid)
         .set({
           aws: [...AWVideo],
           docker: [...DVideo],
