@@ -109,6 +109,14 @@ export const videosUseStyles = makeStyles({
   textbox: {
     padding: '20px 0px 8px 0px',
   },
+  search: {
+    textAlign: 'center',
+    marginTop: '90px',
+  },
+  input: {
+    width: '200px',
+    height: '30px',
+  },
 });
 
 export const detailUseStyles = makeStyles({
@@ -135,5 +143,11 @@ export const NotFoundUseStyles = makeStyles({
   },
   box: {
     width: '540px',
+  },
+});
+
+export const MemoUseStyles = makeStyles({
+  container: {
+    textAlign: 'center',
   },
 });
