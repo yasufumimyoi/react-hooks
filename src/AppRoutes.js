@@ -16,7 +16,9 @@ import { JavascriptPage } from '../src/pages/JavascriptPage';
 import { TypescriptPage } from '../src/pages/TypescriptPage';
 import { NodePage } from '../src/pages/NodePage';
 import { AllVideosPage } from '../src/pages/AllVideosPage';
-import { VideoPage } from './pages/VideoPage';
+import { TestPage } from '../src/pages/TestPage';
+import { VideoPage } from '../src/pages/VideoPage';
+import { TestMemo } from '../src/pages/TestMemo';
 
 const AppRoutes = () => {
   return (
@@ -46,6 +48,8 @@ const AppRoutes = () => {
         <Route path="/courses/material/:id" component={VideoPage} />
         <Route path="/courses/typescript/:id" component={VideoPage} />
         <Route path="/courses/node/:id" component={VideoPage} />
+        <Route path="/courses/test" component={TestPage} />
+        <Route path="/courses/testmemo" component={TestMemo} />
         <Route component={NotFoundPage} />
       </Switch>
     </div>
