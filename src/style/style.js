@@ -147,7 +147,15 @@ export const NotFoundUseStyles = makeStyles({
 });
 
 export const MemoUseStyles = makeStyles({
+  memo: {
+    backgroundColor: '#f7f7f7',
+    height: '60px',
+    marginBottom: '10px',
+  },
   container: {
-    textAlign: 'center',
+    marginBottom: '15px',
+  },
+  extra: {
+    flexGrow: 1,
   },
 });

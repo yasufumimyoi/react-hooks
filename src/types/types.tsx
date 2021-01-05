@@ -19,3 +19,7 @@ export type AuthProps = {
   email: string;
   password: string;
 };
+
+export type HandleRemove = {
+  handelRemove: () => void;
+};

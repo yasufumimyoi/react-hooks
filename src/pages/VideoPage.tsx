@@ -7,7 +7,8 @@ import { CompleteBox } from '../components/CompleteBox';
 import { ResponsivePlayer } from '../components/Player';
 import { ListOfVideos } from '../components/ListOfVideos';
 import { useHistory } from 'react-router-dom';
-import { TestMemo } from './TestMemo';
+import { ListOfMemo } from './ListOfMemo';
+import { Tweet } from '../components/Tweet';
 
 //Fix me later
 const VideoPage = (props: any) => {
@@ -221,9 +222,13 @@ const VideoPage = (props: any) => {
                   </Button>
                 )}
               </Grid>
+              <Grid item style={{ flexGrow: 1 }} />
+              <Grid item>
+                <Tweet />
+              </Grid>
             </Grid>
             <hr />
-            <TestMemo />
+            <ListOfMemo />
           </Grid>
           <Grid item sm={1} />
           <Grid>
