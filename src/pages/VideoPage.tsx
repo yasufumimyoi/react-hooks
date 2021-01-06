@@ -57,39 +57,57 @@ const VideoPage = (props: any) => {
   switch (editedPath) {
     case 'aws':
       videoData = AWVideo;
-      matchedVideo = AWVideo.filter((video: any) => video.id === parsedId);
+      matchedVideo = AWVideo.filter(
+        (video: any) => video.id === `${'aws_' + parsedId}`
+      );
       break;
     case 'docker':
       videoData = DVideo;
-      matchedVideo = DVideo.filter((video: any) => video.id === parsedId);
+      matchedVideo = DVideo.filter(
+        (video: any) => video.id === `${'docker_' + parsedId}`
+      );
       break;
     case 'firebase':
       videoData = FVideo;
-      matchedVideo = FVideo.filter((video: any) => video.id === parsedId);
+      matchedVideo = FVideo.filter(
+        (video: any) => video.id === `${'firebase_' + parsedId}`
+      );
       break;
     case 'javascript':
       videoData = JVideo;
-      matchedVideo = JVideo.filter((video: any) => video.id === parsedId);
+      matchedVideo = JVideo.filter(
+        (video: any) => video.id === `${'javascript_' + parsedId}`
+      );
       break;
     case 'node':
       videoData = NVideo;
-      matchedVideo = NVideo.filter((video: any) => video.id === parsedId);
+      matchedVideo = NVideo.filter(
+        (video: any) => video.id === `${'node_' + parsedId}`
+      );
       break;
     case 'react':
       videoData = RVideo;
-      matchedVideo = RVideo.filter((video: any) => video.id === parsedId);
+      matchedVideo = RVideo.filter(
+        (video: any) => video.id === `${'react_' + parsedId}`
+      );
       break;
     case 'router':
       videoData = RRVideo;
-      matchedVideo = RRVideo.filter((video: any) => video.id === parsedId);
+      matchedVideo = RRVideo.filter(
+        (video: any) => video.id === `${'router_' + parsedId}`
+      );
       break;
     case 'typescript':
       videoData = TVideo;
-      matchedVideo = TVideo.filter((video: any) => video.id === parsedId);
+      matchedVideo = TVideo.filter(
+        (video: any) => video.id === `${'typescript_' + parsedId}`
+      );
       break;
     case 'material':
       videoData = MVideo;
-      matchedVideo = MVideo.filter((video: any) => video.id === parsedId);
+      matchedVideo = MVideo.filter(
+        (video: any) => video.id === `${'material_' + parsedId}`
+      );
       break;
     default:
       break;
@@ -153,6 +171,11 @@ const VideoPage = (props: any) => {
           break;
       }
 
+      let targetItem = null;
+      targetItem = videoData.filter((v: any) => v.id === id);
+      targetItem[0].completed = true;
+      console.log(targetItem);
+
       //匿名ユーザーでなければ、firestoreのデータを更新する
       if (
         currentUser.isAnonymous === false ||
@@ -161,7 +184,9 @@ const VideoPage = (props: any) => {
         firestore
           .collection('users')
           .doc(currentUser.uid)
-          .update({ [`${editedPath}`]: [...newItems] });
+          .collection('videos')
+          .doc(targetItem[0].id)
+          .update({ completed: targetItem[0].completed });
         //匿名ユーザーであれば、sessionStorageにデータを一時保存させる
       } else {
         sessionStorage.setItem(`${editedPath}`, JSON.stringify(newItems));

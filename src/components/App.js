@@ -19,162 +19,76 @@ const App = () => {
   const [TVideo, setTVideo] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
   const [guestUser, setGuestUser] = useState(null);
-  const [operationType, setOperationType] = useState(null);
+  const [all, setAll] = useState([]);
+  const [videoResults, setVideoResults] = React.useState([]);
 
-  //既存ユーザーのログイン処理
-  const existingUserLogin = async (user) => {
-    console.log(user);
-    setCurrentUser(user);
-    const videos = await firebase
-      .firestore()
-      .collection('users')
-      .doc(user.uid)
-      .get();
+  //動画データを取得し、usersコレクション=> videosコレクションのドキュメントに書き込む
+  const addingData = async (user) => {
     try {
-      if (videos) {
-        console.log('videos', videos);
-        console.log('aws', videos.data().aws);
-        setAWVideo(videos.data().aws);
-        setDVideo(videos.data().docker);
-        setFVideo(videos.data().firebase);
-        setJVideo(videos.data().javascript);
-        setMVideo(videos.data().material);
-        setNVideo(videos.data().node);
-        setRVideo(videos.data().react);
-        setRRVideo(videos.data().router);
-        setTVideo(videos.data().typescript);
-      }
+      const data = await firebase.firestore().collection('videoData').get();
+      await data.forEach((doc) => {
+        let video = doc.data();
+        let docName = video.id;
+        let id = video.id;
+        let category = video.category;
+        let image = video.image;
+        let title = video.title;
+        let url = video.url;
+        let completed = video.completed;
+        let path = video.path;
+        firebase
+          .firestore()
+          .collection('users')
+          .doc(user.uid)
+          .collection('videos')
+          .doc(docName)
+          .set({ id, category, image, title, url, completed, path });
+      });
     } catch (error) {
-      //誤って新規ユーザーがログインを行った時の例外処理
-      console.error(error.message);
-      setCurrentUser(user);
-      const videos = await firebase.firestore().collection('videos').get();
-      let videoData = [];
-      if (videos) {
-        videos.forEach((video) => {
-          let data = video.data();
-          videoData.push({ ...data });
-        });
-      }
-      await firebase
-        .firestore()
-        .collection('users')
-        .doc(user.uid)
-        .set({
-          aws: [...videoData[0].aws],
-          docker: [...videoData[1].docker],
-          firebase: [...videoData[2].firebase],
-          javascript: [...videoData[3].javascript],
-          material: [...videoData[4].material],
-          node: [...videoData[5].node],
-          react: [...videoData[6].react],
-          router: [...videoData[7].router],
-          typescript: [...videoData[8].typescript],
-        });
-      setAWVideo(videoData[0].aws);
-      setDVideo(videoData[1].docker);
-      setFVideo(videoData[2].firebase);
-      setJVideo(videoData[3].javascript);
-      setMVideo(videoData[4].material);
-      setNVideo(videoData[5].node);
-      setRVideo(videoData[6].react);
-      setRRVideo(videoData[7].router);
-      setTVideo(videoData[8].typescript);
-      console.log('seiko');
+      //handle exception
     }
   };
 
-  //匿名ユーザーのログイン処理
-  const anonymousLogin = async (user) => {
-    setCurrentUser(user);
-    setGuestUser(user);
-    const videos = await firebase.firestore().collection('videos').get();
-    let videoData = [];
-    if (videos) {
-      videos.forEach((video) => {
-        let data = video.data();
-        videoData.push({ ...data });
+  //usersコレクション=> videosコレクションのドキュメントを読み込む
+  const gettingData = async (user) => {
+    try {
+      let videos = [];
+      const videoData = await firebase
+        .firestore()
+        .collection('users')
+        .doc(user.uid)
+        .collection('videos')
+        .get();
+      await videoData.forEach((doc) => {
+        videos.push(doc.data());
       });
-    }
-    //匿名ユーザーがセッション中に動画を視聴していた場合の処理
-    if (sessionStorage.length > 1) {
-      if (sessionStorage.getItem('aws')) {
-        let data = sessionStorage.getItem('aws');
-        setAWVideo(JSON.parse(data));
-      } else {
-        setAWVideo(videoData[0].aws);
-      }
-      if (sessionStorage.getItem('docker')) {
-        let data = sessionStorage.getItem('docker');
-        setDVideo(JSON.parse(data));
-      } else {
-        setDVideo(videoData[1].docker);
-      }
-      if (sessionStorage.getItem('firebase')) {
-        let data = sessionStorage.getItem('firebase');
-        setFVideo(JSON.parse(data));
-      } else {
-        setFVideo(videoData[2].firebase);
-      }
-      if (sessionStorage.getItem('javascript')) {
-        let data = sessionStorage.getItem('javascript');
-        setJVideo(JSON.parse(data));
-      } else {
-        setJVideo(videoData[3].javascript);
-      }
-      if (sessionStorage.getItem('material')) {
-        let data = sessionStorage.getItem('material');
-        setMVideo(JSON.parse(data));
-      } else {
-        setMVideo(videoData[4].material);
-      }
-      if (sessionStorage.getItem('node')) {
-        let data = sessionStorage.getItem('node');
-        setNVideo(JSON.parse(data));
-      } else {
-        setNVideo(videoData[5].node);
-      }
-      if (sessionStorage.getItem('react')) {
-        let data = sessionStorage.getItem('react');
-        setRVideo(JSON.parse(data));
-      } else {
-        setRVideo(videoData[6].react);
-      }
-      if (sessionStorage.getItem('router')) {
-        let data = sessionStorage.getItem('router');
-        setRRVideo(JSON.parse(data));
-      } else {
-        setRRVideo(videoData[7].router);
-      }
-      if (sessionStorage.getItem('typescript')) {
-        let data = sessionStorage.getItem('typescript');
-        setTVideo(JSON.parse(data));
-      } else {
-        setTVideo(videoData[8].typescript);
-      }
-    } else {
-      setAWVideo(videoData[0].aws);
-      setDVideo(videoData[1].docker);
-      setFVideo(videoData[2].firebase);
-      setJVideo(videoData[3].javascript);
-      setMVideo(videoData[4].material);
-      setNVideo(videoData[5].node);
-      setRVideo(videoData[6].react);
-      setRRVideo(videoData[7].router);
-      setTVideo(videoData[8].typescript);
+      setAWVideo(videos.filter((video) => video.category === 'aws'));
+      setDVideo(videos.filter((video) => video.category === 'docker'));
+      setFVideo(videos.filter((video) => video.category === 'firebase'));
+      setJVideo(videos.filter((video) => video.category === 'javascript'));
+      setMVideo(videos.filter((video) => video.category === 'material'));
+      setNVideo(videos.filter((video) => video.category === 'node'));
+      setRVideo(videos.filter((video) => video.category === 'react'));
+      setRRVideo(videos.filter((video) => video.category === 'router'));
+      setTVideo(videos.filter((video) => video.category === 'typescript'));
+    } catch (error) {
+      //handle exception...
     }
   };
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        console.log('スタート');
-        if (user.isAnonymous === false) {
-          existingUserLogin(user);
-          console.log('既存');
+        //匿名ユーザーでログイン
+        if (user.isAnonymous === true) {
+          setGuestUser(user);
+          setCurrentUser(user);
+          addingData(user);
+          gettingData(user);
         } else {
-          anonymousLogin(user);
-          console.log('匿名');
+          //既存ユーザーでログイン
+          setCurrentUser(user);
+          gettingData(user);
         }
       }
     });
@@ -205,8 +119,10 @@ const App = () => {
         setTVideo,
         setCurrentUser,
         setGuestUser,
-        operationType,
-        setOperationType,
+        all,
+        setAll,
+        videoResults,
+        setVideoResults,
       }}
     >
       <ThemeProvider theme={theme}>
@@ -220,3 +136,149 @@ const App = () => {
 };
 
 export { App };
+
+//既存ユーザーのログイン処理
+// const existingUserLogin = async (user) => {
+//   console.log(user);
+//   setCurrentUser(user);
+//   const videos = await firebase
+//     .firestore()
+//     .collection('users')
+//     .doc(user.uid)
+//     .get();
+//   try {
+//     if (videos) {
+//       console.log('videos', videos);
+//       console.log('aws', videos.data().aws);
+//       setAWVideo(videos.data().aws);
+//       setDVideo(videos.data().docker);
+//       setFVideo(videos.data().firebase);
+//       setJVideo(videos.data().javascript);
+//       setMVideo(videos.data().material);
+//       setNVideo(videos.data().node);
+//       setRVideo(videos.data().react);
+//       setRRVideo(videos.data().router);
+//       setTVideo(videos.data().typescript);
+//     }
+//   } catch (error) {
+//     //誤って新規ユーザーがログインを行った時の例外処理
+//     console.error(error.message);
+//     setCurrentUser(user);
+//     const videos = await firebase.firestore().collection('videos').get();
+//     let videoData = [];
+//     if (videos) {
+//       videos.forEach((video) => {
+//         let data = video.data();
+//         videoData.push({ ...data });
+//       });
+//     }
+//     await firebase
+//       .firestore()
+//       .collection('users')
+//       .doc(user.uid)
+//       .set({
+//         aws: [...videoData[0].aws],
+//         docker: [...videoData[1].docker],
+//         firebase: [...videoData[2].firebase],
+//         javascript: [...videoData[3].javascript],
+//         material: [...videoData[4].material],
+//         node: [...videoData[5].node],
+//         react: [...videoData[6].react],
+//         router: [...videoData[7].router],
+//         typescript: [...videoData[8].typescript],
+//       });
+//     setAWVideo(videoData[0].aws);
+//     setDVideo(videoData[1].docker);
+//     setFVideo(videoData[2].firebase);
+//     setJVideo(videoData[3].javascript);
+//     setMVideo(videoData[4].material);
+//     setNVideo(videoData[5].node);
+//     setRVideo(videoData[6].react);
+//     setRRVideo(videoData[7].router);
+//     setTVideo(videoData[8].typescript);
+//     console.log('seiko');
+//   }
+// };
+
+//匿名ユーザーのログイン処理
+// const anonymousLogin = async (user) => {
+//   setCurrentUser(user);
+//   setGuestUser(user);
+//   const videos = await firebase.firestore().collection('videos').get();
+//   let videoData = [];
+//   if (videos) {
+//     videos.forEach((video) => {
+//       let data = video.data();
+//       videoData.push({ ...data });
+//     });
+//   }
+//   //匿名ユーザーがセッション中に動画を視聴していた場合の処理
+//   if (sessionStorage.length > 1) {
+//     if (sessionStorage.getItem('aws')) {
+//       let data = sessionStorage.getItem('aws');
+//       setAWVideo(JSON.parse(data));
+//     } else {
+//       setAWVideo(videoData[0].aws);
+//     }
+//     if (sessionStorage.getItem('docker')) {
+//       let data = sessionStorage.getItem('docker');
+//       setDVideo(JSON.parse(data));
+//     } else {
+//       setDVideo(videoData[1].docker);
+//     }
+//     if (sessionStorage.getItem('firebase')) {
+//       let data = sessionStorage.getItem('firebase');
+//       setFVideo(JSON.parse(data));
+//     } else {
+//       setFVideo(videoData[2].firebase);
+//     }
+//     if (sessionStorage.getItem('javascript')) {
+//       let data = sessionStorage.getItem('javascript');
+//       setJVideo(JSON.parse(data));
+//     } else {
+//       setJVideo(videoData[3].javascript);
+//     }
+//     if (sessionStorage.getItem('material')) {
+//       let data = sessionStorage.getItem('material');
+//       setMVideo(JSON.parse(data));
+//     } else {
+//       setMVideo(videoData[4].material);
+//     }
+//     if (sessionStorage.getItem('node')) {
+//       let data = sessionStorage.getItem('node');
+//       setNVideo(JSON.parse(data));
+//     } else {
+//       setNVideo(videoData[5].node);
+//     }
+//     if (sessionStorage.getItem('react')) {
+//       let data = sessionStorage.getItem('react');
+//       setRVideo(JSON.parse(data));
+//     } else {
+//       setRVideo(videoData[6].react);
+//     }
+//     if (sessionStorage.getItem('router')) {
+//       let data = sessionStorage.getItem('router');
+//       setRRVideo(JSON.parse(data));
+//     } else {
+//       setRRVideo(videoData[7].router);
+//     }
+//     if (sessionStorage.getItem('typescript')) {
+//       let data = sessionStorage.getItem('typescript');
+//       setTVideo(JSON.parse(data));
+//     } else {
+//       setTVideo(videoData[8].typescript);
+//     }
+//   } else {
+//     setAWVideo(videoData[0].aws);
+//     setDVideo(videoData[1].docker);
+//     setFVideo(videoData[2].firebase);
+//     setJVideo(videoData[3].javascript);
+//     setMVideo(videoData[4].material);
+//     setNVideo(videoData[5].node);
+//     setRVideo(videoData[6].react);
+//     setRRVideo(videoData[7].router);
+//     setTVideo(videoData[8].typescript);
+//     setAll(videoData);
+//     setVideoResults(videoData);
+//   }
+// };

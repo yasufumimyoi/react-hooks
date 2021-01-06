@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 const VideoData = [
   {
-    id: 1,
+    id: 'aws_1',
     url: 'https://www.youtube.com/watch?v=HvrIPQ77xRY',
     image: 'http://img.youtube.com/vi/HvrIPQ77xRY/mqdefault.jpg',
     title: '【AWS 入門】EC2とDockerでHello Worldしよう',
@@ -10,7 +10,7 @@ const VideoData = [
     category: 'aws',
   },
   {
-    id: 2,
+    id: 'aws_2',
     url: 'https://www.youtube.com/watch?v=Bq-DT30hesA',
     image: 'http://img.youtube.com/vi/Bq-DT30hesA/mqdefault.jpg',
     title: '【AWS 入門】20分でFARGATEの基本を解説する',
@@ -19,7 +19,7 @@ const VideoData = [
     category: 'aws',
   },
   {
-    id: 3,
+    id: 'aws_3',
     url: 'https://www.youtube.com/watch?v=2_FxLp9xgmo&t=1531s',
     image: 'http://img.youtube.com/vi/2_FxLp9xgmo/mqdefault.jpg',
     title: '【AWS 入門】ECS(Fargate)とECRで楽々コンテナからHelloWorldしよう！',
@@ -28,7 +28,7 @@ const VideoData = [
     category: 'aws',
   },
   {
-    id: 4,
+    id: 'aws_4',
     url: 'https://www.youtube.com/watch?v=28C3Djjx6ew',
     image: 'http://img.youtube.com/vi/28C3Djjx6ew/mqdefault.jpg',
     title: 'サブネットマスクとCIDRを超ざっくり解説！【何となく理解するIT】',
@@ -37,7 +37,7 @@ const VideoData = [
     category: 'aws',
   },
   {
-    id: 5,
+    id: 'aws_5',
     url: 'https://www.youtube.com/watch?v=ecCuyq-Wprc',
     image: 'http://img.youtube.com/vi/ecCuyq-Wprc/mqdefault.jpg',
     title: 'subnetting is simple',
@@ -46,7 +46,7 @@ const VideoData = [
     category: 'aws',
   },
   {
-    id: 6,
+    id: 'aws_6',
     url: 'https://www.youtube.com/watch?v=-yz3FV8WliU',
     image: 'http://img.youtube.com/vi/-yz3FV8WliU/mqdefault.jpg',
     title: 'What is subnetting and why to subnet',
@@ -55,7 +55,7 @@ const VideoData = [
     category: 'aws',
   },
   {
-    id: 1,
+    id: 'docker_1',
     url: 'https://www.youtube.com/watch?v=gAkwW2tuIqE',
     image: 'http://img.youtube.com/vi/gAkwW2tuIqE/mqdefault.jpg',
     title: "Learn Docker in 7 Easy Steps - Full Beginner's Tutorial",
@@ -64,7 +64,7 @@ const VideoData = [
     category: 'docker',
   },
   {
-    id: 2,
+    id: 'docker_2',
     url: 'https://www.youtube.com/watch?v=Gjnup-PuquQ',
     image: 'http://img.youtube.com/vi/Gjnup-PuquQ/mqdefault.jpg',
     title: 'Docker in 100 Seconds',
@@ -73,7 +73,7 @@ const VideoData = [
     category: 'docker',
   },
   {
-    id: 3,
+    id: 'docker_3',
     url: 'https://www.youtube.com/watch?v=zJ6WbK9zFpI',
     image: 'http://img.youtube.com/vi/zJ6WbK9zFpI/mqdefault.jpg',
     title: 'Docker for Beginners: Full Free Course!',
@@ -82,7 +82,7 @@ const VideoData = [
     category: 'docker',
   },
   {
-    id: 1,
+    id: 'firebase_1',
     url: 'https://www.youtube.com/watch?v=meofoNuK3vo&t=133s',
     image: 'http://img.youtube.com/vi/meofoNuK3vo/mqdefault.jpg',
     title: 'Firebase Hosting をウェブで始めよう！ - Firecasts',
@@ -91,7 +91,7 @@ const VideoData = [
     category: 'firebase',
   },
   {
-    id: 2,
+    id: 'firebase_2',
     url: 'https://www.youtube.com/watch?v=unr4s3jd9qA&t=329s',
     image: 'http://img.youtube.com/vi/unr4s3jd9qA/mqdefault.jpg',
     title:
@@ -101,7 +101,7 @@ const VideoData = [
     category: 'firebase',
   },
   {
-    id: 3,
+    id: 'firebase_3',
     url: 'https://www.youtube.com/watch?v=zQyrwxMPm88',
     image: 'http://img.youtube.com/vi/zQyrwxMPm88/mqdefault.jpg',
     title: 'I built a chat app in 7 minutes with React & Firebase',
@@ -110,7 +110,7 @@ const VideoData = [
     category: 'firebase',
   },
   {
-    id: 4,
+    id: 'firebase_4',
     url: 'https://www.youtube.com/watch?v=mmmaeHBCTOw',
     image: 'http://img.youtube.com/vi/mmmaeHBCTOw/mqdefault.jpg',
     title: 'Firebase Hosting Tutorial #1 - Intro & Installation',
@@ -119,7 +119,7 @@ const VideoData = [
     category: 'firebase',
   },
   {
-    id: 5,
+    id: 'firebase_5',
     url: 'https://www.youtube.com/watch?v=ApG8L2RKrSI&t=350s',
     image: 'http://img.youtube.com/vi/ApG8L2RKrSI/mqdefault.jpg',
     title: 'Web の Firebase 匿名認証を開始するには- Firecasts',
@@ -128,7 +128,7 @@ const VideoData = [
     category: 'firebase',
   },
   {
-    id: 6,
+    id: 'firebase_6',
     url: 'https://www.youtube.com/watch?v=kX8by4eCyG4',
     image: 'http://img.youtube.com/vi/kX8by4eCyG4/mqdefault.jpg',
     title: 'Server-side Firebase Authentication Using Express JS',
@@ -137,7 +137,7 @@ const VideoData = [
     category: 'firebase',
   },
   {
-    id: 7,
+    id: 'firebase_7',
     url: 'https://www.youtube.com/watch?v=8cOlDAxFmxM&t=114s',
     image: 'http://img.youtube.com/vi/8cOlDAxFmxM/mqdefault.jpg',
     title: 'Firebase Authentication State Persistence',
@@ -146,7 +146,7 @@ const VideoData = [
     category: 'firebase',
   },
   {
-    id: 1,
+    id: 'javascript_1',
     url: 'https://www.youtube.com/watch?v=_ApRMRGI-6g',
     image: 'http://img.youtube.com/vi/_ApRMRGI-6g/mqdefault.jpg',
     title: "Heres how JavaScript's Nested Object Destructuring works",
@@ -155,7 +155,7 @@ const VideoData = [
     category: 'javascript',
   },
   {
-    id: 2,
+    id: 'javascript_2',
     url: 'https://www.youtube.com/watch?v=NIq3qLaHCIs&t=374s',
     image: 'http://img.youtube.com/vi/NIq3qLaHCIs/mqdefault.jpg',
     title: 'Why Is Array/Object Destructuring So Useful And How To Use It',
@@ -164,7 +164,7 @@ const VideoData = [
     category: 'javascript',
   },
   {
-    id: 3,
+    id: 'javascript_3',
     url: 'https://www.youtube.com/watch?v=-vR3a11Wzt0',
     image: 'http://img.youtube.com/vi/-vR3a11Wzt0/mqdefault.jpg',
     title: 'Destructuring in ES6 - Beau teaches JavaScript',
@@ -173,7 +173,7 @@ const VideoData = [
     category: 'javascript',
   },
   {
-    id: 4,
+    id: 'javascript_4',
     url: 'https://www.youtube.com/watch?v=iLx4ma8ZqvQ&t=193s',
     image: 'http://img.youtube.com/vi/iLx4ma8ZqvQ/mqdefault.jpg',
     title: '...spread operator and rest operator - Beau teaches JavaScript',
@@ -182,7 +182,7 @@ const VideoData = [
     category: 'javascript',
   },
   {
-    id: 5,
+    id: 'javascript_5',
     url: 'https://www.youtube.com/watch?v=V_Kr9OSfDeU',
     image: 'http://img.youtube.com/vi/V_Kr9OSfDeU/mqdefault.jpg',
     title: 'JavaScript Async Await',
@@ -191,7 +191,7 @@ const VideoData = [
     category: 'javascript',
   },
   {
-    id: 6,
+    id: 'javascript_6',
     url: 'https://www.youtube.com/watch?v=Bv_5Zv5c-Ts',
     image: 'http://img.youtube.com/vi/Bv_5Zv5c-Ts/mqdefault.jpg',
     title: 'JavaScript: Understanding the Weird Parts - The First 3.5 Hours',
@@ -200,7 +200,7 @@ const VideoData = [
     category: 'javascript',
   },
   {
-    id: 1,
+    id: 'material_1',
     url: 'https://www.youtube.com/watch?v=tKzSnjWPtEw',
     image: 'http://img.youtube.com/vi/tKzSnjWPtEw/mqdefault.jpg',
     title: 'React + Material UI #2: Actually coding a UX design',
@@ -209,7 +209,7 @@ const VideoData = [
     category: 'material',
   },
   {
-    id: 2,
+    id: 'material_2',
     url: 'https://www.youtube.com/watch?v=3HAARPCabUo',
     image: 'http://img.youtube.com/vi/3HAARPCabUo/mqdefault.jpg',
     title: 'React & Material UI #26: Header (Appbar + Toolbar) & React Router',
@@ -218,7 +218,7 @@ const VideoData = [
     category: 'material',
   },
   {
-    id: 3,
+    id: 'material_3',
     url: 'https://www.youtube.com/watch?v=zT62eVxShsY',
     image: 'http://img.youtube.com/vi/zT62eVxShsY/mqdefault.jpg',
     title: 'Multi Step Form With React & Material UI',
@@ -227,7 +227,7 @@ const VideoData = [
     category: 'material',
   },
   {
-    id: 4,
+    id: 'material_4',
     url: 'https://www.youtube.com/watch?v=rK0Lz8x7npA',
     image: 'http://img.youtube.com/vi/rK0Lz8x7npA/mqdefault.jpg',
     title: 'Build landing page with React and Material UI.',
@@ -236,7 +236,7 @@ const VideoData = [
     category: 'material',
   },
   {
-    id: 5,
+    id: 'material_5',
     url: 'https://www.youtube.com/watch?v=Jkj_XP80h1k',
     image: 'http://img.youtube.com/vi/Jkj_XP80h1k/mqdefault.jpg',
     title: 'Material-UI + React Router - #7 Navigation Menu',
@@ -245,7 +245,7 @@ const VideoData = [
     category: 'material',
   },
   {
-    id: 6,
+    id: 'material_6',
     url: 'https://www.youtube.com/watch?v=DJ1_CKs_LPI',
     image: 'http://img.youtube.com/vi/DJ1_CKs_LPI/mqdefault.jpg',
     title: 'Material UI React - Build a Blog page',
@@ -254,7 +254,7 @@ const VideoData = [
     category: 'material',
   },
   {
-    id: 7,
+    id: 'material_7',
     url: 'https://www.youtube.com/watch?v=vyJU9efvUtQ',
     image: 'http://img.youtube.com/vi/vyJU9efvUtQ/mqdefault.jpg',
     title: 'Material UI React Tutorial',
@@ -263,7 +263,7 @@ const VideoData = [
     category: 'material',
   },
   {
-    id: 8,
+    id: 'material_8',
     url: 'https://www.youtube.com/watch?v=-XKaSCU0ZLM',
     image: 'http://img.youtube.com/vi/-XKaSCU0ZLM/mqdefault.jpg',
     title: 'How to Design a Perfect React Material UI Form',
@@ -272,7 +272,7 @@ const VideoData = [
     category: 'material',
   },
   {
-    id: 9,
+    id: 'material_9',
     url: 'https://www.youtube.com/watch?v=jnQ1-XW7KNY',
     image: 'http://img.youtube.com/vi/jnQ1-XW7KNY/mqdefault.jpg',
     title: 'React Material UI Table with Paging Sorting and Filtering',
@@ -281,7 +281,7 @@ const VideoData = [
     category: 'material',
   },
   {
-    id: 1,
+    id: 'node_1',
     url: 'https://www.youtube.com/watch?v=L72fhGm1tfE',
     image: 'http://img.youtube.com/vi/L72fhGm1tfE/mqdefault.jpg',
     title: 'Express JS Crash Course',
@@ -290,7 +290,7 @@ const VideoData = [
     category: 'node',
   },
   {
-    id: 2,
+    id: 'node_2',
     url: 'https://www.youtube.com/watch?v=fBNz5xF-Kx4',
     image: 'http://img.youtube.com/vi/fBNz5xF-Kx4/mqdefault.jpg',
     title: 'Node.js Crash Course',
@@ -299,7 +299,7 @@ const VideoData = [
     category: 'node',
   },
   {
-    id: 3,
+    id: 'node_3',
     url: 'https://www.youtube.com/watch?v=pKd0Rpw7O48',
     image: 'http://img.youtube.com/vi/pKd0Rpw7O48/mqdefault.jpg',
     title: 'How to build a REST API with Node js & Express',
@@ -308,7 +308,7 @@ const VideoData = [
     category: 'node',
   },
   {
-    id: 4,
+    id: 'node_4',
     url: 'https://www.youtube.com/watch?v=lY6icfhap2o',
     image: 'http://img.youtube.com/vi/lY6icfhap2o/mqdefault.jpg',
     title: 'Learn Express Middleware In 14 Minutes',
@@ -317,7 +317,7 @@ const VideoData = [
     category: 'node',
   },
   {
-    id: 1,
+    id: 'router_1',
     url: 'https://www.youtube.com/watch?v=Law7wfdg_ls&t=15s',
     image: 'http://img.youtube.com/vi/Law7wfdg_ls/mqdefault.jpg',
     title: 'React Router Tutorial | React For Beginners',
@@ -326,7 +326,7 @@ const VideoData = [
     category: 'router',
   },
   {
-    id: 2,
+    id: 'router_2',
     url: 'https://www.youtube.com/watch?v=Myq2ssDQoDw',
     image: 'http://img.youtube.com/vi/Myq2ssDQoDw/mqdefault.jpg',
     title: 'Learn React Router in 10 Minutes! | React Tutorials',
@@ -335,7 +335,7 @@ const VideoData = [
     category: 'router',
   },
   {
-    id: 3,
+    id: 'router_3',
     url: 'https://www.youtube.com/watch?v=CZeulkp1ClA',
     image: 'http://img.youtube.com/vi/CZeulkp1ClA/mqdefault.jpg',
     title: 'React router with hooks ( useHistory useParam useLocation )',
@@ -344,7 +344,7 @@ const VideoData = [
     category: 'router',
   },
   {
-    id: 4,
+    id: 'router_4',
     url: 'https://www.youtube.com/watch?v=eofpZPRUnP8',
     image: 'http://img.youtube.com/vi/eofpZPRUnP8/mqdefault.jpg',
     title: 'ReactJS Basics - #15 React Router - Route Setup',
@@ -353,7 +353,7 @@ const VideoData = [
     category: 'router',
   },
   {
-    id: 5,
+    id: 'router_5',
     url: 'https://www.youtube.com/watch?v=hjR-ZveXBpQ',
     image: 'http://img.youtube.com/vi/hjR-ZveXBpQ/mqdefault.jpg',
     title: 'ReactJS Basics - #16 React Router - Navigation & Parameters',
@@ -362,7 +362,7 @@ const VideoData = [
     category: 'router',
   },
   {
-    id: 6,
+    id: 'router_6',
     url: 'https://www.youtube.com/watch?v=lCbcB9AU-98',
     image: 'http://img.youtube.com/vi/lCbcB9AU-98/mqdefault.jpg',
     title: 'Intro to React Router for Beginners (Multi-Page Apps)',
@@ -371,7 +371,7 @@ const VideoData = [
     category: 'router',
   },
   {
-    id: 7,
+    id: 'router_7',
     url: 'https://www.youtube.com/watch?v=yQf1KbGiwiI',
     image: 'http://img.youtube.com/vi/yQf1KbGiwiI/mqdefault.jpg',
     title: 'React Router Tutorial - Setup in 5 Minutes',
@@ -380,7 +380,7 @@ const VideoData = [
     category: 'router',
   },
   {
-    id: 8,
+    id: 'router_8',
     url: 'https://www.youtube.com/watch?v=110dW3l5GQY',
     image: 'http://img.youtube.com/vi/110dW3l5GQY/mqdefault.jpg',
     title: 'React Router Tutorial',
@@ -389,7 +389,7 @@ const VideoData = [
     category: 'router',
   },
   {
-    id: 9,
+    id: 'router_9',
     url: 'https://www.youtube.com/watch?v=Y0-qdp-XBJg',
     image: 'http://img.youtube.com/vi/Y0-qdp-XBJg/mqdefault.jpg',
     title: 'Protected Routes in React using React Router',
@@ -398,7 +398,7 @@ const VideoData = [
     category: 'router',
   },
   {
-    id: 1,
+    id: 'react_1',
     url: 'https://www.youtube.com/watch?v=ufodJVcpmps&t=2068s',
     image: 'http://img.youtube.com/vi/ufodJVcpmps/mqdefault.jpg',
     title: 'Build a Movie APP With React | React Tutorial for Beginners',
@@ -407,7 +407,7 @@ const VideoData = [
     category: 'react',
   },
   {
-    id: 2,
+    id: 'react_2',
     url: 'https://www.youtube.com/watch?v=GuA0_Z1llYU&t=1465s',
     image: 'http://img.youtube.com/vi/GuA0_Z1llYU/mqdefault.jpg',
     title: 'Build a Weather App in React JS | React JS beginner Tutorial',
@@ -416,7 +416,7 @@ const VideoData = [
     category: 'react',
   },
   {
-    id: 3,
+    id: 'react_3',
     url: 'https://www.youtube.com/watch?v=U9T6YkEDkMo',
     image: 'http://img.youtube.com/vi/U9T6YkEDkMo/mqdefault.jpg',
     title: 'Build a Recipe App With React | React Tutorial For Beginners',
@@ -425,7 +425,7 @@ const VideoData = [
     category: 'react',
   },
   {
-    id: 4,
+    id: 'react_4',
     url: 'https://www.youtube.com/watch?v=hQAHSlTtcmY',
     image: 'http://img.youtube.com/vi/hQAHSlTtcmY/mqdefault.jpg',
     title: 'Learn React In 30 Minutes',
@@ -434,7 +434,7 @@ const VideoData = [
     category: 'react',
   },
   {
-    id: 5,
+    id: 'react_5',
     url: 'https://www.youtube.com/watch?v=DLX62G4lc44',
     image: 'http://img.youtube.com/vi/DLX62G4lc44/mqdefault.jpg',
     title: 'Learn React JS - Full Course for Beginners - Tutorial 2019',
@@ -443,7 +443,7 @@ const VideoData = [
     category: 'react',
   },
   {
-    id: 6,
+    id: 'react_6',
     url: 'https://www.youtube.com/watch?v=khJlrj3Y6Ls&t=124s',
     image: 'http://img.youtube.com/vi/khJlrj3Y6Ls/mqdefault.jpg',
     title:
@@ -453,7 +453,7 @@ const VideoData = [
     category: 'react',
   },
   {
-    id: 7,
+    id: 'react_7',
     url: 'https://www.youtube.com/watch?v=VPVzx1ZOVuw&t=1711s',
     image: 'http://img.youtube.com/vi/VPVzx1ZOVuw/mqdefault.jpg',
     title: 'Build a YouTube Clone Application Using React',
@@ -462,7 +462,7 @@ const VideoData = [
     category: 'react',
   },
   {
-    id: 8,
+    id: 'react_8',
     url: 'https://www.youtube.com/watch?v=o5CdCETh8cQ&t=1555s',
     image: 'http://img.youtube.com/vi/o5CdCETh8cQ/mqdefault.jpg',
     title: 'React Fetch API Data | Build and Deploy a Real Advice App Project',
@@ -471,7 +471,7 @@ const VideoData = [
     category: 'react',
   },
   {
-    id: 9,
+    id: 'react_9',
     url: 'https://www.youtube.com/watch?v=YaioUnMw0mo',
     image: 'http://img.youtube.com/vi/YaioUnMw0mo/mqdefault.jpg',
     title: 'React App - Breaking Bad API',
@@ -480,7 +480,7 @@ const VideoData = [
     category: 'react',
   },
   {
-    id: 1,
+    id: 'typescript_1',
     url: 'https://www.youtube.com/watch?v=zQnBQ4tB3ZA',
     image: 'http://img.youtube.com/vi/zQnBQ4tB3ZA/mqdefault.jpg',
     title: 'TypeScript in 100 Seconds',
@@ -489,7 +489,7 @@ const VideoData = [
     category: 'typescript',
   },
   {
-    id: 2,
+    id: 'typescript_2',
     url: 'https://www.youtube.com/watch?v=BwuLxPH8IDs&t=3341s',
     image: 'http://img.youtube.com/vi/BwuLxPH8IDs/mqdefault.jpg',
     title:
@@ -499,7 +499,7 @@ const VideoData = [
     category: 'typescript',
   },
   {
-    id: 3,
+    id: 'typescript_3',
     url: 'https://www.youtube.com/watch?v=WBPrJSw7yQA&t=1397s',
     image: 'http://img.youtube.com/vi/WBPrJSw7yQA/mqdefault.jpg',
     title: 'Learn TypeScript in 50 Minutes - Tutorial for Beginners',
@@ -508,7 +508,7 @@ const VideoData = [
     category: 'typescript',
   },
   {
-    id: 4,
+    id: 'typescript_4',
     url: 'https://www.youtube.com/watch?v=1UcLoOD1lRM&t=282s',
     image: 'http://img.youtube.com/vi/1UcLoOD1lRM/mqdefault.jpg',
     title: 'Using Typescript in Node.js',
@@ -517,7 +517,7 @@ const VideoData = [
     category: 'typescript',
   },
   {
-    id: 5,
+    id: 'typescript_5',
     url: 'https://www.youtube.com/watch?v=Z5iWr6Srsj8&t=1204s',
     image: 'http://img.youtube.com/vi/Z5iWr6Srsj8/mqdefault.jpg',
     title: 'React Typescript Tutorial',
@@ -526,7 +526,7 @@ const VideoData = [
     category: 'typescript',
   },
   {
-    id: 6,
+    id: 'typescript_6',
     url: 'https://www.youtube.com/watch?v=F2JCjVSZlG0&t=3204s',
     image: 'http://img.youtube.com/vi/F2JCjVSZlG0/mqdefault.jpg',
     title: 'React / Typescript Tutorial - Build a Quiz App',
