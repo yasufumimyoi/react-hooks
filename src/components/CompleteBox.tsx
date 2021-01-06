@@ -38,6 +38,8 @@ export const CompleteBox: FC<CourseProps> = ({ title, path, completed }) => {
 
   //抽出されたコース名によってセットするデータを決定する
   let newItems = null;
+  let targetItem = null;
+
   const saveCompleteStatus = () => {
     let videoData = [];
     switch (editedPath) {
@@ -113,12 +115,18 @@ export const CompleteBox: FC<CourseProps> = ({ title, path, completed }) => {
         break;
     }
 
+    //firesoreの更新するデータの抽出
+    targetItem = videoData.filter((v: any) => v.title === title);
+    targetItem[0].completed = !completed;
+
     //匿名ユーザーでなければ、firestoreのデータを更新する
     if (currentUser.isAnonymous === false || guestUser.isAnonymous === false) {
       firestore
         .collection('users')
         .doc(currentUser.uid)
-        .update({ [`${editedPath}`]: [...newItems] });
+        .collection('videos')
+        .doc(targetItem[0].id)
+        .update({ completed: targetItem[0].completed });
       //匿名ユーザーであれば、sessionStorageにデータを一時保存させる
     } else {
       sessionStorage.setItem(`${editedPath}`, JSON.stringify(newItems));
