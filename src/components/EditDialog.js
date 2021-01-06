@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -11,6 +11,8 @@ import Select from '@material-ui/core/Select';
 import { format } from 'date-fns';
 import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
+import { firebase } from '../firebase/firebase.util';
+import { VideoContext } from '../contexts/video-context';
 
 export const EditDialog = ({
   category,
@@ -19,10 +21,11 @@ export const EditDialog = ({
   setContent,
   setCategory,
   memo,
-  setMemo,
+  //setMemo,
 }) => {
   const [open, setOpen] = React.useState(false);
   const now = format(new Date(), 'yyyy/MMM/do/h:m:s');
+  const { currentUser } = useContext(VideoContext);
 
   //モーダルの開閉
   const handleClickOpen = () => {
@@ -43,14 +46,26 @@ export const EditDialog = ({
     }
   }, [open]);
 
+  //fix me
   //メモの更新
   const handleEdit = () => {
-    const newMemo = [...memo];
-    newMemo.find((memo) => memo.id === state.id);
-    newMemo[state.id].content = content;
-    newMemo[state.id].category = category;
-    newMemo[state.id].time = now;
-    setMemo(newMemo);
+    const newMemo = memo.filter((memo) => memo.id === state.id);
+    const updatedContent = (newMemo[0].content = content);
+    const updatedCategory = (newMemo[0].category = category);
+    const updatedTime = (newMemo[0].time = now);
+    firebase
+      .firestore()
+      .collection('users')
+      .doc(currentUser.uid)
+      .collection('memo')
+      .doc(newMemo[0].id)
+      .update({
+        id: newMemo[0].id,
+        category: updatedCategory,
+        content: updatedContent,
+        time: updatedTime,
+      });
+    //setMemo()
     setCategory('');
     setContent('');
     handleClose();
@@ -107,3 +122,28 @@ export const EditDialog = ({
     </div>
   );
 };
+
+//匿名ユーザーでなければ、firestoreのデータを更新する
+// if (currentUser.isAnonymous === false || guestUser.isAnonymous === false) {
+//   firestore
+//     .collection('users')
+//     .doc(currentUser.uid)
+//     .update({ [`${editedPath}`]: [...newItems] });
+//   //匿名ユーザーであれば、sessionStorageにデータを一時保存させる
+// } else {
+//   sessionStorage.setItem(`${editedPath}`, JSON.stringify(newItems));
+// }
+
+//need path and updatedData
+
+// if (currentUser.isAnonymous === false || guestUser.isAnonymous === false) {
+//   firestore
+//     .collection('users')
+//     .doc(currentUser.uid)
+//     .collection('videos')
+//     .doc(newItems[0].id)
+//     .update({id});
+//   //匿名ユーザーであれば、sessionStorageにデータを一時保存させる
+// } else {
+//   sessionStorage.setItem(`${editedPath}`, JSON.stringify(newItems));
+// }

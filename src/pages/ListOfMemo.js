@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Grid, Typography } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -13,35 +13,18 @@ import { format } from 'date-fns';
 import { Memo } from './Memo';
 import { MemoSort } from './MemoSort';
 import { EditDialog } from '../components/EditDialog';
+import { firebase } from '../firebase/firebase.util';
+import { VideoContext } from '../contexts/video-context';
 
 export const ListOfMemo = () => {
-  const [memo, setMemo] = useState([
-    {
-      id: 0,
-      category: 'Javascript',
-      content: 'test1',
-      time: '2020-02-20',
-    },
-    {
-      id: 1,
-      category: 'Node.js',
-      content: 'test2',
-      time: '2020-02-25',
-    },
-    {
-      id: 2,
-      category: 'React',
-      content: 'test3',
-      time: '2020-02-15',
-    },
-  ]);
-
+  const [memo, setMemo] = useState([]);
   const [category, setCategory] = React.useState('');
   const [content, setContent] = useState('');
   const [sortMemo, setSortMemo] = useState([]);
   const now = format(new Date(), 'yyyy/MMM/do/h:m:s');
   const [sortCategory, setSortCategory] = useState('');
   const [sortTime, setSortTime] = useState('');
+  const { currentUser } = useContext(VideoContext);
 
   //カテゴリーとメモの入力値をセットする
   const handleChange = (event) => {
@@ -58,18 +41,36 @@ export const ListOfMemo = () => {
 
   //メモの作成
   const handleSubmit = (event) => {
-    const id = memo.length;
     event.preventDefault();
+
+    //firestoreにデータを格納
+    const docId = firebase.firestore().collection('memo').doc().id;
+    firebase
+      .firestore()
+      .collection('users')
+      .doc(currentUser.uid)
+      .collection('memo')
+      .doc(docId)
+      .set({
+        id: docId,
+        category: category,
+        content: content,
+        time: now,
+      });
+
+    //memoに新規データを追加
     setMemo([
       ...memo,
-      { id: id, category: category, content: content, time: now },
+      { id: docId, category: category, content: content, time: now },
     ]);
     setCategory('');
     setContent('');
+
+    //ソート表示用のmemoに新規データを追加
     if (sortCategory) {
       setSortMemo([
         ...memo,
-        { id: id, category: category, content: content, time: now },
+        { id: docId, category: category, content: content, time: now },
       ]);
       setSortCategory('');
       setSortTime('');
@@ -79,8 +80,33 @@ export const ListOfMemo = () => {
   //メモの削除
   const handelRemove = (id) => {
     const newItem = memo.filter((memo) => memo.id !== id);
+    const docId = memo.filter((memo) => memo.id === id);
     setMemo(newItem);
+    firebase
+      .firestore()
+      .collection('users')
+      .doc(currentUser.uid)
+      .collection('memo')
+      .doc(docId[0].id)
+      .delete();
   };
+
+  //メモをfirestoreから取得し、memoにデータをセットする
+  useEffect(() => {
+    let items = [];
+    firebase
+      .firestore()
+      .collection('users')
+      .doc(currentUser.uid)
+      .collection('memo')
+      .get()
+      .then((snapshot) => {
+        snapshot.forEach((doc) => {
+          items.push(doc.data());
+        });
+        setMemo(items);
+      });
+  }, []);
 
   const classes = MemoUseStyles();
   return (
@@ -220,15 +246,6 @@ export const ListOfMemo = () => {
 //     console.log(info.data());
 //   });
 
-// let testData = firebase
-//   .firestore()
-//   .collection('test')
-//   .doc('aws_1')
-//   .get()
-//   .then((doc) => {
-//     console.log(doc.data());
-//   });
-
 // let temp = firebase
 //   .firestore()
 //   .collection('test')
@@ -238,32 +255,6 @@ export const ListOfMemo = () => {
 //     snapshot.forEach((doc) => {
 //       console.log(doc.id, '=>', doc.data());
 //     });
-//   });
-
-// firebase.firestore().collection('test').doc(`${path}`).update({
-//   id: 1,
-//   url: 'https://www.youtube.com/watch?v=HvrIPQ77xRY',
-//   image: 'http://img.youtube.com/vi/HvrIPQ77xRY/mqdefault.jpg',
-//   title: '【AWS 入門】EC2とDockerでHello Worldしよう',
-//   path: '/courses/aws/1',
-//   completed: false,
-//   category: 'aws',
-// });
-
-// firebase
-//   .firestore()
-//   .collection('users')
-//   .doc('dDfuCKlQs1lUPXAqihgg')//ユーザーが持っているUID
-//   .collection('videos')
-//   .doc('docker_3')
-//   .set({
-//     id: 3,
-//     url: 'https://www.youtube.com/watch?v=zJ6WbK9zFpI',
-//     image: 'http://img.youtube.com/vi/zJ6WbK9zFpI/mqdefault.jpg',
-//     title: 'Docker for Beginners: Full Free Course!',
-//     path: '/courses/docker/3',
-//     completed: false,
-//     category: 'docker',
 //   });
 
 // {memo.length > 0 ? (
