@@ -15,9 +15,8 @@ import { FirebasePage } from '../src/pages/FirebasePage';
 import { JavascriptPage } from '../src/pages/JavascriptPage';
 import { TypescriptPage } from '../src/pages/TypescriptPage';
 import { NodePage } from '../src/pages/NodePage';
-import { AllVideosPage } from '../src/pages/AllVideosPage';
-import { TestPage } from '../src/pages/TestPage';
 import { VideoPage } from '../src/pages/VideoPage';
+import { AllVideoPage } from '../src/pages/AllVideoPage';
 
 const AppRoutes = () => {
   return (
@@ -37,7 +36,7 @@ const AppRoutes = () => {
         <Route exact path="/courses/material" component={MaterialUIPage} />
         <Route exact path="/courses/typescript" component={TypescriptPage} />
         <Route exact path="/courses/node" component={NodePage} />
-        <Route exact path="/all" component={AllVideosPage} />
+        <Route exact path="/all" component={AllVideoPage} />
         <Route path="/courses/aws/:id" component={VideoPage} />
         <Route path="/courses/docker/:id" component={VideoPage} />
         <Route path="/courses/firebase/:id" component={VideoPage} />
@@ -47,7 +46,6 @@ const AppRoutes = () => {
         <Route path="/courses/material/:id" component={VideoPage} />
         <Route path="/courses/typescript/:id" component={VideoPage} />
         <Route path="/courses/node/:id" component={VideoPage} />
-        <Route path="/courses/test" component={TestPage} />
         <Route component={NotFoundPage} />
       </Switch>
     </div>

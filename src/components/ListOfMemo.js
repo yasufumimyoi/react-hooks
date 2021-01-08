@@ -8,11 +8,11 @@ import Select from '@material-ui/core/Select';
 import { MemoUseStyles } from '../style/style';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
-import { AlertDialog } from '../components/AlertDialog';
+import { AlertDialog } from './AlertDialog';
 import { format } from 'date-fns';
 import { Memo } from './Memo';
 import { MemoSort } from './MemoSort';
-import { EditDialog } from '../components/EditDialog';
+import { EditDialog } from './EditDialog';
 import { firebase } from '../firebase/firebase.util';
 import { VideoContext } from '../contexts/video-context';
 

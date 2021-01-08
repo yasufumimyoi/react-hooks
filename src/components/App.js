@@ -19,8 +19,8 @@ const App = () => {
   const [TVideo, setTVideo] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
   const [guestUser, setGuestUser] = useState(null);
-  const [all, setAll] = useState([]);
-  const [videoResults, setVideoResults] = React.useState([]);
+  const [videoResults, setVideoResults] = useState([]);
+  const [allVideo, setAllVideo] = useState([]);
 
   //動画データを取得し、usersコレクション=> videosコレクションのドキュメントに書き込む
   const addingData = async (user) => {
@@ -71,6 +71,8 @@ const App = () => {
       setRVideo(videos.filter((video) => video.category === 'react'));
       setRRVideo(videos.filter((video) => video.category === 'router'));
       setTVideo(videos.filter((video) => video.category === 'typescript'));
+      setAllVideo(videos);
+      setVideoResults(videos);
     } catch (error) {
       //handle exception...
     }
@@ -106,8 +108,10 @@ const App = () => {
         RVideo,
         RRVideo,
         TVideo,
+        allVideo,
         currentUser,
         guestUser,
+        videoResults,
         setAWVideo,
         setDVideo,
         setFVideo,
@@ -117,11 +121,9 @@ const App = () => {
         setRVideo,
         setRRVideo,
         setTVideo,
+        setAllVideo,
         setCurrentUser,
         setGuestUser,
-        all,
-        setAll,
-        videoResults,
         setVideoResults,
       }}
     >

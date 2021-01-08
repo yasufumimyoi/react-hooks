@@ -7,7 +7,7 @@ import { CompleteBox } from '../components/CompleteBox';
 import { ResponsivePlayer } from '../components/Player';
 import { ListOfVideos } from '../components/ListOfVideos';
 import { useHistory } from 'react-router-dom';
-import { ListOfMemo } from './ListOfMemo';
+import { ListOfMemo } from '../components/ListOfMemo';
 import { Tweet } from '../components/Tweet';
 
 //Fix me later
