@@ -22,36 +22,41 @@ const App = () => {
   const [videoResults, setVideoResults] = useState([]);
   const [allVideo, setAllVideo] = useState([]);
 
-  //動画データを取得し、usersコレクション=> videosコレクションのドキュメントに書き込む
-  const addingData = async (user) => {
+  // //動画データを取得し、動画データをセットする
+  const obtainVideoData = async (user) => {
     try {
-      const data = await firebase.firestore().collection('videoData').get();
-      await data.forEach((doc) => {
-        let video = doc.data();
-        let docName = video.id;
-        let id = video.id;
-        let category = video.category;
-        let image = video.image;
-        let title = video.title;
-        let url = video.url;
-        let completed = video.completed;
-        let path = video.path;
-        firebase
-          .firestore()
-          .collection('users')
-          .doc(user.uid)
-          .collection('videos')
-          .doc(docName)
-          .set({ id, category, image, title, url, completed, path });
-      });
-    } catch (error) {
-      //handle exception
-    }
-  };
-
-  //usersコレクション=> videosコレクションのドキュメントを読み込む
-  const gettingData = async (user) => {
-    try {
+      //既に動画コレクションを持っているか確認
+      const dataRef = await firebase
+        .firestore()
+        .collection('users')
+        .doc(user.uid)
+        .collection('videos')
+        .get();
+      //未登録ユーザーのみ、新規の動画データをセットする
+      if (dataRef.empty) {
+        let videos = [];
+        const data = await firebase.firestore().collection('videoData').get();
+        await data.forEach((doc) => {
+          let video = doc.data();
+          let docName = video.id;
+          let id = video.id;
+          let category = video.category;
+          let image = video.image;
+          let title = video.title;
+          let url = video.url;
+          let completed = video.completed;
+          let path = video.path;
+          videos.push(doc.data);
+          firebase
+            .firestore()
+            .collection('users')
+            .doc(user.uid)
+            .collection('videos')
+            .doc(docName)
+            .set({ id, category, image, title, url, completed, path });
+        });
+      }
+      //動画データを取得し、useStateにセットする
       let videos = [];
       const videoData = await firebase
         .firestore()
@@ -74,7 +79,7 @@ const App = () => {
       setAllVideo(videos);
       setVideoResults(videos);
     } catch (error) {
-      //handle exception...
+      //handle exception
     }
   };
 
@@ -85,12 +90,11 @@ const App = () => {
         if (user.isAnonymous === true) {
           setGuestUser(user);
           setCurrentUser(user);
-          addingData(user);
-          gettingData(user);
+          obtainVideoData(user);
         } else {
           //既存ユーザーでログイン
           setCurrentUser(user);
-          gettingData(user);
+          obtainVideoData(user);
         }
       }
     });

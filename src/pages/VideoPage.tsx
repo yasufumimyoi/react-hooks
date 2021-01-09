@@ -24,7 +24,6 @@ const VideoPage = (props: any) => {
     RRVideo,
     TVideo,
     currentUser,
-    guestUser,
     setAWVideo,
     setDVideo,
     setFVideo,
@@ -171,26 +170,18 @@ const VideoPage = (props: any) => {
           break;
       }
 
+      //firesoreの更新するデータの抽出
       let targetItem = null;
       targetItem = videoData.filter((v: any) => v.id === id);
       targetItem[0].completed = true;
-      console.log(targetItem);
 
-      //匿名ユーザーでなければ、firestoreのデータを更新する
-      if (
-        currentUser.isAnonymous === false ||
-        guestUser.isAnonymous === false
-      ) {
-        firestore
-          .collection('users')
-          .doc(currentUser.uid)
-          .collection('videos')
-          .doc(targetItem[0].id)
-          .update({ completed: targetItem[0].completed });
-        //匿名ユーザーであれば、sessionStorageにデータを一時保存させる
-      } else {
-        sessionStorage.setItem(`${editedPath}`, JSON.stringify(newItems));
-      }
+      //firestoreのデータを更新する
+      firestore
+        .collection('users')
+        .doc(currentUser.uid)
+        .collection('videos')
+        .doc(targetItem[0].id)
+        .update({ completed: targetItem[0].completed });
     }
   };
 

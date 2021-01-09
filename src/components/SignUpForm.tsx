@@ -27,18 +27,7 @@ export const SignUpForm = () => {
   const history = useHistory();
   const [formState, setFormState] = useState({});
 
-  const {
-    AWVideo,
-    DVideo,
-    FVideo,
-    JVideo,
-    MVideo,
-    NVideo,
-    RVideo,
-    RRVideo,
-    TVideo,
-    setGuestUser,
-  } = useContext(VideoContext);
+  const { setGuestUser } = useContext(VideoContext);
 
   const { register, handleSubmit, errors, reset } = useForm({
     resolver: yupResolver(schema),
@@ -55,57 +44,23 @@ export const SignUpForm = () => {
   //Sessionからメールアドレスで新規登録
   const createAccountWithEmail = async ({ email, password }: AuthProps) => {
     try {
-      const newUser = await firebase
-        .auth()
-        .createUserWithEmailAndPassword(email, password);
-      await firebase
-        .firestore()
-        .collection('users')
-        .doc(newUser?.user?.uid)
-        .set({
-          aws: [...AWVideo],
-          docker: [...DVideo],
-          firebase: [...FVideo],
-          javascript: [...JVideo],
-          material: [...MVideo],
-          node: [...NVideo],
-          react: [...RVideo],
-          router: [...RRVideo],
-          typescript: [...TVideo],
-        });
+      await firebase.auth().createUserWithEmailAndPassword(email, password);
       await setGuestUser(null);
       history.push('/courses');
       reset();
     } catch (error) {
-      console.error(error.message);
+      //handle exception...
     }
   };
 
   //SessionからGoogleアカウントを通じて新規登録
   const createAccountWithGoogle = async () => {
     try {
-      const newUser = await firebase
-        .auth()
-        ?.currentUser?.linkWithPopup(provider);
-      await firebase
-        .firestore()
-        .collection('users')
-        .doc(newUser?.user?.uid)
-        .set({
-          aws: [...AWVideo],
-          docker: [...DVideo],
-          firebase: [...FVideo],
-          javascript: [...JVideo],
-          material: [...MVideo],
-          node: [...NVideo],
-          react: [...RVideo],
-          router: [...RRVideo],
-          typescript: [...TVideo],
-        });
+      await firebase.auth()?.currentUser?.linkWithPopup(provider);
       await setGuestUser(null);
       await history.push('/courses');
     } catch (error) {
-      console.error(error.message);
+      //handle exception...
     }
   };
 
