@@ -62,6 +62,23 @@ export const HeaderMenu = () => {
     }
   };
 
+  const handelDelete = () => {
+    let user = firebase.auth().currentUser;
+    if (user) {
+      user
+        .delete()
+        .then(() => {
+          setCurrentUser(null);
+          setGuestUser(null);
+          history.push('/');
+          console.log('deleted');
+        })
+        .catch(() => {
+          // handle exception..
+        });
+    }
+  };
+
   //匿名ユーザーのみ新規登録を表示する
   return (
     <div>
@@ -103,6 +120,7 @@ export const HeaderMenu = () => {
             <MenuItem onClick={handelCoursesRoute}>トップ</MenuItem>
             <MenuItem onClick={handelAllVideoRoute}>動画一覧</MenuItem>
             <MenuItem onClick={handleLogout}>ログアウト</MenuItem>
+            <MenuItem onClick={handelDelete}>アカウントの削除</MenuItem>
           </Menu>
         </Box>
       )}
