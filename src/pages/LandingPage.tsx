@@ -155,7 +155,7 @@ const LandingPage = () => {
               onClick={handleLoginPage}
               className={classes.button}
             >
-              ログインまたは登録はこちら
+              ログインはこちら
             </Button>
           </Grid>
         </Grid>

@@ -19,7 +19,6 @@ export const CompleteBox: FC<CourseProps> = ({ title, path, completed }) => {
     RRVideo,
     TVideo,
     currentUser,
-    guestUser,
     setAWVideo,
     setDVideo,
     setFVideo,
@@ -119,18 +118,13 @@ export const CompleteBox: FC<CourseProps> = ({ title, path, completed }) => {
     targetItem = videoData.filter((v: any) => v.title === title);
     targetItem[0].completed = !completed;
 
-    //匿名ユーザーでなければ、firestoreのデータを更新する
-    if (currentUser.isAnonymous === false || guestUser.isAnonymous === false) {
-      firestore
-        .collection('users')
-        .doc(currentUser.uid)
-        .collection('videos')
-        .doc(targetItem[0].id)
-        .update({ completed: targetItem[0].completed });
-      //匿名ユーザーであれば、sessionStorageにデータを一時保存させる
-    } else {
-      sessionStorage.setItem(`${editedPath}`, JSON.stringify(newItems));
-    }
+    //firestoreの動画データを更新
+    firestore
+      .collection('users')
+      .doc(currentUser.uid)
+      .collection('videos')
+      .doc(targetItem[0].id)
+      .update({ completed: targetItem[0].completed });
   };
 
   return (
