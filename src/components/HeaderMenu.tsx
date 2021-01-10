@@ -43,6 +43,12 @@ export const HeaderMenu = () => {
     setAnchorEl(null);
   };
 
+  //プロフィールページに移動する
+  const handleProfile = () => {
+    history.push('/profile');
+    setAnchorEl(null);
+  };
+
   //ログアウト機能
   //セッションストレージもクリアする
   const handleLogout = () => {
@@ -119,6 +125,7 @@ export const HeaderMenu = () => {
           >
             <MenuItem onClick={handelCoursesRoute}>トップ</MenuItem>
             <MenuItem onClick={handelAllVideoRoute}>動画一覧</MenuItem>
+            <MenuItem onClick={handleProfile}>プロフィール</MenuItem>
             <MenuItem onClick={handleLogout}>ログアウト</MenuItem>
             <MenuItem onClick={handelDelete}>アカウントの削除</MenuItem>
           </Menu>

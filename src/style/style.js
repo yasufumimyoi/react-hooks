@@ -159,3 +159,9 @@ export const MemoUseStyles = makeStyles({
     flexGrow: 1,
   },
 });
+
+export const ProfileUseStyles = makeStyles({
+  container: {
+    justifyContent: 'center',
+  },
+});
