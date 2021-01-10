@@ -21,6 +21,7 @@ const App = () => {
   const [guestUser, setGuestUser] = useState(null);
   const [videoResults, setVideoResults] = useState([]);
   const [allVideo, setAllVideo] = useState([]);
+  const [userData, setUserData] = useState([]);
 
   // //動画データを取得し、動画データをセットする
   const obtainVideoData = async (user) => {
@@ -83,6 +84,37 @@ const App = () => {
     }
   };
 
+  //ユーザーのプロフィール情報をセットする
+  const obtainUserProfile = async (user) => {
+    try {
+      //既にプロフィールデータを持っているか確認
+      const dataRef = await firebase
+        .firestore()
+        .collection('users')
+        .doc(user.uid)
+        .collection('profile')
+        .get();
+      //未登録ユーザーのみ、デフォルトのプロフィールデータをセットする
+      if (dataRef.empty) {
+        console.log('insert defalut image');
+      } else {
+        let userProfile = [];
+        const data = await firebase
+          .firestore()
+          .collection('users')
+          .doc(user.uid)
+          .collection('profile')
+          .get();
+        data.forEach((profile) => {
+          userProfile.push(profile.data());
+        });
+        setUserData(userProfile);
+      }
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
@@ -91,14 +123,20 @@ const App = () => {
           setGuestUser(user);
           setCurrentUser(user);
           obtainVideoData(user);
+          obtainUserProfile(user);
         } else {
           //既存ユーザーでログイン
           setCurrentUser(user);
           obtainVideoData(user);
+          obtainUserProfile(user);
         }
       }
     });
   }, []);
+
+  useEffect(() => {
+    obtainUserProfile(currentUser);
+  }, [userData]);
 
   return (
     <VideoContext.Provider
@@ -116,6 +154,7 @@ const App = () => {
         currentUser,
         guestUser,
         videoResults,
+        userData,
         setAWVideo,
         setDVideo,
         setFVideo,
@@ -129,6 +168,7 @@ const App = () => {
         setCurrentUser,
         setGuestUser,
         setVideoResults,
+        setUserData,
       }}
     >
       <ThemeProvider theme={theme}>
