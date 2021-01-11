@@ -4,6 +4,71 @@
 // const batch = firebase.firestore().batch();
 
 // useEffect(() => {
+//   //aws
+//   const a1 = firebase.firestore().collection('videoData').doc('aws_1');
+//   const a2 = firebase.firestore().collection('videoData').doc('aws_2');
+//   const a3 = firebase.firestore().collection('videoData').doc('aws_3');
+//   const a4 = firebase.firestore().collection('videoData').doc('aws_4');
+//   const a5 = firebase.firestore().collection('videoData').doc('aws_5');
+//   const a6 = firebase.firestore().collection('videoData').doc('aws_6');
+//   batch.set(a1, {
+//     id: 'aws_1',
+//     url: 'https://www.youtube.com/watch?v=HvrIPQ77xRY',
+//     image: 'http://img.youtube.com/vi/HvrIPQ77xRY/mqdefault.jpg',
+//     title: '【AWS 入門】EC2とDockerでHello Worldしよう',
+//     path: '/courses/aws/1',
+//     completed: false,
+//     category: 'aws',
+//   });
+//   batch.set(a2, {
+//     id: 'aws_2',
+//     url: 'https://www.youtube.com/watch?v=Bq-DT30hesA',
+//     image: 'http://img.youtube.com/vi/Bq-DT30hesA/mqdefault.jpg',
+//     title: '【AWS 入門】20分でFARGATEの基本を解説する',
+//     path: '/courses/aws/2',
+//     completed: false,
+//     category: 'aws',
+//   });
+//   batch.set(a3, {
+//     id: 'aws_3',
+//     url: 'https://www.youtube.com/watch?v=2_FxLp9xgmo&t=1531s',
+//     image: 'http://img.youtube.com/vi/2_FxLp9xgmo/mqdefault.jpg',
+//     title: '【AWS 入門】ECS(Fargate)とECRで楽々コンテナからHelloWorldしよう！',
+//     path: '/courses/aws/3',
+//     completed: false,
+//     category: 'aws',
+//   });
+
+//   batch.set(a4, {
+//     id: 'aws_4',
+//     url: 'https://www.youtube.com/watch?v=28C3Djjx6ew',
+//     image: 'http://img.youtube.com/vi/28C3Djjx6ew/mqdefault.jpg',
+//     title: 'サブネットマスクとCIDRを超ざっくり解説！【何となく理解するIT】',
+//     path: '/courses/aws/4',
+//     completed: false,
+//     category: 'aws',
+//   });
+//   batch.set(a5, {
+//     id: 'aws_5',
+//     url: 'https://www.youtube.com/watch?v=ecCuyq-Wprc',
+//     image: 'http://img.youtube.com/vi/ecCuyq-Wprc/mqdefault.jpg',
+//     title: 'subnetting is simple',
+//     path: '/courses/aws/5',
+//     completed: false,
+//     category: 'aws',
+//   });
+//   batch.set(a6, {
+//     id: 'aws_6',
+//     url: 'https://www.youtube.com/watch?v=-yz3FV8WliU',
+//     image: 'http://img.youtube.com/vi/-yz3FV8WliU/mqdefault.jpg',
+//     title: 'What is subnetting and why to subnet',
+//     path: '/courses/aws/6',
+//     completed: false,
+//     category: 'aws',
+//   });
+// });
+
+// useEffect(() => {
 //   //Docker
 //   const d1 = firebase.firestore().collection('videoData').doc('docker_1');
 //   const d2 = firebase.firestore().collection('videoData').doc('docker_2');
@@ -35,7 +100,6 @@
 //     completed: false,
 //     category: 'docker',
 //   });
-//   batch.commit();
 // });
 
 // useEffect(() => {
@@ -112,7 +176,6 @@
 //     completed: false,
 //     category: 'firebase',
 //   });
-//   batch.commit();
 // });
 
 // useEffect(() => {
@@ -178,7 +241,6 @@
 //     completed: false,
 //     category: 'javascript',
 //   });
-//   batch.commit();
 // });
 
 // useEffect(() => {
@@ -274,7 +336,6 @@
 //     completed: false,
 //     category: 'material',
 //   });
-//   batch.commit();
 // });
 
 // useEffect(() => {
@@ -319,7 +380,6 @@
 //     completed: false,
 //     category: 'node',
 //   });
-//   batch.commit();
 // });
 
 // useEffect(() => {
@@ -414,7 +474,6 @@
 //     completed: false,
 //     category: 'router',
 //   });
-//   batch.commit();
 // });
 
 // useEffect(() => {
@@ -510,7 +569,6 @@
 //     completed: false,
 //     category: 'react',
 //   });
-//   batch.commit();
 // });
 
 // useEffect(() => {

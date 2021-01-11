@@ -1,5 +1,4 @@
-// eslint-disable-next-line no-unused-vars
-const VideoData = [
+export const vData = [
   {
     id: 'aws_1',
     url: 'https://www.youtube.com/watch?v=HvrIPQ77xRY',
