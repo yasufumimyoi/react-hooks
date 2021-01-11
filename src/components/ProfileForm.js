@@ -9,11 +9,10 @@ import { ProfileUseStyles } from '../style/style';
 //firesoreからstorageにはアクセス出来ない
 
 export const ProfileForm = () => {
-  const [imageAsFile, setImageAsFile] = useState('');
   const [userName, setUserName] = useState('');
   const [userGender, setUserGender] = useState('');
   const [userMessage, setUserMessage] = useState('');
-  const { currentUser, userData } = useContext(VideoContext);
+  const { currentUser, userData, setUserData } = useContext(VideoContext);
   const history = useHistory();
   const classes = ProfileUseStyles();
 
@@ -29,9 +28,6 @@ export const ProfileForm = () => {
       case 'message':
         setUserMessage(e.target.value);
         break;
-      case 'file':
-        setImageAsFile(e.target.files[0]);
-        break;
     }
   };
 
@@ -39,11 +35,11 @@ export const ProfileForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      //storageにimageデータをセット
-      const storageRef = firebase.storage().ref();
-      const fileRef = storageRef.child(imageAsFile.name);
-      await fileRef.put(imageAsFile);
-      const fileUrl = await fileRef.getDownloadURL();
+      // //storageにimageデータをセット
+      // const storageRef = firebase.storage().ref();
+      // const fileRef = storageRef.child(imageAsFile.name);
+      // await fileRef.put(imageAsFile);
+      // const fileUrl = await fileRef.getDownloadURL();
       //firesoreにデータをセット
       await firebase
         .firestore()
@@ -55,15 +51,21 @@ export const ProfileForm = () => {
           name: userName,
           gender: userGender,
           message: userMessage,
-          image: fileUrl,
         });
+      setUserData([
+        {
+          name: userName,
+          gender: userGender,
+          message: userMessage,
+          image: userData[0].image,
+        },
+      ]);
       setUserName('');
       setUserGender('');
       setUserMessage('');
-      setImageAsFile('');
       history.push('/profile');
     } catch (error) {
-      console.error(error.message);
+      //handle exception..
     }
   };
 
@@ -74,7 +76,7 @@ export const ProfileForm = () => {
         setUserGender(userData[0].gender);
         setUserMessage(userData[0].message);
       } catch (error) {
-        console.error(error.message);
+        //handle exception..
       }
     }
   }, []);
@@ -108,8 +110,7 @@ export const ProfileForm = () => {
             onChange={handleChange}
             value={userMessage}
           />
-          <input type="file" onChange={handleChange} name="file" />
-          <Button fullWidth variant="contained" color="primary">
+          <Button fullWidth variant="contained" color="primary" type="submit">
             Submit
           </Button>
         </form>

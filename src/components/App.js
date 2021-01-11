@@ -6,6 +6,7 @@ import { firebase } from '../firebase/firebase.util';
 import { ScrollToTop } from './Scroll';
 import { ThemeProvider } from '@material-ui/styles';
 import { theme } from '../style/theme';
+import { vData } from '../assets/videos/VideoData';
 
 const App = () => {
   const [AWVideo, setAWVideo] = useState([]);
@@ -36,9 +37,7 @@ const App = () => {
       //未登録ユーザーのみ、新規の動画データをセットする
       if (dataRef.empty) {
         let videos = [];
-        const data = await firebase.firestore().collection('videoData').get();
-        await data.forEach((doc) => {
-          let video = doc.data();
+        await vData.forEach((video) => {
           let docName = video.id;
           let id = video.id;
           let category = video.category;
@@ -47,7 +46,7 @@ const App = () => {
           let url = video.url;
           let completed = video.completed;
           let path = video.path;
-          videos.push(doc.data);
+          videos.push(video);
           firebase
             .firestore()
             .collection('users')
@@ -55,30 +54,37 @@ const App = () => {
             .collection('videos')
             .doc(docName)
             .set({ id, category, image, title, url, completed, path });
+          //動画のセット
+          setAWVideo(videos.filter((video) => video.category === 'aws'));
+          setDVideo(videos.filter((video) => video.category === 'docker'));
+          setFVideo(videos.filter((video) => video.category === 'firebase'));
+          setJVideo(videos.filter((video) => video.category === 'javascript'));
+          setMVideo(videos.filter((video) => video.category === 'material'));
+          setNVideo(videos.filter((video) => video.category === 'node'));
+          setRVideo(videos.filter((video) => video.category === 'react'));
+          setRRVideo(videos.filter((video) => video.category === 'router'));
+          setTVideo(videos.filter((video) => video.category === 'typescript'));
+          setAllVideo(videos);
+          setVideoResults(videos);
         });
+      } else {
+        //動画データを取得し、useStateにセットする
+        let videos = [];
+        await dataRef.forEach((doc) => {
+          videos.push(doc.data());
+        });
+        setAWVideo(videos.filter((video) => video.category === 'aws'));
+        setDVideo(videos.filter((video) => video.category === 'docker'));
+        setFVideo(videos.filter((video) => video.category === 'firebase'));
+        setJVideo(videos.filter((video) => video.category === 'javascript'));
+        setMVideo(videos.filter((video) => video.category === 'material'));
+        setNVideo(videos.filter((video) => video.category === 'node'));
+        setRVideo(videos.filter((video) => video.category === 'react'));
+        setRRVideo(videos.filter((video) => video.category === 'router'));
+        setTVideo(videos.filter((video) => video.category === 'typescript'));
+        setAllVideo(videos);
+        setVideoResults(videos);
       }
-      //動画データを取得し、useStateにセットする
-      let videos = [];
-      const videoData = await firebase
-        .firestore()
-        .collection('users')
-        .doc(user.uid)
-        .collection('videos')
-        .get();
-      await videoData.forEach((doc) => {
-        videos.push(doc.data());
-      });
-      setAWVideo(videos.filter((video) => video.category === 'aws'));
-      setDVideo(videos.filter((video) => video.category === 'docker'));
-      setFVideo(videos.filter((video) => video.category === 'firebase'));
-      setJVideo(videos.filter((video) => video.category === 'javascript'));
-      setMVideo(videos.filter((video) => video.category === 'material'));
-      setNVideo(videos.filter((video) => video.category === 'node'));
-      setRVideo(videos.filter((video) => video.category === 'react'));
-      setRRVideo(videos.filter((video) => video.category === 'router'));
-      setTVideo(videos.filter((video) => video.category === 'typescript'));
-      setAllVideo(videos);
-      setVideoResults(videos);
     } catch (error) {
       //handle exception
     }
@@ -96,7 +102,11 @@ const App = () => {
         .get();
       //未登録ユーザーのみ、デフォルトのプロフィールデータをセットする
       if (dataRef.empty) {
-        console.log('insert defalut image');
+        const imageRef = firebase.storage().ref().child('user.png');
+        const image = await imageRef.getDownloadURL();
+        setUserData([
+          { name: 'お名前', gender: '性別', message: '自己紹介', image: image },
+        ]);
       } else {
         let userProfile = [];
         const data = await firebase
@@ -111,7 +121,7 @@ const App = () => {
         setUserData(userProfile);
       }
     } catch (error) {
-      console.error(error.message);
+      //handle exception...
     }
   };
 
@@ -133,10 +143,6 @@ const App = () => {
       }
     });
   }, []);
-
-  useEffect(() => {
-    obtainUserProfile(currentUser);
-  }, [userData]);
 
   return (
     <VideoContext.Provider
@@ -182,6 +188,66 @@ const App = () => {
 };
 
 export { App };
+
+// const obtainVideoData = async (user) => {
+//   try {
+//     //既に動画コレクションを持っているか確認
+//     const dataRef = await firebase
+//       .firestore()
+//       .collection('users')
+//       .doc(user.uid)
+//       .collection('videos')
+//       .get();
+//     //未登録ユーザーのみ、新規の動画データをセットする
+//     if (dataRef.empty) {
+//       let videos = [];
+//       const data = await firebase.firestore().collection('videoData').get();
+//       await data.forEach((doc) => {
+//         let video = doc.data();
+//         let docName = video.id;
+//         let id = video.id;
+//         let category = video.category;
+//         let image = video.image;
+//         let title = video.title;
+//         let url = video.url;
+//         let completed = video.completed;
+//         let path = video.path;
+//         videos.push(doc.data);
+//         firebase
+//           .firestore()
+//           .collection('users')
+//           .doc(user.uid)
+//           .collection('videos')
+//           .doc(docName)
+//           .set({ id, category, image, title, url, completed, path });
+//       });
+//     }
+//     //動画データを取得し、useStateにセットする
+//     let videos = [];
+//     const videoData = await firebase
+//       .firestore()
+//       .collection('users')
+//       .doc(user.uid)
+//       .collection('videos')
+//       .get();
+//     await videoData.forEach((doc) => {
+//       videos.push(doc.data());
+//     });
+//     setAWVideo(videos.filter((video) => video.category === 'aws'));
+//     setDVideo(videos.filter((video) => video.category === 'docker'));
+//     setFVideo(videos.filter((video) => video.category === 'firebase'));
+//     setJVideo(videos.filter((video) => video.category === 'javascript'));
+//     setMVideo(videos.filter((video) => video.category === 'material'));
+//     setNVideo(videos.filter((video) => video.category === 'node'));
+//     setRVideo(videos.filter((video) => video.category === 'react'));
+//     setRRVideo(videos.filter((video) => video.category === 'router'));
+//     setTVideo(videos.filter((video) => video.category === 'typescript'));
+//     setAllVideo(videos);
+//     setVideoResults(videos);
+//   } catch (error) {
+//     //handle exception
+//   }
+// };
 
 //既存ユーザーのログイン処理
 // const existingUserLogin = async (user) => {

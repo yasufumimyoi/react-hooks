@@ -42,7 +42,15 @@ export const headerStyles = makeStyles((theme) => ({
   title: {
     cursor: 'pointer',
   },
-  icon: {
+  item: {
+    display: 'flex',
+  },
+  profile: {
+    marginRight: '15px',
+    cursor: 'pointer',
+  },
+  menu: {
+    marginTop: '10px',
     cursor: 'pointer',
   },
 }));

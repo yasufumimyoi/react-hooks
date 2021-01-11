@@ -7,8 +7,9 @@ import { firebase } from '../firebase/firebase.util';
 import { VideoContext } from '../contexts/video-context';
 import { Box } from '@material-ui/core';
 import { headerStyles } from '../style/style';
+import Avatar from '@material-ui/core/Avatar';
 
-export const HeaderMenu = () => {
+export const HeaderMenu = ({ image }: any) => {
   const history = useHistory();
   const classes = headerStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -89,12 +90,18 @@ export const HeaderMenu = () => {
   return (
     <div>
       {guestUser ? (
-        <Box>
+        <Box className={classes.item}>
+          <Avatar
+            alt="profileImage"
+            src={image}
+            className={classes.profile}
+            onClick={handleProfile}
+          />
           <MenuIcon
             aria-controls="simple-menu"
             aria-haspopup="true"
             onClick={handleClick}
-            className={classes.icon}
+            className={classes.menu}
           ></MenuIcon>
           <Menu
             id="simple-menu"
@@ -110,11 +117,18 @@ export const HeaderMenu = () => {
           </Menu>
         </Box>
       ) : (
-        <Box>
+        <Box className={classes.item}>
+          <Avatar
+            alt="profileImage"
+            src={image}
+            className={classes.profile}
+            onClick={handleProfile}
+          />
           <MenuIcon
             aria-controls="simple-menu"
             aria-haspopup="true"
             onClick={handleClick}
+            className={classes.menu}
           ></MenuIcon>
           <Menu
             id="simple-menu"
@@ -125,7 +139,6 @@ export const HeaderMenu = () => {
           >
             <MenuItem onClick={handelCoursesRoute}>トップ</MenuItem>
             <MenuItem onClick={handelAllVideoRoute}>動画一覧</MenuItem>
-            <MenuItem onClick={handleProfile}>プロフィール</MenuItem>
             <MenuItem onClick={handleLogout}>ログアウト</MenuItem>
             <MenuItem onClick={handelDelete}>アカウントの削除</MenuItem>
           </Menu>

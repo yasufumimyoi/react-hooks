@@ -9,7 +9,7 @@ import { useHistory } from 'react-router-dom';
 const Header = () => {
   const classes = headerStyles();
   const history = useHistory();
-  const { currentUser } = useContext(VideoContext);
+  const { currentUser, userData } = useContext(VideoContext);
 
   //選択したコースに移動する
   const handleRouter = () => {
@@ -32,7 +32,10 @@ const Header = () => {
               Learn React
             </Typography>
             <div className={classes.extra}></div>
-            {currentUser && <HeaderMenu />}
+            {currentUser &&
+              userData.map((data: any) => (
+                <HeaderMenu key={data.name} image={data.image} />
+              ))}
           </Toolbar>
         </AppBar>
       </Grid>
@@ -40,3 +43,22 @@ const Header = () => {
   );
 };
 export { Header };
+
+// <Grid container className={classes.root}>
+// <Grid item sm={12}>
+//   <AppBar position="fixed">
+//     <Toolbar>
+//       <SchoolIcon className={classes.logo} />
+//       <Typography
+//         variant="h6"
+//         className={currentUser && classes.title}
+//         onClick={handleRouter}
+//       >
+//         Learn React
+//       </Typography>
+//       <div className={classes.extra}></div>
+//       {currentUser && <HeaderMenu />}
+//     </Toolbar>
+//   </AppBar>
+// </Grid>
+// </Grid>

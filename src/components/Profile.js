@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import { useHistory } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
-import { Test } from '../components/Test';
+import { Photo } from '../components/Photo';
 
 const useStyles = makeStyles({
   root: {
@@ -58,7 +58,7 @@ export const Profile = ({ userName, userGender, userMessage, userImage }) => {
           <IconButton onClick={handleProfileEdit}>
             <AddCircleIcon color="primary" />
           </IconButton>
-          <Test color="primary" />
+          <Photo color="primary" />
         </CardActions>
       </Card>
     </div>
