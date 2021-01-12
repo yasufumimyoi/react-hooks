@@ -11,7 +11,6 @@ export const MemoSort = ({
   sortTime,
   setMemo,
   setSortMemo,
-  setSortCategory,
   setSortTime,
 }) => {
   //メモを新しい順に並び替える
@@ -69,37 +68,15 @@ export const MemoSort = ({
     }
   }, [sortTime]);
 
-  //カテゴリー別でメモを表示させる
-  useEffect(() => {
-    const newMemo = memo.filter((m) => m.category.includes(sortCategory));
-    setSortMemo(newMemo);
-  }, [sortCategory]);
+  // //カテゴリー別でメモを表示させる
+  // useEffect(() => {
+  //   const newMemo = memo.filter((m) => m.category.includes(sortCategory));
+  //   setSortMemo(newMemo);
+  // }, [sortCategory]);
 
   return (
     <div>
-      <FormControl style={{ marginBottom: '20px' }}>
-        <InputLabel shrink>カテゴリー別</InputLabel>
-        <Select
-          value={sortCategory}
-          name="category"
-          onChange={(e) => setSortCategory(e.target.value)}
-          displayEmpty
-        >
-          <MenuItem value="">
-            <em>全ての動画</em>
-          </MenuItem>
-          <MenuItem value="AWS">AWS</MenuItem>
-          <MenuItem value="Docker">Docker</MenuItem>
-          <MenuItem value="Firebase">Firebase</MenuItem>
-          <MenuItem value="Javascript">Javascript</MenuItem>
-          <MenuItem value="Material-ui">Material-ui</MenuItem>
-          <MenuItem value="Node.js">Node</MenuItem>
-          <MenuItem value="React">React</MenuItem>
-          <MenuItem value="React-Router">React Router</MenuItem>
-          <MenuItem value="Typescript">Typescript</MenuItem>
-        </Select>
-      </FormControl>
-      <FormControl style={{ marginBottom: '20px' }}>
+      <FormControl style={{ marginBottom: '10px' }}>
         <InputLabel shrink>日付順</InputLabel>
         <Select
           value={sortTime}
@@ -116,3 +93,42 @@ export const MemoSort = ({
     </div>
   );
 };
+
+// <div>
+// <FormControl style={{ marginBottom: '20px' }}>
+//   <InputLabel shrink>カテゴリー別</InputLabel>
+//   <Select
+//     value={sortCategory}
+//     name="category"
+//     onChange={(e) => setSortCategory(e.target.value)}
+//     displayEmpty
+//   >
+//     <MenuItem value="">
+//       <em>全ての動画</em>
+//     </MenuItem>
+//     <MenuItem value="AWS">AWS</MenuItem>
+//     <MenuItem value="Docker">Docker</MenuItem>
+//     <MenuItem value="Firebase">Firebase</MenuItem>
+//     <MenuItem value="Javascript">Javascript</MenuItem>
+//     <MenuItem value="Material-ui">Material-ui</MenuItem>
+//     <MenuItem value="Node.js">Node</MenuItem>
+//     <MenuItem value="React">React</MenuItem>
+//     <MenuItem value="React-Router">React Router</MenuItem>
+//     <MenuItem value="Typescript">Typescript</MenuItem>
+//   </Select>
+// </FormControl>
+// <FormControl style={{ marginBottom: '20px' }}>
+//   <InputLabel shrink>日付順</InputLabel>
+//   <Select
+//     value={sortTime}
+//     name="time"
+//     onChange={(e) => setSortTime(e.target.value)}
+//     displayEmpty
+//   >
+//     <MenuItem value="">
+//       <em>古い順に並び替える</em>
+//     </MenuItem>
+//     <MenuItem value="new">新しい順に並び替える</MenuItem>
+//   </Select>
+// </FormControl>
+// </div>

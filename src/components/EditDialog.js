@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -14,18 +14,12 @@ import EditIcon from '@material-ui/icons/Edit';
 import { firebase } from '../firebase/firebase.util';
 import { VideoContext } from '../contexts/video-context';
 
-export const EditDialog = ({
-  category,
-  content,
-  state,
-  setContent,
-  setCategory,
-  memo,
-  //setMemo,
-}) => {
+export const EditDialog = ({ state, setContent, setCategory, memo }) => {
   const [open, setOpen] = React.useState(false);
-  const now = format(new Date(), 'yyyy/MMM/do/h:m:s');
+  const now = format(new Date(), 'yyyy/MMM/do');
   const { currentUser } = useContext(VideoContext);
+  const [editCategory, setEditCategory] = useState('');
+  const [editContent, setEditContent] = useState('');
 
   //モーダルの開閉
   const handleClickOpen = () => {
@@ -38,21 +32,22 @@ export const EditDialog = ({
   //モーダルが開いたら入力フォームに修正する値をセットする
   useEffect(() => {
     if (open === false) {
-      setCategory('');
-      setContent('');
+      setEditCategory('');
+      setEditContent('');
     } else {
-      setCategory(state.category);
-      setContent(state.content);
+      setEditCategory(state.category);
+      setEditContent(state.content);
     }
   }, [open]);
 
-  //fix me
   //メモの更新
-  const handleEdit = () => {
+  const handleEdit = async () => {
     const newMemo = memo.filter((memo) => memo.id === state.id);
-    const updatedContent = (newMemo[0].content = content);
-    const updatedCategory = (newMemo[0].category = category);
+    const updatedContent = (newMemo[0].content = editContent);
+    const updatedCategory = (newMemo[0].category = editCategory);
     const updatedTime = (newMemo[0].time = now);
+    await setContent(updatedContent);
+    await setCategory(updatedCategory);
     firebase
       .firestore()
       .collection('users')
@@ -65,9 +60,10 @@ export const EditDialog = ({
         content: updatedContent,
         time: updatedTime,
       });
-    //setMemo()
-    setCategory('');
     setContent('');
+    setCategory('');
+    setEditCategory('');
+    setEditContent('');
     handleClose();
   };
 
@@ -81,10 +77,10 @@ export const EditDialog = ({
         <DialogContent>
           <DialogContentText>メモの修正</DialogContentText>
           <Select
-            value={category}
+            value={editCategory}
             name="category"
             displayEmpty
-            onChange={(event) => setCategory(event.target.value)}
+            onChange={(event) => setEditCategory(event.target.value)}
           >
             <MenuItem value="">
               <em>選択してください</em>
@@ -106,8 +102,8 @@ export const EditDialog = ({
             label="メモ"
             type="text"
             fullWidth
-            value={content}
-            onChange={(event) => setContent(event.target.value)}
+            value={editContent}
+            onChange={(event) => setEditContent(event.target.value)}
           />
         </DialogContent>
         <DialogActions>
@@ -123,27 +119,51 @@ export const EditDialog = ({
   );
 };
 
-//匿名ユーザーでなければ、firestoreのデータを更新する
-// if (currentUser.isAnonymous === false || guestUser.isAnonymous === false) {
-//   firestore
-//     .collection('users')
-//     .doc(currentUser.uid)
-//     .update({ [`${editedPath}`]: [...newItems] });
-//   //匿名ユーザーであれば、sessionStorageにデータを一時保存させる
-// } else {
-//   sessionStorage.setItem(`${editedPath}`, JSON.stringify(newItems));
-// }
-
-//need path and updatedData
-
-// if (currentUser.isAnonymous === false || guestUser.isAnonymous === false) {
-//   firestore
-//     .collection('users')
-//     .doc(currentUser.uid)
-//     .collection('videos')
-//     .doc(newItems[0].id)
-//     .update({id});
-//   //匿名ユーザーであれば、sessionStorageにデータを一時保存させる
-// } else {
-//   sessionStorage.setItem(`${editedPath}`, JSON.stringify(newItems));
-// }
+// <div>
+// <IconButton aria-label="delete" onClick={handleClickOpen}>
+//   <EditIcon fontSize="small" />
+// </IconButton>
+// <Dialog open={open} onClose={handleClose}>
+//   <DialogTitle>確認してください</DialogTitle>
+//   <DialogContent>
+//     <DialogContentText>メモの修正</DialogContentText>
+//     <Select
+//       value={category}
+//       name="category"
+//       displayEmpty
+//       onChange={(event) => setCategory(event.target.value)}
+//     >
+//       <MenuItem value="">
+//         <em>選択してください</em>
+//       </MenuItem>
+//       <MenuItem value="AWS">AWS</MenuItem>
+//       <MenuItem value="Docker">Docker</MenuItem>
+//       <MenuItem value="Firebase">Firebase</MenuItem>
+//       <MenuItem value="Javascript">Javascript</MenuItem>
+//       <MenuItem value="Material-ui">Material-ui</MenuItem>
+//       <MenuItem value="Node.js">Node.js</MenuItem>
+//       <MenuItem value="React">React</MenuItem>
+//       <MenuItem value="React-Router">React Router</MenuItem>
+//       <MenuItem value="Typescript">Typescript</MenuItem>
+//     </Select>
+//     <TextField
+//       autoFocus
+//       margin="dense"
+//       name="content"
+//       label="メモ"
+//       type="text"
+//       fullWidth
+//       value={content}
+//       onChange={(event) => setContent(event.target.value)}
+//     />
+//   </DialogContent>
+//   <DialogActions>
+//     <Button onClick={handleClose} color="primary">
+//       キャンセル
+//     </Button>
+//     <Button color="primary" type="submit" onClick={handleEdit}>
+//       OK
+//     </Button>
+//   </DialogActions>
+// </Dialog>
+// </div>

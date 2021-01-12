@@ -8,11 +8,9 @@ import Select from '@material-ui/core/Select';
 import { MemoUseStyles } from '../style/style';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
-import { AlertDialog } from './AlertDialog';
 import { format } from 'date-fns';
 import { Memo } from './Memo';
 import { MemoSort } from './MemoSort';
-import { EditDialog } from './EditDialog';
 import { firebase } from '../firebase/firebase.util';
 import { VideoContext } from '../contexts/video-context';
 
@@ -21,7 +19,7 @@ export const ListOfMemo = () => {
   const [category, setCategory] = React.useState('');
   const [content, setContent] = useState('');
   const [sortMemo, setSortMemo] = useState([]);
-  const now = format(new Date(), 'yyyy/MMM/do/h:m:s');
+  const now = format(new Date(), 'yyyy/MMM/do');
   const [sortCategory, setSortCategory] = useState('');
   const [sortTime, setSortTime] = useState('');
   const { currentUser } = useContext(VideoContext);
@@ -109,37 +107,47 @@ export const ListOfMemo = () => {
   }, []);
 
   const classes = MemoUseStyles();
+
   return (
     <Grid container>
       <Grid item sm={12}>
-        <h4>Memo</h4>
+        <Typography variant="subtitle1">メモの作成</Typography>
         <form onSubmit={handleSubmit}>
-          <div>
-            <FormControl style={{ marginBottom: '20px' }}>
-              <InputLabel shrink>カテゴリー</InputLabel>
-              <Select
-                value={category}
-                name="category"
-                onChange={handleChange}
-                displayEmpty
-              >
-                <MenuItem value="">
-                  <em>選択してください</em>
-                </MenuItem>
-                <MenuItem value="AWS">AWS</MenuItem>
-                <MenuItem value="Docker">Docker</MenuItem>
-                <MenuItem value="Firebase">Firebase</MenuItem>
-                <MenuItem value="Javascript">Javascript</MenuItem>
-                <MenuItem value="Material-ui">Material-ui</MenuItem>
-                <MenuItem value="Node.js">Node</MenuItem>
-                <MenuItem value="React">React</MenuItem>
-                <MenuItem value="React-Router">React Router</MenuItem>
-                <MenuItem value="Typescript">Typescript</MenuItem>
-              </Select>
-            </FormControl>
-            <div>
+          <Grid container className={classes.subcontainer}>
+            <Grid
+              item
+              style={{
+                marginRight: '20px',
+                marginBottom: '15px',
+                marginTop: '25px',
+              }}
+            >
+              <FormControl style={{ width: '130px' }}>
+                <InputLabel shrink>カテゴリー</InputLabel>
+                <Select
+                  value={category}
+                  name="category"
+                  onChange={handleChange}
+                  displayEmpty
+                >
+                  <MenuItem value="">
+                    <em>選択</em>
+                  </MenuItem>
+                  <MenuItem value="AWS">AWS</MenuItem>
+                  <MenuItem value="Docker">Docker</MenuItem>
+                  <MenuItem value="Firebase">Firebase</MenuItem>
+                  <MenuItem value="Javascript">Javascript</MenuItem>
+                  <MenuItem value="Material-ui">Material-ui</MenuItem>
+                  <MenuItem value="Node.js">Node</MenuItem>
+                  <MenuItem value="React">React</MenuItem>
+                  <MenuItem value="React-Router">React Router</MenuItem>
+                  <MenuItem value="Typescript">Typescript</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item>
               <TextField
-                label="入力してください"
+                label="メモ"
                 variant="outlined"
                 name="content"
                 value={content}
@@ -148,16 +156,24 @@ export const ListOfMemo = () => {
                 multiline
                 rows={2}
               />
-              <Fab color="primary" type="submit" style={{ marginLeft: '20px' }}>
+              <Fab
+                color="primary"
+                type="submit"
+                size="small"
+                style={{ marginLeft: '10px', marginTop: '15px' }}
+              >
                 <AddIcon />
               </Fab>
-            </div>
-          </div>
+            </Grid>
+          </Grid>
         </form>
         <hr />
         {/*メモがあればソート機能を表示させる*/}
         {memo.length > 0 && (
           <div>
+            <div className={classes.container}>
+              <Typography variant="subtitle1">メモ一覧</Typography>
+            </div>
             <MemoSort
               memo={memo}
               sortMemo={sortMemo}
@@ -175,16 +191,11 @@ export const ListOfMemo = () => {
           !sortCategory ? (
             memo.map((m, index) => (
               <Grid container key={index} className={classes.container}>
-                <Grid item>
+                <Grid item className={classes.extra}>
                   <Memo
-                    content={m.content}
-                    category={m.category}
+                    memoContent={m.content}
+                    memoCategory={m.category}
                     time={m.time}
-                  />
-                </Grid>
-                <Grid item className={classes.extra} />
-                <Grid item>
-                  <EditDialog
                     state={m}
                     category={category}
                     content={content}
@@ -192,10 +203,8 @@ export const ListOfMemo = () => {
                     setContent={setContent}
                     setCategory={setCategory}
                     setMemo={setMemo}
+                    handelRemove={() => handelRemove(m.id)}
                   />
-                </Grid>
-                <Grid item>
-                  <AlertDialog handelRemove={() => handelRemove(m.id)} />
                 </Grid>
               </Grid>
             ))
@@ -209,74 +218,264 @@ export const ListOfMemo = () => {
                     time={m.time}
                   />
                 </Grid>
-                <Grid item className={classes.extra} />
-                <Grid item>
-                  <EditDialog
-                    state={m}
-                    category={category}
-                    content={content}
-                    memo={memo}
-                    setContent={setContent}
-                    setCategory={setCategory}
-                    setMemo={setMemo}
-                  />
-                </Grid>
-                <Grid item>
-                  <AlertDialog handelRemove={() => handelRemove(m.id)} />
-                </Grid>
               </Grid>
             ))
           )
         ) : (
-          <Typography>
-            カテゴリー選択を行い、「 + 」をクリックしメモを作成しましょう。
-          </Typography>
+          <div className={classes.note}>
+            <Typography variant="body2">
+              カテゴリー選択を行い、「 + 」をクリックしメモを作成しましょう。
+            </Typography>
+          </div>
         )}
       </Grid>
     </Grid>
   );
 };
 
-// let dataRef = firebase
-//   .firestore()
-//   .collection('videoData')
-//   .doc('videos')
-//   .get()
-//   .then((info) => {
-//     console.log(info.data());
-//   });
-
-// let temp = firebase
-//   .firestore()
-//   .collection('test')
-//   .where('category', '==', 'aws')
-//   .get()
-//   .then((snapshot) => {
-//     snapshot.forEach((doc) => {
-//       console.log(doc.id, '=>', doc.data());
-//     });
-//   });
-
-// {memo.length > 0 ? (
-//   memo.map((m, index) => {
-//     return (
-//       <div key={index} className={classes.container}>
-//         <Memo content={m.content} category={m.category} time={m.time} />
-//         <AlertDialog handelRemove={() => handelRemove(m.id)} />
-//         <EditDialog
-//           state={m}
-//           category={category}
-//           content={content}
-//           memo={memo}
-//           setContent={setContent}
-//           setCategory={setCategory}
-//           setMemo={setMemo}
+// <Grid container>
+// <Grid item sm={12}>
+//   <Typography>Memo</Typography>
+//   <form onSubmit={handleSubmit}>
+//     <div>
+//       <FormControl style={{ marginBottom: '20px' }}>
+//         <InputLabel shrink>カテゴリー</InputLabel>
+//         <Select
+//           value={category}
+//           name="category"
+//           onChange={handleChange}
+//           displayEmpty
+//         >
+//           <MenuItem value="">
+//             <em>選択してください</em>
+//           </MenuItem>
+//           <MenuItem value="AWS">AWS</MenuItem>
+//           <MenuItem value="Docker">Docker</MenuItem>
+//           <MenuItem value="Firebase">Firebase</MenuItem>
+//           <MenuItem value="Javascript">Javascript</MenuItem>
+//           <MenuItem value="Material-ui">Material-ui</MenuItem>
+//           <MenuItem value="Node.js">Node</MenuItem>
+//           <MenuItem value="React">React</MenuItem>
+//           <MenuItem value="React-Router">React Router</MenuItem>
+//           <MenuItem value="Typescript">Typescript</MenuItem>
+//         </Select>
+//       </FormControl>
+//       <div>
+//         <TextField
+//           label="入力してください"
+//           variant="outlined"
+//           name="content"
+//           value={content}
+//           onChange={handleChange}
+//           style={{ width: '300px', marginBottom: '20px' }}
+//           multiline
+//           rows={2}
 //         />
+//         <Fab color="primary" type="submit" style={{ marginLeft: '20px' }}>
+//           <AddIcon />
+//         </Fab>
 //       </div>
-//     );
-//   })
-// ) : (
-//   <Typography>
-//     カテゴリー選択を行い、「 + 」をクリックしメモを作成しましょう。
-//   </Typography>
-// )}
+//     </div>
+//   </form>
+//   <hr />
+//   {/*メモがあればソート機能を表示させる*/}
+//   {memo.length > 0 && (
+//     <div>
+//       <MemoSort
+//         memo={memo}
+//         sortMemo={sortMemo}
+//         sortCategory={sortCategory}
+//         sortTime={sortTime}
+//         setMemo={setMemo}
+//         setSortMemo={setSortMemo}
+//         setSortCategory={setSortCategory}
+//         setSortTime={setSortTime}
+//       />
+//     </div>
+//   )}
+//   {/*メモが存在し、全てのメモを表示を変更する or ソート値によってメモの表示を変更する*/}
+//   {memo.length > 0 ? (
+//     !sortCategory ? (
+//       memo.map((m, index) => (
+//         <Grid container key={index} className={classes.container}>
+//           <Grid item>
+//             <Memo
+//               content={m.content}
+//               category={m.category}
+//               time={m.time}
+//             />
+//           </Grid>
+//           <Grid item className={classes.extra} />
+//           <Grid item>
+//             <EditDialog
+//               state={m}
+//               category={category}
+//               content={content}
+//               memo={memo}
+//               setContent={setContent}
+//               setCategory={setCategory}
+//               setMemo={setMemo}
+//             />
+//           </Grid>
+//           <Grid item>
+//             <AlertDialog handelRemove={() => handelRemove(m.id)} />
+//           </Grid>
+//         </Grid>
+//       ))
+//     ) : (
+//       sortMemo.map((m, index) => (
+//         <Grid container key={index} className={classes.container}>
+//           <Grid item>
+//             <Memo
+//               content={m.content}
+//               category={m.category}
+//               time={m.time}
+//             />
+//           </Grid>
+//           <Grid item className={classes.extra} />
+//           <Grid item>
+//             <EditDialog
+//               state={m}
+//               category={category}
+//               content={content}
+//               memo={memo}
+//               setContent={setContent}
+//               setCategory={setCategory}
+//               setMemo={setMemo}
+//             />
+//           </Grid>
+//           <Grid item>
+//             <AlertDialog handelRemove={() => handelRemove(m.id)} />
+//           </Grid>
+//         </Grid>
+//       ))
+//     )
+//   ) : (
+//     <Typography>
+//       カテゴリー選択を行い、「 + 」をクリックしメモを作成しましょう。
+//     </Typography>
+//   )}
+// </Grid>
+// </Grid>
+
+// <Grid container>
+//       <Grid item sm={12}>
+//         <Typography variant="subtitle1">メモの作成</Typography>
+//         <form onSubmit={handleSubmit}>
+//           <Grid container className={classes.subcontainer}>
+//             <Grid
+//               item
+//               style={{
+//                 marginRight: '20px',
+//                 marginBottom: '15px',
+//                 marginTop: '25px',
+//               }}
+//             >
+//               <FormControl style={{ width: '130px' }}>
+//                 <InputLabel shrink>カテゴリー</InputLabel>
+//                 <Select
+//                   value={category}
+//                   name="category"
+//                   onChange={handleChange}
+//                   displayEmpty
+//                 >
+//                   <MenuItem value="">
+//                     <em>選択</em>
+//                   </MenuItem>
+//                   <MenuItem value="AWS">AWS</MenuItem>
+//                   <MenuItem value="Docker">Docker</MenuItem>
+//                   <MenuItem value="Firebase">Firebase</MenuItem>
+//                   <MenuItem value="Javascript">Javascript</MenuItem>
+//                   <MenuItem value="Material-ui">Material-ui</MenuItem>
+//                   <MenuItem value="Node.js">Node</MenuItem>
+//                   <MenuItem value="React">React</MenuItem>
+//                   <MenuItem value="React-Router">React Router</MenuItem>
+//                   <MenuItem value="Typescript">Typescript</MenuItem>
+//                 </Select>
+//               </FormControl>
+//             </Grid>
+//             <Grid item>
+//               <TextField
+//                 label="メモ"
+//                 variant="outlined"
+//                 name="content"
+//                 value={content}
+//                 onChange={handleChange}
+//                 style={{ width: '300px', marginBottom: '20px' }}
+//                 multiline
+//                 rows={2}
+//               />
+//               <Fab
+//                 color="primary"
+//                 type="submit"
+//                 size="small"
+//                 style={{ marginLeft: '10px', marginTop: '15px' }}
+//               >
+//                 <AddIcon />
+//               </Fab>
+//             </Grid>
+//           </Grid>
+//         </form>
+//         <hr />
+//         {/*メモがあればソート機能を表示させる*/}
+//         {memo.length > 0 && (
+//           <div>
+//             <div className={classes.container}>
+//               <Typography variant="subtitle1">メモ一覧</Typography>
+//             </div>
+//             <MemoSort
+//               memo={memo}
+//               sortMemo={sortMemo}
+//               sortCategory={sortCategory}
+//               sortTime={sortTime}
+//               setMemo={setMemo}
+//               setSortMemo={setSortMemo}
+//               setSortCategory={setSortCategory}
+//               setSortTime={setSortTime}
+//             />
+//           </div>
+//         )}
+//         {/*メモが存在し、全てのメモを表示を変更する or ソート値によってメモの表示を変更する*/}
+//         {memo.length > 0 ? (
+//           !sortCategory ? (
+//             memo.map((m, index) => (
+//               <Grid container key={index} className={classes.container}>
+//                 <Grid item className={classes.extra}>
+//                   <Memo
+//                     memoContent={m.content}
+//                     memoCategory={m.category}
+//                     time={m.time}
+//                     state={m}
+//                     category={category}
+//                     content={content}
+//                     memo={memo}
+//                     setContent={setContent}
+//                     setCategory={setCategory}
+//                     setMemo={setMemo}
+//                     handelRemove={() => handelRemove(m.id)}
+//                   />
+//                 </Grid>
+//               </Grid>
+//             ))
+//           ) : (
+//             sortMemo.map((m, index) => (
+//               <Grid container key={index} className={classes.container}>
+//                 <Grid item>
+//                   <Memo
+//                     content={m.content}
+//                     category={m.category}
+//                     time={m.time}
+//                   />
+//                 </Grid>
+//               </Grid>
+//             ))
+//           )
+//         ) : (
+//           <div className={classes.note}>
+//             <Typography variant="body2">
+//               カテゴリー選択を行い、「 + 」をクリックしメモを作成しましょう。
+//             </Typography>
+//           </div>
+//         )}
+//       </Grid>
+//     </Grid>
