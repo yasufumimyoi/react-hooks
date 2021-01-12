@@ -1,16 +1,51 @@
 import React from 'react';
-import { Typography } from '@material-ui/core';
+import { Typography, Grid } from '@material-ui/core';
 import { MemoUseStyles } from '../style/style';
+import { AlertDialog } from '../components/AlertDialog';
+import { EditDialog } from '../components/EditDialog';
 
-export const Memo = ({ content, category, time }) => {
+export const Memo = ({
+  memoContent,
+  memoCategory,
+  time,
+  state,
+  category,
+  content,
+  memo,
+  setContent,
+  setCategory,
+  setMemo,
+  handelRemove,
+}) => {
   const classes = MemoUseStyles();
   return (
-    <div key={time} className={classes.container}>
-      <Typography variant="subtitle2" gutterBottom>
-        Category: {category} <span>{time}</span>
-      </Typography>
+    <div>
+      <Grid container key={time}>
+        <Grid item style={{ marginTop: '15px', marginRight: '10px' }}>
+          <Typography variant="subtitle2" gutterBottom>
+            Category: {memoCategory} <span>{time}</span>
+          </Typography>
+        </Grid>
+        <Grid item>
+          <EditDialog
+            state={state}
+            category={category}
+            content={content}
+            memo={memo}
+            setContent={setContent}
+            setCategory={setCategory}
+            setMemo={setMemo}
+          />
+        </Grid>
+        <Grid item>
+          <AlertDialog handelRemove={handelRemove} />
+        </Grid>
+      </Grid>
+      <div></div>
       <div className={classes.memo}>
-        <Typography variant="body1">{content}</Typography>
+        <Typography className={classes.content} variant="body1">
+          {memoContent}
+        </Typography>
       </div>
     </div>
   );

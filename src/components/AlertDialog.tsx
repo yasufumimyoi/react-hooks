@@ -17,6 +17,10 @@ export const AlertDialog = ({ handelRemove }: HandleRemove) => {
   };
 
   const handleClose = () => {
+    setOpen(false);
+  };
+
+  const clickRemove = () => {
     handelRemove();
     setOpen(false);
   };
@@ -35,7 +39,7 @@ export const AlertDialog = ({ handelRemove }: HandleRemove) => {
           <Button onClick={handleClose} color="primary">
             キャンセル
           </Button>
-          <Button onClick={handleClose} color="primary" autoFocus>
+          <Button onClick={clickRemove} color="primary" autoFocus>
             OK
           </Button>
         </DialogActions>
