@@ -108,6 +108,7 @@ export const videosUseStyles = makeStyles({
   },
   container: {
     marginTop: '110px',
+    justifyContent: 'center',
   },
   loading: {
     justifyContent: 'center',
@@ -115,7 +116,7 @@ export const videosUseStyles = makeStyles({
     marginTop: '15%',
   },
   textbox: {
-    padding: '20px 0px 8px 0px',
+    padding: '10px 0px 0px 0px',
   },
   search: {
     textAlign: 'center',
@@ -158,13 +159,26 @@ export const MemoUseStyles = makeStyles({
   memo: {
     backgroundColor: '#f7f7f7',
     height: '60px',
-    marginBottom: '10px',
   },
   container: {
     marginBottom: '15px',
   },
   extra: {
     flexGrow: 1,
+  },
+  subcontainer: {
+    marginTop: '5px',
+  },
+  selecter: {
+    marginRight: '20px',
+  },
+  note: {
+    marginTop: '25px',
+    marginBottom: '20px',
+  },
+  content: {
+    paddingTop: '10px',
+    paddingLeft: '12px',
   },
 });
 
