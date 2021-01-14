@@ -25,6 +25,11 @@ export const AllVideoPage = () => {
       <Grid item sm={8} xs={12}>
         <div className={classes.search}>
           <Typography variant="h6">動画検索</Typography>
+          {videoResults.length === allVideo.length ? (
+            <p>検索結果: 0件</p>
+          ) : (
+            <p>{`検索結果: ${videoResults.length}件`}</p>
+          )}
           <div>
             <TextField
               variant="outlined"
@@ -34,13 +39,7 @@ export const AllVideoPage = () => {
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
-          <div>
-            {videoResults.length != allVideo.length && (
-              <Typography variant="subtitle1">{`検索結果: ${videoResults.length}件`}</Typography>
-            )}
-          </div>
         </div>
-
         <Grid container justify="space-evenly" className={classes.container}>
           {videoResults.map((video) => (
             <ListOfVideos

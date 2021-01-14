@@ -14,6 +14,7 @@ export const MemoSort = ({
   setSortTime,
 }) => {
   //メモを新しい順に並び替える
+
   const handleSortDesc = () => {
     if (!sortCategory) {
       const result = memo.sort((a, b) => {

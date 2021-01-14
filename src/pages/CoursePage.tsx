@@ -25,8 +25,8 @@ const CoursePage = () => {
           </span>
         </p>
       </Typography>
-      <Grid item sm={2} />
-      <Grid item sm={8}>
+      <Grid item sm={2} xs={1} />
+      <Grid item sm={8} xs={10}>
         <Grid container justify="space-evenly">
           {coursesDescriptions.map((course, index) => (
             <CourseCard
@@ -38,7 +38,7 @@ const CoursePage = () => {
           ))}
         </Grid>
       </Grid>
-      <Grid item sm={2} />
+      <Grid item sm={2} xs={1} />
     </Grid>
   );
 };
