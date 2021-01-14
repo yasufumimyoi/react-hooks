@@ -48,9 +48,10 @@ export const headerStyles = makeStyles((theme) => ({
   profile: {
     marginRight: '15px',
     cursor: 'pointer',
+    backgroundColor: 'white',
   },
   menu: {
-    marginTop: '10px',
+    marginTop: '6px',
     cursor: 'pointer',
   },
 }));
@@ -126,6 +127,9 @@ export const videosUseStyles = makeStyles({
     width: '200px',
     height: '30px',
   },
+  result: {
+    marginTop: '30px',
+  },
 });
 
 export const detailUseStyles = makeStyles({
@@ -185,5 +189,9 @@ export const MemoUseStyles = makeStyles({
 export const ProfileUseStyles = makeStyles({
   container: {
     justifyContent: 'center',
+    marginTop: '90px',
+  },
+  title: {
+    textAlign: 'center',
   },
 });

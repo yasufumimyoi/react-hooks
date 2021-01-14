@@ -5,9 +5,6 @@ import { Grid, TextField, Button } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import { ProfileUseStyles } from '../style/style';
 
-//ruleの設定が出来ていない
-//firesoreからstorageにはアクセス出来ない
-
 export const ProfileForm = () => {
   const [userName, setUserName] = useState('');
   const [userGender, setUserGender] = useState('');
@@ -83,8 +80,9 @@ export const ProfileForm = () => {
 
   return (
     <Grid container className={classes.container}>
-      <Grid item>
-        <h2>プロフィールの編集</h2>
+      <Grid item xs={1} />
+      <Grid item sm={4} xs={10}>
+        <h2 className={classes.title}>プロフィールの編集</h2>
         <form onSubmit={handleSubmit}>
           <TextField
             label="お名前"
@@ -110,11 +108,18 @@ export const ProfileForm = () => {
             onChange={handleChange}
             value={userMessage}
           />
-          <Button fullWidth variant="contained" color="primary" type="submit">
-            Submit
+          <Button
+            fullWidth
+            variant="contained"
+            color="primary"
+            type="submit"
+            style={{ marginTop: '30px' }}
+          >
+            送信
           </Button>
         </form>
       </Grid>
+      <Grid item xs={1} />
     </Grid>
   );
 };

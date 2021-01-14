@@ -105,7 +105,12 @@ const App = () => {
         const imageRef = firebase.storage().ref().child('user.png');
         const image = await imageRef.getDownloadURL();
         setUserData([
-          { name: 'お名前', gender: '性別', message: '自己紹介', image: image },
+          {
+            name: 'ニックネーム',
+            gender: '性別',
+            message: '自己紹介',
+            image: image,
+          },
         ]);
       } else {
         let userProfile = [];

@@ -96,6 +96,7 @@ export const HeaderMenu = ({ image }: any) => {
             src={image}
             className={classes.profile}
             onClick={handleProfile}
+            style={{ height: '35px', width: '35px' }}
           />
           <MenuIcon
             aria-controls="simple-menu"
@@ -112,8 +113,8 @@ export const HeaderMenu = ({ image }: any) => {
           >
             <MenuItem onClick={handelCoursesRoute}>トップ</MenuItem>
             <MenuItem onClick={handelAllVideoRoute}>動画一覧</MenuItem>
-            <MenuItem onClick={handleLogout}>ログアウト</MenuItem>
             <MenuItem onClick={handelSignUpRoute}>新規登録</MenuItem>
+            <MenuItem onClick={handleLogout}>ログアウト</MenuItem>
           </Menu>
         </Box>
       ) : (

@@ -10,6 +10,8 @@ import { provider } from '../firebase/firebase.util';
 import { useHistory } from 'react-router-dom';
 import { VideoContext } from '../contexts/video-context';
 import { AuthProps } from '../types/types';
+import GitHubIcon from '@material-ui/icons/GitHub';
+import TwitterIcon from '@material-ui/icons/Twitter';
 
 const schema = yup.object().shape({
   email: yup
@@ -66,48 +68,82 @@ export const SignUpForm = () => {
 
   return (
     <Grid container className={classes.container} spacing={4}>
-      <Grid item sm={4} style={{ marginTop: '90px' }}>
+      <Grid item sm={4} xs={10} style={{ marginTop: '90px' }}>
         <Typography variant="h5">新規登録</Typography>
         <Typography>メールアドレスで登録</Typography>
         <form
           onSubmit={handleSubmit(createAccountWithEmail)}
           className={classes.root}
         >
-          <TextField
-            label="Email"
-            type="text"
-            name="email"
-            fullWidth
-            inputRef={register}
-            onChange={onChange}
-          />
-          {errors.email && (
-            <div className={classes.validate}>{errors.email.message}</div>
-          )}
-          <TextField
-            label="password"
-            type="password"
-            name="password"
-            fullWidth
-            inputRef={register}
-            onChange={onChange}
-          />
-          {errors.password && (
-            <div className={classes.validate}>{errors.password.message}</div>
-          )}
-          <Button variant="contained" color="primary" type="submit" fullWidth>
-            送信
-          </Button>
-          <Typography>Googleアカウントで登録</Typography>
-          <Button
-            fullWidth
-            variant="contained"
-            color="primary"
-            startIcon={<AccountCircle />}
-            onClick={createAccountWithGoogle}
-          >
-            Google
-          </Button>
+          <div>
+            <TextField
+              label="Email"
+              type="text"
+              name="email"
+              fullWidth
+              inputRef={register}
+              onChange={onChange}
+            />
+            {errors.email && (
+              <div className={classes.validate}>{errors.email.message}</div>
+            )}
+            <TextField
+              label="password"
+              type="password"
+              name="password"
+              fullWidth
+              inputRef={register}
+              onChange={onChange}
+              style={{ marginBottom: '15px' }}
+            />
+            {errors.password && (
+              <div className={classes.validate}>{errors.password.message}</div>
+            )}
+            <Button variant="contained" color="primary" type="submit" fullWidth>
+              送信
+            </Button>
+          </div>
+          <div>
+            <Typography style={{ marginBottom: '15px', marginTop: '15px' }}>
+              他サイトのIDで簡単ログイン
+            </Typography>
+            <Grid container spacing={2}>
+              <Grid item xs={4} sm={4}>
+                <Button
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  startIcon={<AccountCircle />}
+                  onClick={createAccountWithGoogle}
+                  style={{ marginBottom: '15px' }}
+                >
+                  Google
+                </Button>
+              </Grid>
+              <Grid item xs={4} sm={4}>
+                <Button
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  startIcon={<GitHubIcon />}
+                  onClick={createAccountWithGoogle}
+                >
+                  GitHub
+                </Button>
+              </Grid>
+              <Grid item xs={4} sm={4}>
+                <Button
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  startIcon={<TwitterIcon />}
+                  onClick={createAccountWithGoogle}
+                >
+                  Twitter
+                </Button>
+              </Grid>
+            </Grid>
+          </div>
         </form>
       </Grid>
     </Grid>
