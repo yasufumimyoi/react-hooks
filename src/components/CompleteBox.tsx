@@ -6,116 +6,27 @@ import { CourseProps } from '../types/types';
 import { VideoProps } from '../types/types';
 
 //視聴済みかどうかのチェックボックス
-export const CompleteBox: FC<CourseProps> = ({ title, path, completed }) => {
+export const CompleteBox: FC<CourseProps> = ({ title, completed }) => {
   const firestore = firebase.firestore();
-  const {
-    AWVideo,
-    DVideo,
-    FVideo,
-    JVideo,
-    MVideo,
-    NVideo,
-    RVideo,
-    RRVideo,
-    TVideo,
-    currentUser,
-    setAWVideo,
-    setDVideo,
-    setFVideo,
-    setJVideo,
-    setMVideo,
-    setNVideo,
-    setRVideo,
-    setRRVideo,
-    setTVideo,
-  } = useContext(VideoContext);
-
-  //pathの文字列からコース名だけ抽出する Ex: "/courses/react/1" ==> react
-  let removeCourse = path.replace('/courses/', '');
-  let findEscape = removeCourse.indexOf('/');
-  let editedPath = removeCourse.slice(0, findEscape);
+  const { allVideo, currentUser, setAllVideo } = useContext(VideoContext);
 
   //抽出されたコース名によってセットするデータを決定する
   let newItems = null;
   let targetItem = null;
 
   const saveCompleteStatus = () => {
-    let videoData = [];
-    switch (editedPath) {
-      case 'aws':
-        videoData = AWVideo;
-        break;
-      case 'docker':
-        videoData = DVideo;
-        break;
-      case 'firebase':
-        videoData = FVideo;
-        break;
-      case 'javascript':
-        videoData = JVideo;
-        break;
-      case 'node':
-        videoData = NVideo;
-        break;
-      case 'react':
-        videoData = RVideo;
-        break;
-      case 'router':
-        videoData = RRVideo;
-        break;
-      case 'typescript':
-        videoData = TVideo;
-        break;
-      case 'material':
-        videoData = MVideo;
-        break;
-      default:
-        break;
-    }
-
-    //クリックした動画Titleと格納しておいた動画データのタイトル名が一致したらcompletedのBoolean値をToggleさせる
-    newItems = videoData.map((item: VideoProps) => {
+    //クリックした動画Titleと動画データのタイトル名が一致したらcompletedのBoolean値をToggleさせる
+    newItems = allVideo.map((item: VideoProps) => {
       if (item.title === title) {
         item.completed = !item.completed;
       }
       return item;
     });
 
-    //completedのBoolean値を更新する
-    switch (editedPath) {
-      case 'aws':
-        setAWVideo(newItems);
-        break;
-      case 'docker':
-        setDVideo(newItems);
-        break;
-      case 'firebase':
-        setFVideo(newItems);
-        break;
-      case 'javascript':
-        setJVideo(newItems);
-        break;
-      case 'node':
-        setNVideo(newItems);
-        break;
-      case 'react':
-        setRVideo(newItems);
-        break;
-      case 'router':
-        setRRVideo(newItems);
-        break;
-      case 'typescript':
-        setTVideo(newItems);
-        break;
-      case 'material':
-        setMVideo(newItems);
-        break;
-      default:
-        break;
-    }
+    setAllVideo(newItems);
 
     //firesoreの更新するデータの抽出
-    targetItem = videoData.filter((v: any) => v.title === title);
+    targetItem = allVideo.filter((v: any) => v.title === title);
     targetItem[0].completed = !completed;
 
     //firestoreの動画データを更新

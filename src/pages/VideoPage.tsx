@@ -13,27 +13,7 @@ import { Tweet } from '../components/Tweet';
 //Fix me later
 const VideoPage = (props: any) => {
   //(props: { match: { params: any; url: any } })
-  const {
-    AWVideo,
-    DVideo,
-    FVideo,
-    JVideo,
-    MVideo,
-    NVideo,
-    RVideo,
-    RRVideo,
-    TVideo,
-    currentUser,
-    setAWVideo,
-    setDVideo,
-    setFVideo,
-    setJVideo,
-    setMVideo,
-    setNVideo,
-    setRVideo,
-    setRRVideo,
-    setTVideo,
-  } = useContext(VideoContext);
+  const { allVideo, setAllVideo, currentUser } = useContext(VideoContext);
   const firestore = firebase.firestore();
   const classes = videosUseStyles();
 
@@ -55,56 +35,64 @@ const VideoPage = (props: any) => {
   let matchedVideo: any = [];
   switch (editedPath) {
     case 'aws':
-      videoData = AWVideo;
-      matchedVideo = AWVideo.filter(
+      videoData = allVideo.filter((video: any) => video.category === 'aws');
+      matchedVideo = videoData.filter(
         (video: any) => video.id === `${'aws_' + parsedId}`
       );
       break;
     case 'docker':
-      videoData = DVideo;
-      matchedVideo = DVideo.filter(
+      videoData = allVideo.filter((video: any) => video.category === 'docker');
+      matchedVideo = videoData.filter(
         (video: any) => video.id === `${'docker_' + parsedId}`
       );
       break;
     case 'firebase':
-      videoData = FVideo;
-      matchedVideo = FVideo.filter(
+      videoData = allVideo.filter(
+        (video: any) => video.category === 'firebase'
+      );
+      matchedVideo = videoData.filter(
         (video: any) => video.id === `${'firebase_' + parsedId}`
       );
       break;
     case 'javascript':
-      videoData = JVideo;
-      matchedVideo = JVideo.filter(
+      videoData = allVideo.filter(
+        (video: any) => video.category === 'javascript'
+      );
+      matchedVideo = videoData.filter(
         (video: any) => video.id === `${'javascript_' + parsedId}`
       );
       break;
     case 'node':
-      videoData = NVideo;
-      matchedVideo = NVideo.filter(
+      videoData = allVideo.filter((video: any) => video.category === 'node');
+      matchedVideo = videoData.filter(
         (video: any) => video.id === `${'node_' + parsedId}`
       );
       break;
     case 'react':
-      videoData = RVideo;
-      matchedVideo = RVideo.filter(
+      videoData = allVideo.filter((video: any) => video.category === 'react');
+      matchedVideo = videoData.filter(
         (video: any) => video.id === `${'react_' + parsedId}`
       );
       break;
     case 'router':
-      videoData = RRVideo;
-      matchedVideo = RRVideo.filter(
+      videoData = allVideo.filter((video: any) => video.category === 'router');
+      matchedVideo = videoData.filter(
         (video: any) => video.id === `${'router_' + parsedId}`
       );
       break;
     case 'typescript':
-      videoData = TVideo;
-      matchedVideo = TVideo.filter(
+      videoData = allVideo.filter(
+        (video: any) => video.category === 'typescript'
+      );
+      matchedVideo = videoData.filter(
         (video: any) => video.id === `${'typescript_' + parsedId}`
       );
       break;
     case 'material':
-      videoData = MVideo;
-      matchedVideo = MVideo.filter(
+      videoData = allVideo.filter(
+        (video: any) => video.category === 'material'
+      );
+      matchedVideo = videoData.filter(
         (video: any) => video.id === `${'material_' + parsedId}`
       );
       break;
@@ -133,42 +121,7 @@ const VideoPage = (props: any) => {
         return item;
       });
 
-      const removeCourse = newItems[0].path.replace('/courses/', '');
-      const findEscape = removeCourse.indexOf('/');
-      const editedPath = removeCourse.slice(0, findEscape);
-
-      //completedのBoolean値を更新する
-      switch (editedPath) {
-        case 'aws':
-          setAWVideo(newItems);
-          break;
-        case 'docker':
-          setDVideo(newItems);
-          break;
-        case 'firebase':
-          setFVideo(newItems);
-          break;
-        case 'javascript':
-          setJVideo(newItems);
-          break;
-        case 'node':
-          setNVideo(newItems);
-          break;
-        case 'react':
-          setRVideo(newItems);
-          break;
-        case 'router':
-          setRRVideo(newItems);
-          break;
-        case 'typescript':
-          setTVideo(newItems);
-          break;
-        case 'material':
-          setMVideo(newItems);
-          break;
-        default:
-          break;
-      }
+      setAllVideo(newItems);
 
       //firesoreの更新するデータの抽出
       let targetItem = null;
