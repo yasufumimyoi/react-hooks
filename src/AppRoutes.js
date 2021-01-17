@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { CoursePage } from '../src/pages/CoursePage';
 import { LoginPage } from '../src/pages/LoginPage';
-import { LandingPage } from '../src/pages/LandingPage';
+//import { LandingPage } from '../src/pages/LandingPage';
 import { NotFoundPage } from '../src/pages/NotFoundPage';
 import { Header } from '../src/components/Header';
 import { SignUpForm } from '../src/components/SignUpForm';
@@ -11,13 +11,15 @@ import { AllVideoPage } from '../src/pages/AllVideoPage';
 import { ProfilePage } from '../src/pages/ProfilePage';
 import { ProfileForm } from '../src/components/ProfileForm';
 import { VideoListPage } from './pages/VideoListPage';
+import { TestLandingPage } from './pages/TestLandingPage';
+import { Footer } from '../src/components/Footer';
 
 const AppRoutes = () => {
   return (
     <div>
       <Header />
       <Switch>
-        <Route exact path="/" component={LandingPage} />
+        <Route exact path="/" component={TestLandingPage} />
         <Route exact path="/courses" component={CoursePage} />
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/sign" component={SignUpForm} />
@@ -44,6 +46,7 @@ const AppRoutes = () => {
         <Route path="/courses/node/:id" component={VideoPage} />
         <Route component={NotFoundPage} />
       </Switch>
+      <Footer />
     </div>
   );
 };
