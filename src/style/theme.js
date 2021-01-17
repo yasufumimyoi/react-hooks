@@ -19,8 +19,5 @@ export const theme = createMuiTheme({
     MuiCheckbox: {
       color: 'primary',
     },
-    MuiList: {
-      dense: true,
-    },
   },
 });

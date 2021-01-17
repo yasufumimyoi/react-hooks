@@ -19,6 +19,7 @@
     "react-countup": "^4.3.3",
     "react-dom": "^16.13.1",
     "react-hook-form": "^6.13.0",
+    "react-id-swiper": "^3.0.0",
     "react-modal": "^3.12.1",
     "react-player": "^2.6.2",
     "react-router-dom": "^5.2.0",
@@ -27,6 +28,7 @@
     "react-twitter-embed": "^3.0.3",
     "react-use": "^15.3.8",
     "sweetalert2": "^10.12.5",
+    "swiper": "^5.4.2",
     "uuid": "^8.3.0",
     "yup": "^0.32.8"
   },
