@@ -1,28 +1,19 @@
 import React from 'react';
+import { Grid } from '@material-ui/core';
 
 export const Footer = () => {
   return (
-    <footer
-      style={{
-        backgroundColor: '#01579b',
-        width: '100%',
-        height: 80,
-        textAlign: 'center',
-        color: 'white',
-        paddingTop: 5,
-        marginTop: 100,
-      }}
-    >
-      <p style={{ marginBottom: 5 }}>プライバシーポリシー</p>
-      <p style={{ marginTop: 5, marginBottom: 5 }}>Contact</p>
-    </footer>
+    <Grid container style={{ justifyContent: 'center' }}>
+      <Grid item>
+        <a href="#" style={{ textDecoration: 'none', color: 'black' }}>
+          ・Privacy Policy
+        </a>
+      </Grid>
+      <Grid item>
+        <a href="#" style={{ textDecoration: 'none', color: 'black' }}>
+          ・Contact
+        </a>
+      </Grid>
+    </Grid>
   );
 };
-
-// export const Footer = () => {
-//     return (
-//       <footer style={{ backgroundColor: 'green', width: '100%' }}>
-//         <p>Test</p>
-//       </footer>
-//     );
-//   };
