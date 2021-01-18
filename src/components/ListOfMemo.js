@@ -160,7 +160,7 @@ export const ListOfMemo = () => {
                 color="primary"
                 type="submit"
                 size="small"
-                style={{ marginLeft: '10px', marginTop: '15px' }}
+                style={{ marginLeft: '5px', marginTop: '15px' }}
               >
                 <AddIcon />
               </Fab>

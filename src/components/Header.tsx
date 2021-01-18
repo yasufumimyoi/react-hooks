@@ -19,27 +19,23 @@ const Header = () => {
   };
 
   return (
-    <Grid container className={classes.root}>
-      <Grid item sm={12}>
-        <AppBar position="fixed">
-          <Toolbar>
-            <SchoolIcon className={classes.logo} />
-            <Typography
-              variant="h6"
-              className={currentUser && classes.title}
-              onClick={handleRouter}
-            >
-              Learn React
-            </Typography>
-            <div className={classes.extra}></div>
-            {currentUser &&
-              userData.map((data: any) => (
-                <HeaderMenu key={data.name} image={data.image} />
-              ))}
-          </Toolbar>
-        </AppBar>
-      </Grid>
-    </Grid>
+    <AppBar position="fixed">
+      <Toolbar>
+        <SchoolIcon className={classes.logo} />
+        <Typography
+          variant="h6"
+          className={currentUser && classes.title}
+          onClick={handleRouter}
+        >
+          Mission in Programming
+        </Typography>
+        <div className={classes.extra}></div>
+        {currentUser &&
+          userData.map((data: any) => (
+            <HeaderMenu key={data.name} image={data.image} />
+          ))}
+      </Toolbar>
+    </AppBar>
   );
 };
 export { Header };

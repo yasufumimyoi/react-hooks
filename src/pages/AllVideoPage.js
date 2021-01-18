@@ -24,7 +24,7 @@ export const AllVideoPage = () => {
       <Grid item sm={2} />
       <Grid item sm={8} xs={12}>
         <div className={classes.search}>
-          <Typography variant="h6">動画検索</Typography>
+          <Typography variant="h6">Mission検索</Typography>
           {videoResults.length === allVideo.length ? (
             <p>検索結果: 0件</p>
           ) : (

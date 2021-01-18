@@ -108,7 +108,7 @@ export const videosUseStyles = makeStyles({
     marginBottom: 35,
   },
   container: {
-    marginTop: '110px',
+    marginTop: '50px',
     justifyContent: 'center',
   },
   loading: {
@@ -121,7 +121,7 @@ export const videosUseStyles = makeStyles({
   },
   search: {
     textAlign: 'center',
-    marginTop: '90px',
+    marginTop: '50px',
   },
   input: {
     width: '200px',
