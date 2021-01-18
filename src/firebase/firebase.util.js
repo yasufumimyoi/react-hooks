@@ -4,13 +4,13 @@ import 'firebase/auth';
 import 'firebase/storage';
 
 let firebaseConfig = {
-  apiKey: 'AIzaSyA6tGRFySYmoDm7CU6cBAoOXkRLRUkuGXQ',
-  authDomain: 'video-app-aee1b.firebaseapp.com',
-  databaseURL: 'https://video-app-aee1b.firebaseio.com',
-  projectId: 'video-app-aee1b',
-  storageBucket: 'video-app-aee1b.appspot.com',
-  messagingSenderId: '871554306959',
-  appId: '1:871554306959:web:f8e14b923b297f8d8771fa',
+  apiKey: 'AIzaSyCDEnSJSodKqFl1RX1FF2a_sPtkUfM7XGU',
+  authDomain: 'video-learning-a4c3a.firebaseapp.com',
+  projectId: 'video-learning-a4c3a',
+  storageBucket: 'video-learning-a4c3a.appspot.com',
+  messagingSenderId: '660164803466',
+  appId: '1:660164803466:web:5b43de729084dd71506673',
+  measurementId: 'G-Q9X9W5J2LH',
 };
 
 export const app = firebase.initializeApp(firebaseConfig);
