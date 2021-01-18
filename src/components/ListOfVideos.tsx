@@ -26,7 +26,7 @@ const ListOfVideos: FC<VideoProps> = ({
       </Typography>
       <Box className={classes.adjust}>
         <Typography variant="body2" color="textSecondary" component="span">
-          視聴済み
+          Completed
         </Typography>
         <CompleteBox title={title} path={path} completed={completed} />
       </Box>

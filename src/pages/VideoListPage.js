@@ -67,7 +67,7 @@ export const VideoListPage = (props) => {
   ) {
     Swal.fire(
       'おめでとうございます!!!',
-      '進捗率100%となりました!!その他のコースも学習してみましょう!!',
+      '達成率が100%となりました!!その他のコースも学習してみましょう!!',
       'success'
     );
     sessionStorage.setItem(`${editedPath}`, 'completed');
@@ -78,7 +78,7 @@ export const VideoListPage = (props) => {
       {AchievementRate === 100 && <Confetti width={width} height={height} />}
       <h3 className={classes.title}>
         {' '}
-        現在の進捗率{' '}
+        現在の達成率{' '}
         <CountUp
           end={AchievementRate}
           duration={5}

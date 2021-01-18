@@ -9,6 +9,16 @@ import { ListOfVideos } from '../components/ListOfVideos';
 import { useHistory } from 'react-router-dom';
 import { ListOfMemo } from '../components/ListOfMemo';
 import { Tweet } from '../components/Tweet';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  box: {
+    [theme.breakpoints.down('sm')]: {
+      marginRight: 10,
+      marginLeft: 10,
+    },
+  },
+}));
 
 //Fix me later
 const VideoPage = (props: any) => {
@@ -16,6 +26,7 @@ const VideoPage = (props: any) => {
   const { allVideo, setAllVideo, currentUser } = useContext(VideoContext);
   const firestore = firebase.firestore();
   const classes = videosUseStyles();
+  const cl = useStyles();
 
   const { id } = props.match.params;
   const parsedId = parseInt(id);
@@ -155,49 +166,59 @@ const VideoPage = (props: any) => {
               saveCompletedStatus={saveCompletedStatus}
               matchedVideo={matchedVideo}
             />
-            <Typography variant="h6" component="h6" className={classes.textbox}>
-              {matchedVideo[0].title}
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="span">
-              視聴済み
-            </Typography>
-            <CompleteBox
-              path={props.match.url}
-              title={matchedVideo[0].title}
-              completed={matchedVideo[0].completed}
-            />
-            <Grid container>
-              <Grid item>
-                {parsedId > 1 && (
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={handlePreviousPagenation}
-                    style={{ marginRight: '10px' }}
-                  >
-                    Previous
-                  </Button>
-                )}
+            <div className={cl.box}>
+              <Typography
+                variant="h6"
+                component="h6"
+                className={classes.textbox}
+              >
+                {matchedVideo[0].title}
+              </Typography>
+              <Typography
+                variant="body2"
+                color="textSecondary"
+                component="span"
+              >
+                Completed
+              </Typography>
+              <CompleteBox
+                path={props.match.url}
+                title={matchedVideo[0].title}
+                completed={matchedVideo[0].completed}
+              />
+              <Grid container>
+                <Grid item>
+                  {parsedId > 1 && (
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={handlePreviousPagenation}
+                      style={{ marginRight: '10px' }}
+                    >
+                      Previous
+                    </Button>
+                  )}
+                </Grid>
+                <Grid item>
+                  {videoData.length != parsedId && (
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={handleNextPagenation}
+                      style={{ marginRight: '10px' }}
+                    >
+                      Next
+                    </Button>
+                  )}
+                </Grid>
+                <Grid item style={{ flexGrow: 1 }} />
+                <Grid item>
+                  <Tweet />
+                </Grid>
               </Grid>
-              <Grid item>
-                {videoData.length != parsedId && (
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={handleNextPagenation}
-                    style={{ marginRight: '10px' }}
-                  >
-                    Next
-                  </Button>
-                )}
-              </Grid>
-              <Grid item style={{ flexGrow: 1 }} />
-              <Grid item>
-                <Tweet />
-              </Grid>
-            </Grid>
-            <hr />
-            <ListOfMemo />
+              <hr />
+              <ListOfMemo />
+            </div>
           </Grid>
           <Grid item sm={1} />
           <Grid>

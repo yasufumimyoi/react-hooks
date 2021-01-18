@@ -16,12 +16,15 @@ const CoursePage = () => {
 
   return (
     <Grid container className={classes.container}>
-      <Typography className={classes.subTitle} variant="h6">
-        教材をこなして進捗率を上げながら楽しく学んでいきましょう。
-        <p> 現在50本以上の動画を用意しております。</p>
+      <Typography
+        className={classes.subTitle}
+        variant="h6"
+        style={{ marginLeft: 30, marginRight: 30 }}
+      >
+        Missionをこなして達成率を上げながら楽しく学んでいきましょう。
         <p>
           <span className={classes.all} onClick={handleAll}>
-            全ての動画一覧
+            全てのMission一覧
           </span>
         </p>
       </Typography>
