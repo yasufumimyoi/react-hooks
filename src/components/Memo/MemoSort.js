@@ -70,12 +70,6 @@ export const MemoSort = ({
     // eslint-disable-next-line
   }, [sortTime]);
 
-  // //カテゴリー別でメモを表示させる
-  // useEffect(() => {
-  //   const newMemo = memo.filter((m) => m.category.includes(sortCategory));
-  //   setSortMemo(newMemo);
-  // }, [sortCategory]);
-
   return (
     <div>
       <FormControl style={{ marginBottom: '10px' }}>
@@ -87,9 +81,9 @@ export const MemoSort = ({
           displayEmpty
         >
           <MenuItem value="">
-            <em>古い順に並び替える</em>
+            <em>新しい順に並び替える</em>
           </MenuItem>
-          <MenuItem value="new">新しい順に並び替える</MenuItem>
+          <MenuItem value="new">古い順に並び替える</MenuItem>
         </Select>
       </FormControl>
     </div>

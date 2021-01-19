@@ -1,12 +1,11 @@
 import React from 'react';
 import { Typography, Grid } from '@material-ui/core';
-import { MemoUseStyles } from '../style/style';
-import { AlertDialog } from '../components/AlertDialog';
-import { EditDialog } from '../components/EditDialog';
+import { MemoUseStyles } from '../../style/style';
+import { AlertDialog } from './AlertDialog';
+import { EditDialog } from './EditDialog';
 
 export const Memo = ({
   memoContent,
-  memoCategory,
   time,
   state,
   category,
@@ -23,7 +22,7 @@ export const Memo = ({
       <Grid container key={time}>
         <Grid item style={{ marginTop: '15px', marginRight: '10px' }}>
           <Typography variant="subtitle2" gutterBottom>
-            Category: {memoCategory} <span>{time}</span>
+            {time}
           </Typography>
         </Grid>
         <Grid item>
