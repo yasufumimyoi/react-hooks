@@ -193,7 +193,7 @@ export const vData = [
     id: 'javascript_6',
     url: 'https://www.youtube.com/watch?v=Bv_5Zv5c-Ts',
     image: 'http://img.youtube.com/vi/Bv_5Zv5c-Ts/mqdefault.jpg',
-    title: 'JavaScript: Understanding the Weird Parts - The First 3.5 Hours',
+    title: 'JavaScript Understanding the Weird Parts - The First 3.5 Hours',
     path: '/courses/javascript/6',
     completed: false,
     category: 'javascript',

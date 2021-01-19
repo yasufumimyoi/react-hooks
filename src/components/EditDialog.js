@@ -38,6 +38,7 @@ export const EditDialog = ({ state, setContent, setCategory, memo }) => {
       setEditCategory(state.category);
       setEditContent(state.content);
     }
+    // eslint-disable-next-line
   }, [open]);
 
   //メモの更新

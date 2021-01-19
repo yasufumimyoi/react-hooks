@@ -25,6 +25,8 @@ export const ProfileForm = () => {
       case 'message':
         setUserMessage(e.target.value);
         break;
+      default:
+        break;
     }
   };
 
@@ -76,6 +78,7 @@ export const ProfileForm = () => {
         //handle exception..
       }
     }
+    // eslint-disable-next-line
   }, []);
 
   return (

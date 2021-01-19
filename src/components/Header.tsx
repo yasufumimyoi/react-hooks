@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { AppBar, Toolbar, Typography, Grid } from '@material-ui/core';
+import { AppBar, Toolbar, Typography } from '@material-ui/core';
 import SchoolIcon from '@material-ui/icons/School';
 import { headerStyles } from '../style/style';
 import { VideoContext } from '../contexts/video-context';

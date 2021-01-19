@@ -162,10 +162,10 @@ export const TestLandingPage = () => {
                   </div>
                 </div>
                 <div style={{ display: 'flex' }}>
-                  <div item>
+                  <div>
                     <CheckIcon style={{ marginRight: '5px', color: 'green' }} />
                   </div>
-                  <div item>
+                  <div>
                     <Typography variant="subtitle1">
                       基礎は学習したけど、何を作っていいのか分からない...
                     </Typography>
@@ -209,7 +209,7 @@ export const TestLandingPage = () => {
             <Hidden smDown mdDown>
               <Grid item>
                 <div style={{ width: 700, height: 400 }}>
-                  <img src={Top} width="100%" height="100%" />
+                  <img src={Top} width="100%" height="100%" alt="Top" />
                 </div>
               </Grid>
             </Hidden>
@@ -228,6 +228,7 @@ export const TestLandingPage = () => {
               <img
                 src={card.image}
                 style={{ width: '200px', height: '150px', marginTop: 20 }}
+                alt={card.title}
               />
               <CardContent style={{ textAlign: 'center' }}>
                 <Typography
@@ -295,7 +296,11 @@ export const TestLandingPage = () => {
           <Swiper {...params}>
             {imageData.map((image, index) => (
               <div key={index} style={{ textAlign: 'center' }}>
-                <img src={image} style={{ width: '200px', height: '200px' }} />
+                <img
+                  src={image}
+                  style={{ width: '200px', height: '200px' }}
+                  alt={index}
+                />
               </div>
             ))}
           </Swiper>
