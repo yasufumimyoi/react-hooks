@@ -67,6 +67,7 @@ export const MemoSort = ({
     } else if (sortTime === '') {
       handleSortAsc();
     }
+    // eslint-disable-next-line
   }, [sortTime]);
 
   // //カテゴリー別でメモを表示させる

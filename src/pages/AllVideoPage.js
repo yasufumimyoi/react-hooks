@@ -17,6 +17,7 @@ export const AllVideoPage = () => {
         video.title.toLowerCase().includes(searchTerm.toLowerCase())
       )
     );
+    // eslint-disable-next-line
   }, [searchTerm]);
 
   return (

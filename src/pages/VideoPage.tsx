@@ -200,7 +200,7 @@ const VideoPage = (props: any) => {
                   )}
                 </Grid>
                 <Grid item>
-                  {videoData.length != parsedId && (
+                  {videoData.length !== parsedId && (
                     <Button
                       variant="contained"
                       color="primary"

@@ -5,12 +5,12 @@ export const Footer = () => {
   return (
     <Grid container style={{ justifyContent: 'center' }}>
       <Grid item>
-        <a href="#" style={{ textDecoration: 'none', color: 'black' }}>
+        <a href="#1" style={{ textDecoration: 'none', color: 'black' }}>
           ・Privacy Policy
         </a>
       </Grid>
       <Grid item>
-        <a href="#" style={{ textDecoration: 'none', color: 'black' }}>
+        <a href="#2" style={{ textDecoration: 'none', color: 'black' }}>
           ・Contact
         </a>
       </Grid>

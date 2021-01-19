@@ -104,6 +104,7 @@ export const ListOfMemo = () => {
         });
         setMemo(items);
       });
+    // eslint-disable-next-line
   }, []);
 
   const classes = MemoUseStyles();

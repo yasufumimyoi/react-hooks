@@ -13,7 +13,6 @@ import { ProfileForm } from '../src/components/ProfileForm';
 import { VideoListPage } from './pages/VideoListPage';
 import { TestLandingPage } from './pages/TestLandingPage';
 import { Footer } from '../src/components/Footer';
-import './style/footer.css';
 
 const AppRoutes = () => {
   return (

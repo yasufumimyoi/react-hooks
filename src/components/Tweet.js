@@ -6,10 +6,9 @@ export const Tweet = () => {
     <div className="centerContent">
       <div className="selfCenter">
         <TwitterShareButton
-          url="https://video-app-aee1b.firebaseapp.com/"
+          url="https://video-learning-a4c3a.firebaseapp.com/"
           options={{
             text: '#今日の積み上げ',
-            via: 'LearnReact',
             size: 'large',
           }}
         />
