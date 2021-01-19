@@ -7,7 +7,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
-import { HandleRemove } from '../types/types';
+import { HandleRemove } from '../../types/types';
 
 export const AlertDialog = ({ handelRemove }: HandleRemove) => {
   const [open, setOpen] = React.useState(false);

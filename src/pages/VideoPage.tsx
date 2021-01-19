@@ -7,7 +7,7 @@ import { CompleteBox } from '../components/CompleteBox';
 import { ResponsivePlayer } from '../components/Player';
 import { ListOfVideos } from '../components/ListOfVideos';
 import { useHistory } from 'react-router-dom';
-import { ListOfMemo } from '../components/ListOfMemo';
+import { ListOfMemo } from '../components/Memo/ListOfMemo';
 import { Tweet } from '../components/Tweet';
 import { makeStyles } from '@material-ui/core/styles';
 

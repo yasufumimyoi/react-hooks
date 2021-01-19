@@ -1,25 +1,21 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Grid, Typography } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import { MemoUseStyles } from '../style/style';
+import { MemoUseStyles } from '../../style/style';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import { format } from 'date-fns';
 import { Memo } from './Memo';
 import { MemoSort } from './MemoSort';
-import { firebase } from '../firebase/firebase.util';
-import { VideoContext } from '../contexts/video-context';
+import { firebase } from '../../firebase/firebase.util';
+import { VideoContext } from '../../contexts/video-context';
 
 export const ListOfMemo = () => {
   const [memo, setMemo] = useState([]);
   const [category, setCategory] = React.useState('');
   const [content, setContent] = useState('');
   const [sortMemo, setSortMemo] = useState([]);
-  const now = format(new Date(), 'yyyy/MMM/do');
+  const now = format(new Date(), 'yyyy年M月d日H時m分s秒');
   const [sortCategory, setSortCategory] = useState('');
   const [sortTime, setSortTime] = useState('');
   const { currentUser } = useContext(VideoContext);
@@ -40,6 +36,7 @@ export const ListOfMemo = () => {
   //メモの作成
   const handleSubmit = (event) => {
     event.preventDefault();
+    if (content === '') return;
 
     //firestoreにデータを格納
     const docId = firebase.firestore().collection('memo').doc().id;
@@ -115,37 +112,6 @@ export const ListOfMemo = () => {
         <Typography variant="subtitle1">メモの作成</Typography>
         <form onSubmit={handleSubmit}>
           <Grid container className={classes.subcontainer}>
-            <Grid
-              item
-              style={{
-                marginRight: '20px',
-                marginBottom: '15px',
-                marginTop: '25px',
-              }}
-            >
-              <FormControl style={{ width: '130px' }}>
-                <InputLabel shrink>カテゴリー</InputLabel>
-                <Select
-                  value={category}
-                  name="category"
-                  onChange={handleChange}
-                  displayEmpty
-                >
-                  <MenuItem value="">
-                    <em>選択</em>
-                  </MenuItem>
-                  <MenuItem value="AWS">AWS</MenuItem>
-                  <MenuItem value="Docker">Docker</MenuItem>
-                  <MenuItem value="Firebase">Firebase</MenuItem>
-                  <MenuItem value="Javascript">Javascript</MenuItem>
-                  <MenuItem value="Material-ui">Material-ui</MenuItem>
-                  <MenuItem value="Node.js">Node</MenuItem>
-                  <MenuItem value="React">React</MenuItem>
-                  <MenuItem value="React-Router">React Router</MenuItem>
-                  <MenuItem value="Typescript">Typescript</MenuItem>
-                </Select>
-              </FormControl>
-            </Grid>
             <Grid item>
               <TextField
                 label="メモ"
@@ -187,41 +153,26 @@ export const ListOfMemo = () => {
             />
           </div>
         )}
-        {/*メモが存在し、全てのメモを表示を変更する or ソート値によってメモの表示を変更する*/}
         {memo.length > 0 ? (
-          !sortCategory ? (
-            memo.map((m, index) => (
-              <Grid container key={index} className={classes.container}>
-                <Grid item className={classes.extra}>
-                  <Memo
-                    memoContent={m.content}
-                    memoCategory={m.category}
-                    time={m.time}
-                    state={m}
-                    category={category}
-                    content={content}
-                    memo={memo}
-                    setContent={setContent}
-                    setCategory={setCategory}
-                    setMemo={setMemo}
-                    handelRemove={() => handelRemove(m.id)}
-                  />
-                </Grid>
+          memo.map((m, index) => (
+            <Grid container key={index} className={classes.container}>
+              <Grid item className={classes.extra}>
+                <Memo
+                  memoContent={m.content}
+                  memoCategory={m.category}
+                  time={m.time}
+                  state={m}
+                  category={category}
+                  content={content}
+                  memo={memo}
+                  setContent={setContent}
+                  setCategory={setCategory}
+                  setMemo={setMemo}
+                  handelRemove={() => handelRemove(m.id)}
+                />
               </Grid>
-            ))
-          ) : (
-            sortMemo.map((m, index) => (
-              <Grid container key={index} className={classes.container}>
-                <Grid item>
-                  <Memo
-                    content={m.content}
-                    category={m.category}
-                    time={m.time}
-                  />
-                </Grid>
-              </Grid>
-            ))
-          )
+            </Grid>
+          ))
         ) : (
           <div className={classes.note}>
             <Typography variant="body2">
