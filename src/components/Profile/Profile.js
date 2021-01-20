@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import { useHistory } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
-import { Photo } from '../components/Photo';
+import { Photo } from './Photo';
 import { Grid } from '@material-ui/core';
 
 const useStyles = makeStyles({
@@ -41,6 +41,7 @@ export const Profile = ({ userName, userGender, userMessage, userImage }) => {
           <CardMedia
             className={classes.media}
             image={userImage}
+            alt="profile"
             title="Contemplative Reptile"
           />
           <CardContent>

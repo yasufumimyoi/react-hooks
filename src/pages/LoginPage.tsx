@@ -67,6 +67,14 @@ export const LoginPage = () => {
     }
   };
 
+  const handleRest = () => {
+    history.push('/reset');
+  };
+
+  const handleHome = () => {
+    history.push('/');
+  };
+
   return (
     <Grid container className={classes.container} spacing={4}>
       <Grid item sm={4} xs={10} style={{ marginTop: '90px' }}>
@@ -127,7 +135,6 @@ export const LoginPage = () => {
                   variant="contained"
                   color="primary"
                   startIcon={<GitHubIcon />}
-                  onClick={handelExistingUserLogin}
                 >
                   GitHub
                 </Button>
@@ -138,30 +145,18 @@ export const LoginPage = () => {
                   variant="contained"
                   color="primary"
                   startIcon={<TwitterIcon />}
-                  onClick={handelExistingUserLogin}
                 >
                   Twitter
                 </Button>
               </Grid>
             </Grid>
           </div>
+          <div style={{ marginTop: 50, cursor: 'pointer' }}>
+            <p onClick={handleRest}>パスワードを忘れた方はこちら</p>
+            <p onClick={handleHome}>ホーム画面に戻る</p>
+          </div>
         </form>
       </Grid>
     </Grid>
   );
 };
-
-// const LoginPage = () => {
-//   const classes = loginStyles();
-//   return (
-//     <Grid container className={classes.container} spacing={4}>
-//       <Grid item sm={4} style={{ marginTop: '90px' }}>
-//         <Typography variant="h5">アカウントをお持ちの方</Typography>
-//         <Typography>メールアドレスでログイン</Typography>
-//         <LoginForm />
-//       </Grid>
-//     </Grid>
-//   );
-// };
-
-// export { LoginPage };

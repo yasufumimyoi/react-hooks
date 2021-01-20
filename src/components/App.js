@@ -79,7 +79,7 @@ const App = () => {
         const image = await imageRef.getDownloadURL();
         setUserData([
           {
-            name: 'ニックネーム',
+            name: 'コードネーム',
             gender: '性別',
             message: '自己紹介',
             image: image,
