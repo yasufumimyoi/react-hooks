@@ -194,4 +194,7 @@ export const ProfileUseStyles = makeStyles({
   title: {
     textAlign: 'center',
   },
+  validate: {
+    color: 'red',
+  },
 });

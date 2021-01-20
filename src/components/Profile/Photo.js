@@ -2,8 +2,8 @@ import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
-import { firebase } from '../firebase/firebase.util';
-import { VideoContext } from '../contexts/video-context';
+import { firebase } from '../../firebase/firebase.util';
+import { VideoContext } from '../../contexts/video-context';
 
 const useStyles = makeStyles(() => ({
   input: {
