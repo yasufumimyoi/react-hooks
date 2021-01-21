@@ -126,7 +126,6 @@ export const SignUpForm = () => {
                   variant="contained"
                   color="primary"
                   startIcon={<GitHubIcon />}
-                  onClick={createAccountWithGoogle}
                 >
                   GitHub
                 </Button>
@@ -137,7 +136,6 @@ export const SignUpForm = () => {
                   variant="contained"
                   color="primary"
                   startIcon={<TwitterIcon />}
-                  onClick={createAccountWithGoogle}
                 >
                   Twitter
                 </Button>
