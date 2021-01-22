@@ -31,7 +31,7 @@ export const Photo = () => {
       .doc(currentUser.uid)
       .collection('profile')
       .doc('details')
-      .set({
+      .update({
         image: fileUrl,
       });
     setUserData([
