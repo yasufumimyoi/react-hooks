@@ -77,6 +77,18 @@ const App = () => {
       if (dataRef.empty) {
         const imageRef = firebase.storage().ref().child('user.png');
         const image = await imageRef.getDownloadURL();
+        await firebase
+          .firestore()
+          .collection('users')
+          .doc(user.uid)
+          .collection('profile')
+          .doc('details')
+          .set({
+            name: 'コードネーム',
+            gender: '性別',
+            message: '自己紹介',
+            image: image,
+          });
         setUserData([
           {
             name: 'コードネーム',
@@ -99,6 +111,7 @@ const App = () => {
         setUserData(userProfile);
       }
     } catch (error) {
+      console.error(error.message);
       //handle exception...
     }
   };

@@ -51,7 +51,7 @@ export const ProfileForm = () => {
         .doc(currentUser.uid)
         .collection('profile')
         .doc('details')
-        .set({
+        .update({
           name: formState.name,
           gender: formState.gender,
           message: formState.message,
