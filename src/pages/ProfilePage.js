@@ -3,6 +3,7 @@ import { VideoContext } from '../contexts/video-context';
 import { Profile } from '../components/Profile/Profile';
 import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { Progress } from '../components/Profile/Progress';
 
 const useStyles = makeStyles({
   root: {
@@ -27,6 +28,7 @@ export const ProfilePage = () => {
     <Grid container className={classes.container}>
       <Grid item sm={1} />
       <Grid item sm={5} className={classes.item} xs={10}>
+        <h3 style={{ textAlign: 'center' }}>プロフィール</h3>
         {userData.map((user) => (
           <Profile
             key={user.name}
@@ -36,6 +38,10 @@ export const ProfilePage = () => {
             userImage={user.image}
           />
         ))}
+      </Grid>
+      <Grid item sm={5} xs={10} className={classes.item}>
+        <h3 style={{ textAlign: 'center' }}>Mission達成率</h3>
+        <Progress />
       </Grid>
       <Grid item sm={1} />
     </Grid>
