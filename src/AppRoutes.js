@@ -14,6 +14,7 @@ import { VideoListPage } from './pages/VideoListPage';
 import { TestLandingPage } from './pages/TestLandingPage';
 import { Footer } from '../src/components/Footer';
 import { Reset } from '../src/pages/Reset';
+import { Privacy } from '../src/pages/Privacy';
 
 const AppRoutes = () => {
   return (
@@ -26,6 +27,7 @@ const AppRoutes = () => {
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/sign" component={SignUpForm} />
           <Route exact path="/reset" component={Reset} />
+          <Route exact path="/privacy" component={Privacy} />
           <Route exact path="/all" component={AllVideoPage} />
           <Route exact path="/courses/aws" component={VideoListPage} />
           <Route exact path="/courses/docker" component={VideoListPage} />

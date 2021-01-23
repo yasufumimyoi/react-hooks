@@ -1,18 +1,29 @@
 import React from 'react';
 import { Grid } from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
 
 export const Footer = () => {
+  const history = useHistory();
+  const handlePrivacy = () => {
+    history.push('/privacy');
+  };
+
   return (
     <Grid container style={{ justifyContent: 'center' }}>
       <Grid item>
-        <a href="#1" style={{ textDecoration: 'none', color: 'black' }}>
+        <p
+          onClick={handlePrivacy}
+          style={{ textDecoration: 'none', color: 'black', cursor: 'pointer' }}
+        >
           ・Privacy Policy
-        </a>
+        </p>
       </Grid>
       <Grid item>
-        <a href="#2" style={{ textDecoration: 'none', color: 'black' }}>
+        <p
+          style={{ textDecoration: 'none', color: 'black', cursor: 'pointer' }}
+        >
           ・Contact
-        </a>
+        </p>
       </Grid>
     </Grid>
   );
