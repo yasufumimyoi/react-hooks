@@ -8,6 +8,10 @@ export const Footer = () => {
     history.push('/privacy');
   };
 
+  const handleContact = () => {
+    history.push('/contact');
+  };
+
   return (
     <Grid container style={{ justifyContent: 'center' }}>
       <Grid item>
@@ -20,6 +24,7 @@ export const Footer = () => {
       </Grid>
       <Grid item>
         <p
+          onClick={handleContact}
           style={{ textDecoration: 'none', color: 'black', cursor: 'pointer' }}
         >
           ・Contact
