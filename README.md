@@ -2,7 +2,7 @@
 
 学習の達成率を管理できる動画学習アプリです。
 
-URL: https://video-app-aee1b.firebaseapp.com/
+URL: https://video-learning-a4c3a.web.app/
 
 ## アプリ概要
 
