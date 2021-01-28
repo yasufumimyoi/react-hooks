@@ -1,5 +1,4 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -10,26 +9,17 @@ import IconButton from '@material-ui/core/IconButton';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import { Photo } from './Photo';
 import { Grid } from '@material-ui/core';
+import { ProfileProps } from './../../types/types';
+import { ProfileUseStyles } from './../../style/style';
 
-const useStyles = makeStyles({
-  root: {
-    maxWidth: 345,
-  },
-  media: {
-    height: 350,
-  },
-  container: {
-    justifyContent: 'center',
-  },
-  item: {
-    marginTop: '50px',
-  },
-});
-
-export const Profile = ({ userName, userGender, userMessage, userImage }) => {
-  const classes = useStyles();
+export const Profile = ({
+  userName,
+  userGender,
+  userMessage,
+  userImage,
+}: ProfileProps) => {
+  const classes = ProfileUseStyles();
   const history = useHistory();
-
   const handleProfileEdit = () => {
     history.push('/profileEdit');
   };
@@ -38,12 +28,7 @@ export const Profile = ({ userName, userGender, userMessage, userImage }) => {
     <Grid container style={{ justifyContent: 'center' }}>
       <Grid item sm={6} xs={10}>
         <Card className={classes.root}>
-          <CardMedia
-            className={classes.media}
-            image={userImage}
-            alt="profile"
-            title="Contemplative Reptile"
-          />
+          <CardMedia className={classes.media} image={userImage} />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
               {userName}
@@ -61,7 +46,7 @@ export const Profile = ({ userName, userGender, userMessage, userImage }) => {
             <IconButton onClick={handleProfileEdit}>
               <AddCircleIcon color="primary" />
             </IconButton>
-            <Photo color="primary" />
+            <Photo />
           </CardActions>
         </Card>
       </Grid>
