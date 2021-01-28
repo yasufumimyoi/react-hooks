@@ -197,4 +197,13 @@ export const ProfileUseStyles = makeStyles({
   validate: {
     color: 'red',
   },
+  root: {
+    maxWidth: 345,
+  },
+  media: {
+    height: 350,
+  },
+  item: {
+    marginTop: '50px',
+  },
 });

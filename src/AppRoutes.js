@@ -9,7 +9,7 @@ import { SignUpForm } from '../src/components/SignUpForm';
 import { VideoPage } from '../src/pages/VideoPage';
 import { AllVideoPage } from '../src/pages/AllVideoPage';
 import { ProfilePage } from '../src/pages/ProfilePage';
-import { ProfileForm } from './components/Profile/ProfileForm';
+import { ProfileForm } from '../src/components/Profile/ProfileForm.tsx';
 import { VideoListPage } from './pages/VideoListPage';
 import { TestLandingPage } from './pages/TestLandingPage';
 import { Footer } from '../src/components/Footer';

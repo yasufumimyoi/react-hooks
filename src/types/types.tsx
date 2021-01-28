@@ -20,6 +20,19 @@ export type AuthProps = {
   password: string;
 };
 
+export type ProfileProps = {
+  userName: string;
+  userGender: string;
+  userMessage: string;
+  userImage: string;
+};
+
+export type ProfileFormProps = {
+  name: string;
+  gender: string;
+  message: string;
+};
+
 export type HandleRemove = {
   handelRemove: () => void;
 };

@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { VideoContext } from '../contexts/video-context';
-import { Profile } from '../components/Profile/Profile';
+import { Profile } from '../components/Profile/Profile.tsx';
 import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { Progress } from '../components/Profile/Progress';
+import { Progress } from '../components/Profile/Progress.tsx';
 
 const useStyles = makeStyles({
   root: {
