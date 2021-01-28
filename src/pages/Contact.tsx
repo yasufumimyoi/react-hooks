@@ -7,6 +7,7 @@ import { Button, TextField, Typography, Grid } from '@material-ui/core';
 import { loginStyles } from '../style/style';
 import emailjs from 'emailjs-com';
 
+//フォームのバリデーション
 const schema = yup.object().shape({
   name: yup.string().required('お名前は必須です'),
   email: yup
@@ -28,7 +29,7 @@ export const Contact = () => {
     resolver: yupResolver(schema),
   });
 
-  const onChange = (event) => {
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFormState({
       ...formState,
       ...{ [event.target.name]: event.target.value },
