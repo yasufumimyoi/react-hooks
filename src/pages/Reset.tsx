@@ -7,6 +7,7 @@ import { loginStyles } from '../style/style';
 import { firebase } from '../firebase/firebase.util';
 import { useHistory } from 'react-router-dom';
 
+//フォームのバリデーションの値
 const schema = yup.object().shape({
   email: yup
     .string()
@@ -14,14 +15,18 @@ const schema = yup.object().shape({
     .required('メールアドレスは必須です'),
 });
 
+type ResetProps = {
+  email: string;
+};
+
 export const Reset = () => {
   const classes = loginStyles();
-  const [formState, setFormState] = useState({});
+  const [formState, setFormState] = useState<Partial<ResetProps>>({});
   const { register, handleSubmit, errors, reset } = useForm({
     resolver: yupResolver(schema),
   });
 
-  const onChange = (event) => {
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFormState({
       ...formState,
       ...{ [event.target.name]: event.target.value },
@@ -33,12 +38,11 @@ export const Reset = () => {
   const handleReset = () => {
     firebase
       .auth()
-      .sendPasswordResetEmail(formState.email)
+      .sendPasswordResetEmail(formState.email as string)
       .then(() => {
         alert(
           '入力されたアドレスにパスワードリセット用のメールをお送りしました'
         );
-        console.log('hey');
         reset();
         history.push('/login');
       })
