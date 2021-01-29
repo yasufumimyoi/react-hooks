@@ -1,35 +1,21 @@
 import React, { useContext } from 'react';
 import { VideoContext } from '../contexts/video-context';
-import { Profile } from '../components/Profile/Profile.tsx';
+import { Profile } from '../components/Profile/Profile';
 import { Grid } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import { Progress } from '../components/Profile/Progress.tsx';
-
-const useStyles = makeStyles({
-  root: {
-    maxWidth: 345,
-  },
-  media: {
-    height: 350,
-  },
-  container: {
-    justifyContent: 'center',
-  },
-  item: {
-    marginTop: '50px',
-  },
-});
+import { Progress } from '../components/Profile/Progress';
+import { PProps } from '../types/types';
+import { ProfileUseStyles } from '../style/style';
 
 export const ProfilePage = () => {
   const { userData } = useContext(VideoContext);
-  const classes = useStyles();
+  const classes = ProfileUseStyles();
 
   return (
-    <Grid container className={classes.container}>
+    <Grid container style={{ justifyContent: 'center' }}>
       <Grid item sm={1} />
       <Grid item sm={5} className={classes.item} xs={10}>
         <h3 style={{ textAlign: 'center' }}>プロフィール</h3>
-        {userData.map((user) => (
+        {userData.map((user: PProps) => (
           <Profile
             key={user.name}
             userName={user.name}
