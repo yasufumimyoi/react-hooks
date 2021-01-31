@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -19,7 +19,7 @@ type ResetProps = {
   email: string;
 };
 
-export const Reset = () => {
+export const Reset: FC = () => {
   const classes = loginStyles();
   const [formState, setFormState] = useState<Partial<ResetProps>>({});
   const { register, handleSubmit, errors, reset } = useForm({
