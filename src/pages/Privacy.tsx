@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 
-export const Privacy = () => {
+export const Privacy: React.FC = () => {
   const history = useHistory();
   const handleHome = () => {
     history.push('/');
