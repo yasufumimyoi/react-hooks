@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, FC } from 'react';
 import { Grid } from '@material-ui/core';
 import { videosUseStyles } from '../style/style';
 import { VideoContext } from '../contexts/video-context';
@@ -7,8 +7,13 @@ import CountUp from 'react-countup';
 import Swal from 'sweetalert2';
 import Confetti from 'react-confetti';
 import useWindowSize from 'react-use/lib/useWindowSize';
+import { VProps, VideoProps } from '../types/types';
+import { RouteComponentProps } from 'react-router-dom';
 
-export const VideoListPage = (props) => {
+// eslint-disable-next-line @typescript-eslint/ban-types
+type PageProps = {} & RouteComponentProps<{ id: string }>;
+
+export const VideoList: FC<PageProps> = (props) => {
   const classes = videosUseStyles();
   const { allVideo } = useContext(VideoContext);
   const { width, height } = useWindowSize();
@@ -19,31 +24,45 @@ export const VideoListPage = (props) => {
   let videoData = [];
   switch (editedPath) {
     case 'aws':
-      videoData = allVideo.filter((video) => video.category === 'aws');
+      videoData = allVideo.filter((video: VProps) => video.category === 'aws');
       break;
     case 'docker':
-      videoData = allVideo.filter((video) => video.category === 'docker');
+      videoData = allVideo.filter(
+        (video: VProps) => video.category === 'docker'
+      );
       break;
     case 'firebase':
-      videoData = allVideo.filter((video) => video.category === 'firebase');
+      videoData = allVideo.filter(
+        (video: VProps) => video.category === 'firebase'
+      );
       break;
     case 'javascript':
-      videoData = allVideo.filter((video) => video.category === 'javascript');
+      videoData = allVideo.filter(
+        (video: VProps) => video.category === 'javascript'
+      );
       break;
     case 'node':
-      videoData = allVideo.filter((video) => video.category === 'node');
+      videoData = allVideo.filter((video: VProps) => video.category === 'node');
       break;
     case 'react':
-      videoData = allVideo.filter((video) => video.category === 'react');
+      videoData = allVideo.filter(
+        (video: VProps) => video.category === 'react'
+      );
       break;
     case 'router':
-      videoData = allVideo.filter((video) => video.category === 'router');
+      videoData = allVideo.filter(
+        (video: VProps) => video.category === 'router'
+      );
       break;
     case 'typescript':
-      videoData = allVideo.filter((video) => video.category === 'typescript');
+      videoData = allVideo.filter(
+        (video: VProps) => video.category === 'typescript'
+      );
       break;
     case 'material':
-      videoData = allVideo.filter((video) => video.category === 'material');
+      videoData = allVideo.filter(
+        (video: VProps) => video.category === 'material'
+      );
       break;
     default:
       break;
@@ -58,7 +77,7 @@ export const VideoListPage = (props) => {
   }
 
   //動画視聴済の割合の計算を行っている
-  let AchievementRate =
+  const AchievementRate =
     Math.round((numberOfCompleted / videoData.length) * 100) || 0;
 
   if (
@@ -90,7 +109,7 @@ export const VideoListPage = (props) => {
         <Grid item sm={2} />
         <Grid item sm={8}>
           <Grid container justify="space-evenly">
-            {videoData.map((video) => (
+            {videoData.map((video: VideoProps) => (
               <ListOfVideos
                 key={video.id}
                 id={video.id}
