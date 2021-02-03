@@ -8,8 +8,8 @@ module.exports = {
       version: '999.999.999',
     },
   },
-  parser: 'babel-eslint',
-  plugins: ['react', 'react-hooks'],
+  parser: '@typescript-eslint/parser',
+  plugins: ['react', 'react-hooks', '@typescript-eslint'],
   parserOptions: {
     ecmaVersion: 2020,
     sourceType: 'module',
@@ -22,7 +22,9 @@ module.exports = {
     'plugin:prettier/recommended',
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
+    'plugin:@typescript-eslint/recommended',
     'prettier/react',
+    'prettier/@typescript-eslint',
   ],
   rules: {
     'react/prop-types': 'off',
