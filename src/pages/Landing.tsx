@@ -52,8 +52,8 @@ const LandingPage = () => {
         return firebase.auth().signInAnonymously();
       })
       .catch(function (error) {
-        let errorCode = error.code;
-        let errorMessage = error.message;
+        const errorCode = error.code;
+        const errorMessage = error.message;
         console.log(errorCode, errorMessage);
       });
   };

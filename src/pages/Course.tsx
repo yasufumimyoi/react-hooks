@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { coursesStyles } from '../style/style';
 import { coursesDescriptions } from '../utils/Descriptions';
 import { Grid, Typography } from '@material-ui/core';
-import { CourseCard } from '../components/CourseCard';
+import { CourseCard } from '../components/Video/CourseCard';
 
 const CoursePage = () => {
   const classes = coursesStyles();

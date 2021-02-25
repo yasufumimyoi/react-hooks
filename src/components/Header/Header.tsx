@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { AppBar, Toolbar, Typography } from '@material-ui/core';
 import SchoolIcon from '@material-ui/icons/School';
-import { headerStyles } from '../style/style';
-import { VideoContext } from '../contexts/video-context';
+import { headerStyles } from '../../style/style';
+import { VideoContext } from '../../contexts/video-context';
 import { HeaderMenu } from './HeaderMenu';
 import { useHistory } from 'react-router-dom';
 

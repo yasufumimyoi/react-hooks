@@ -3,12 +3,12 @@ import { CircularProgress, Typography, Grid, Button } from '@material-ui/core';
 import { VideoContext } from '../contexts/video-context';
 import { firebase } from '../firebase/firebase.util';
 import { videosUseStyles } from '../style/style';
-import { CompleteBox } from '../components/CompleteBox';
-import { ResponsivePlayer } from '../components/Player';
-import { ListOfVideos } from '../components/ListOfVideos';
+import { CompleteBox } from '../components/Video/CompleteBox';
+import { ResponsivePlayer } from '../components/Video/Player';
+import { ListOfVideos } from '../components/Video/ListOfVideos';
 import { useHistory } from 'react-router-dom';
 import { ListOfMemo } from '../components/Memo/ListOfMemo';
-import { Tweet } from '../components/Tweet';
+import { Tweet } from '../components/Video/Tweet';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({

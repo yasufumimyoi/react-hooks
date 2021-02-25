@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
-import '../style/player.css';
-import { VideoProps } from '../types/types';
+import '../../style/player.css';
+import { VideoProps } from '../../types/types';
 
 type completedProps = {
   saveCompletedStatus: (id: string, state: number) => void;

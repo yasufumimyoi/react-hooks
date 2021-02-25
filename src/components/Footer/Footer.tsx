@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Grid } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 
-export const Footer = () => {
+export const Footer: FC = () => {
   const history = useHistory();
   const handlePrivacy = () => {
     history.push('/privacy');

@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 import { Box, Typography } from '@material-ui/core';
-import { videosUseStyles } from '../style/style';
+import { videosUseStyles } from '../../style/style';
 import { useHistory } from 'react-router-dom';
 import { CompleteBox } from './CompleteBox';
-import { VideoProps } from '../types/types';
+import { VideoProps } from '../../types/types';
 
 const ListOfVideos: FC<VideoProps> = ({
   id,
