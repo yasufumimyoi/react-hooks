@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { VideoContext } from '../contexts/video-context';
 import { Grid, Typography } from '@material-ui/core';
 import { videosUseStyles } from '../style/style';
-import { ListOfVideos } from '../components/ListOfVideos';
+import { ListOfVideos } from '../components/Video/ListOfVideos';
 import TextField from '@material-ui/core/TextField';
 
 export const AllVideoPage = () => {

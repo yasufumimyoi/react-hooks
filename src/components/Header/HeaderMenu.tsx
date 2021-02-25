@@ -3,10 +3,10 @@ import { useHistory } from 'react-router-dom';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuIcon from '@material-ui/icons/Menu';
-import { firebase } from '../firebase/firebase.util';
-import { VideoContext } from '../contexts/video-context';
+import { firebase } from '../../firebase/firebase.util';
+import { VideoContext } from '../../contexts/video-context';
 import { Box } from '@material-ui/core';
-import { headerStyles } from '../style/style';
+import { headerStyles } from '../../style/style';
 import Avatar from '@material-ui/core/Avatar';
 
 export const HeaderMenu = ({ image }: any) => {
@@ -70,7 +70,7 @@ export const HeaderMenu = ({ image }: any) => {
   };
 
   const handelDelete = () => {
-    let user = firebase.auth().currentUser;
+    const user = firebase.auth().currentUser;
     if (user) {
       user
         .delete()

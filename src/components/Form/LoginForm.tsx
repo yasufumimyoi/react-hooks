@@ -3,12 +3,12 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { Button, TextField, Typography } from '@material-ui/core';
-import { loginStyles } from '../style/style';
+import { loginStyles } from '../../style/style';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import { firebase } from '../firebase/firebase.util';
-import { provider, app } from '../firebase/firebase.util';
+import { firebase } from '../../firebase/firebase.util';
+import { provider, app } from '../../firebase/firebase.util';
 import { useHistory } from 'react-router-dom';
-import { AuthProps } from '../types/types';
+import { AuthProps } from '../../types/types';
 
 const schema = yup.object().shape({
   email: yup

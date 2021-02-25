@@ -3,13 +3,13 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { Button, TextField, Grid, Typography } from '@material-ui/core';
-import { loginStyles } from '../style/style';
+import { loginStyles } from '../../style/style';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import { firebase } from '../firebase/firebase.util';
-import { provider } from '../firebase/firebase.util';
+import { firebase } from '../../firebase/firebase.util';
+import { provider } from '../../firebase/firebase.util';
 import { useHistory } from 'react-router-dom';
-import { VideoContext } from '../contexts/video-context';
-import { AuthProps } from '../types/types';
+import { VideoContext } from '../../contexts/video-context';
+import { AuthProps } from '../../types/types';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import TwitterIcon from '@material-ui/icons/Twitter';
 

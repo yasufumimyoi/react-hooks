@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { useHistory } from 'react-router-dom';
-import { coursesStyles } from '../style/style';
+import { coursesStyles } from '../../style/style';
 import { Card, CardContent, Typography } from '@material-ui/core';
-import { CourseProps } from '../types/types';
+import { CourseProps } from '../../types/types';
 
 const CourseCard: FC<CourseProps> = ({ title, image, path }) => {
   const classes = coursesStyles();

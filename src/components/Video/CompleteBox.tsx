@@ -1,9 +1,9 @@
 import React, { useContext, FC } from 'react';
 import { Checkbox } from '@material-ui/core';
-import { VideoContext } from '../contexts/video-context';
-import { firebase } from '../firebase/firebase.util';
-import { CourseProps } from '../types/types';
-import { VideoProps } from '../types/types';
+import { VideoContext } from '../../contexts/video-context';
+import { firebase } from '../../firebase/firebase.util';
+import { CourseProps } from '../../types/types';
+import { VideoProps } from '../../types/types';
 
 //視聴済みかどうかのチェックボックス
 export const CompleteBox: FC<CourseProps> = ({ title, completed }) => {
