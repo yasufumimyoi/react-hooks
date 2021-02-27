@@ -2,7 +2,7 @@ import React, { useContext, FC } from 'react';
 import { Grid } from '@material-ui/core';
 import { videosUseStyles } from '../style/style';
 import { VideoContext } from '../contexts/video-context';
-import { ListOfVideos } from '../components/ListOfVideos';
+import { ListOfVideos } from '../components/Video/ListOfVideos';
 import CountUp from 'react-countup';
 import Swal from 'sweetalert2';
 import Confetti from 'react-confetti';
