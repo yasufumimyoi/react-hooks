@@ -1,6 +1,7 @@
 export type VideoProps = {
-  key: string;
+  key?: string;
   id: string;
+  category?: string;
   title: string;
   image: string;
   path: string;
@@ -35,4 +36,15 @@ export type ProfileFormProps = {
 
 export type HandleRemove = {
   handelRemove: () => void;
+};
+
+export type PProps = {
+  name: string;
+  gender: string;
+  message: string;
+  image: string;
+};
+
+export type VProps = {
+  category: string;
 };
