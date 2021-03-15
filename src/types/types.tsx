@@ -9,6 +9,10 @@ export type VideoProps = {
   url?: string;
 };
 
+export type VProps = {
+  category: string;
+};
+
 export type CourseProps = {
   title: string;
   image?: string;
@@ -26,6 +30,13 @@ export type ProfileProps = {
   userGender: string;
   userMessage: string;
   userImage: string;
+};
+
+export type PProps = {
+  name: string;
+  gender: string;
+  message: string;
+  image: string;
 };
 
 export type ProfileFormProps = {
