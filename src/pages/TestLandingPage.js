@@ -6,7 +6,7 @@ import { Card, CardContent, Typography } from '@material-ui/core';
 import Swiper from 'react-id-swiper';
 import 'swiper/css/swiper.css';
 import CheckIcon from '@material-ui/icons/Check';
-import Top from '../assets/images/Top.svg';
+import Top from '../assets/images/top.svg';
 import Step from '../assets/images/Step.svg';
 import Data from '../assets/images/Data.svg';
 import Output from '../assets/images/Output.svg';
@@ -213,7 +213,7 @@ export const TestLandingPage = () => {
               </Grid>
               <Grid item sm={1} xs={1} />
             </Grid>
-            <Hidden smDown mdDown>
+            <Hidden smDown mdDown xlDown>
               <Grid item>
                 <div style={{ width: 700, height: 400 }}>
                   <Fade top delay={500}>
