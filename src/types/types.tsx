@@ -1,11 +1,15 @@
 export type VideoProps = {
-  key: string;
+  key?: string;
   id: string;
   title: string;
   image: string;
   path: string;
   completed: boolean;
   url?: string;
+};
+
+export type VProps = {
+  category: string;
 };
 
 export type CourseProps = {
@@ -25,6 +29,13 @@ export type ProfileProps = {
   userGender: string;
   userMessage: string;
   userImage: string;
+};
+
+export type PProps = {
+  name: string;
+  gender: string;
+  message: string;
+  image: string;
 };
 
 export type ProfileFormProps = {
