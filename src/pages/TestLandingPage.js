@@ -213,9 +213,9 @@ export const TestLandingPage = () => {
               </Grid>
               <Grid item sm={1} xs={1} />
             </Grid>
-            <Hidden smDown mdDown xlDown>
+            <Hidden smDown mdDown>
               <Grid item>
-                <div style={{ width: 700, height: 400 }}>
+                <div style={{ width: 500, height: 400 }}>
                   <Fade top delay={500}>
                     <img src={Top} width="100%" height="100%" alt="Top" />
                   </Fade>
