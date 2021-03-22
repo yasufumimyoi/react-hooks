@@ -629,9 +629,9 @@ export const vData = [
   },
   {
     id: 'react_7',
-    url: 'https://www.youtube.com/watch?v=VPVzx1ZOVuw&t=1711s',
-    image: 'http://img.youtube.com/vi/VPVzx1ZOVuw/mqdefault.jpg',
-    title: 'Build a YouTube Clone Application Using React',
+    url: 'https://www.youtube.com/watch?v=w7ejDZ8SWv8',
+    image: 'http://img.youtube.com/vi/w7ejDZ8SWv8/mqdefault.jpg',
+    title: 'React JS Crash Course 2021',
     path: '/courses/react/7',
     completed: false,
     category: 'react',
