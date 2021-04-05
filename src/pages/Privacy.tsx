@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Grid } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
+import { VideoContext } from '../contexts/video-context';
 
 export const Privacy: React.FC = () => {
+  const { currentUser } = useContext(VideoContext);
   const history = useHistory();
   const handleHome = () => {
-    history.push('/');
+    if (currentUser) {
+      history.push('/courses');
+    } else {
+      history.push('/');
+    }
   };
   return (
     <Grid container style={{ justifyContent: 'center' }}>
